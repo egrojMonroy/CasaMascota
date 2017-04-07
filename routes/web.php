@@ -20,5 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('/pets','pets');
+Route::resource('/breeds','breeds');
 
 Route::get('/genview','genController@genfunct');
+Route::get('/findBreed','genController@findBreed');

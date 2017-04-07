@@ -64,25 +64,34 @@
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label for="family" class="col-lg-2 control-label">Family</label>
-			<div class="col-lg-10">
-			<select class="form-control" name="family" id="family">
-				<option disabled="" selected="">Choose a Family</option>
-				@foreach($families as $row)
-				<option value="{{$row->id}}">{{$row->name}}</option>
-				@endforeach
-			</select>
-		</div>
-	</div>
+	<table>
+		<tr>
+			<td>
+				<div class="form-group">
+					<label for="family" class="col-lg-2 control-label">Family</label>
+						<div class="col-lg-10">
+						<select class="family" name="family" id="family">
+							<option disabled="true" selected="">Choose a Family</option>
+							@foreach($families as $row)
+							<option value="{{$row->id}}">{{$row->name}}</option>
+							@endforeach
+						</select>
+						</div>
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<label for="breed" class="col-lg-2 control-label">Breed</label>
+						<div class="col-lg-10">
+						<select class="breed" name="breed" id="breed">
+					        <option value="0" disabled="true" selected="true">Choose a Breed</option>
+					    </select>
+						</div>
+				</div>
+			</td>
+		</tr>
+	</table>
 
-	<span>Product Name: </span>
-    <select style="width: 200px" class="productname">
-
-        <option value="0" disabled="true" selected="true">Product Name</option>
-    </select>
-
-  
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <button type="submit" class="btn btn-default">Grabar</button>
@@ -95,9 +104,28 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(document).on('change','.form-control',function(){
+		$(document).on('change','.family',function(){
 			var id=$(this).val();
-			console.log(id);
+			//console.log(id);
+			var div=$(this).parent();
+			var op="";
+			$.ajax({
+				type:'get',
+				url:'{!!URL::to('findBreed')!!}',
+				data:{'id':id},
+				success:function(data){
+					op+='<option value=0 selected disabled>Choose a Breed</option>';
+					for(var i=0;i<data.length;i++){
+						op+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+					}
+					console.log(op);
+					div.find('.breed').html("");
+                    div.find('.breed').append(op);
+				},
+				error:function(){
+
+				}
+			});
 		});
 	});
 </script>
