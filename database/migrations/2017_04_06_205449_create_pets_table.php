@@ -18,7 +18,7 @@ class CreatePetsTable extends Migration{
             $table->binary('gender');
             $table->integer('breed_id');
             $table->integer('user_id');
-            $table->foreign('breed_id')->references('id')->on('breed');
+            $table->foreign('breed_id')->references('id')->on('breeds');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
