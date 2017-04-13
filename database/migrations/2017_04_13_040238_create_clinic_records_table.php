@@ -13,7 +13,13 @@ class CreateClinicRecordsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::defaultStringLength(191);
+        Schema::create('clinic_records',function (Blueprint $table ){
+           $table->increments('id');
+           $table->text('recipe');
+           $table->string('diagnosis');
+           $table->string('observation');
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class CreateClinicRecordsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('clinic_records');
     }
 }

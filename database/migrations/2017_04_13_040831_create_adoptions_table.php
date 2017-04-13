@@ -13,7 +13,15 @@ class CreateAdoptionsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::defaultStringLength(191);
+        Schema::create('adoptions',function (Blueprint $table ){
+            $table->integer('children');
+            $table->string('type_house');
+            $table->string('address');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('pet_id')->references('id')->on('petss');
+
+        });
     }
 
     /**
@@ -23,6 +31,6 @@ class CreateAdoptionsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('adoptions');
     }
 }

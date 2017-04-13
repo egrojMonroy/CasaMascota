@@ -21,6 +21,7 @@ class CreatePetsTable extends Migration{
             $table->foreign('breed_id')->references('id')->on('breeds');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->boolean('in_adoption');
         });
     }
 

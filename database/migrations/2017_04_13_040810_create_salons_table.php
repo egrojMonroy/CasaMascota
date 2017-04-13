@@ -13,7 +13,14 @@ class CreateSalonsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::defaultStringLength(191);
+        Schema::create('salon',function (Blueprint $table ){
+            $table->timestamp('date');
+            $table->text('observation');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('pet_id')->references('id')->on('pets');
+
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class CreateSalonsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('salons');
     }
 }

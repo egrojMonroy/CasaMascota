@@ -23,6 +23,6 @@ class CreatePerCrTable extends Migration
      */
     public function down()
     {
-        //
+       // Schema::dropIfExists('pet_cr');
     }
 }

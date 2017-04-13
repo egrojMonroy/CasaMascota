@@ -13,7 +13,13 @@ class CreateVaccinesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::defaultStringLength(191);
+        Schema::create('vaccines',function (Blueprint $table ){
+           $table->increments('id');
+           $table->string('name');
+           $table->string('Diseases');
+
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class CreateVaccinesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('vaccines');
     }
 }

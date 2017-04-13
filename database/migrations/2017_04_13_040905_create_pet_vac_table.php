@@ -23,6 +23,6 @@ class CreatePetVacTable extends Migration
      */
     public function down()
     {
-        //
+        //Schema::dropIfExists('pet_vac');
     }
 }
