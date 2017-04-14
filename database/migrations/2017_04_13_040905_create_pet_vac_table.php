@@ -13,7 +13,13 @@ class CreatePetVacTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::defaultStringLength(191);
+        Schema::create('pet_vac',function (Blueprint $table ){
+            $table->increments('id');
+            $table->foreign('pet_id')->references('id')->on('pets');
+            $table->foreign('vac_id')->references('id')->on('vaccines');
+            $table->timestamp('date');
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class CreatePetVacTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('pet_vac');
+        Schema::dropIfExists('pet_vac');
     }
 }
