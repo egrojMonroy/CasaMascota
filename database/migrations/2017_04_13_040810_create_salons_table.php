@@ -17,6 +17,8 @@ class CreateSalonsTable extends Migration
         Schema::create('salon',function (Blueprint $table ){
             $table->timestamp('date');
             $table->text('observation');
+            $table->integer('user_id');
+            $table->integer('pet_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('pet_id')->references('id')->on('pets');
 

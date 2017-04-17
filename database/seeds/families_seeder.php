@@ -12,18 +12,26 @@ class families_seeder extends Seeder
      * @return void
      */
     public function run()
-    { $faker = Faker::create();
+    {
         DB::table('families')->insert([
-            'name'  => $faker->randomElement(['canino','felino']),
+
+            ['name'  => 'canino',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+            ],
 
+            ['name'  => 'felino',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+            ]
 
 
 
 
 
         ]);
+
+
     }
 
         //

@@ -16,6 +16,8 @@ class CreateSurgeriesTable extends Migration
         Schema::defaultStringLength(191);
         Schema::create('surgeries',function (Blueprint $table ){
             $table->increments('id');
+            $table->integer('pet_id');
+            $table->integer('user_id');
             $table->foreign('pet_id')->references('id')->on('pets');
             $table->foreign('user_id')->references('id')->on('users');
             $table->text('detail');

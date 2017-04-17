@@ -18,8 +18,10 @@ class CreateAdoptionsTable extends Migration
             $table->integer('children');
             $table->string('type_house');
             $table->string('address');
+            $table->integer('pet_id');
+            $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('pet_id')->references('id')->on('petss');
+            $table->foreign('pet_id')->references('id')->on('pets');
 
         });
     }

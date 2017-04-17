@@ -16,6 +16,8 @@ class CreatePetVacTable extends Migration
         Schema::defaultStringLength(191);
         Schema::create('pet_vac',function (Blueprint $table ){
             $table->increments('id');
+            $table->integer('pet_id');
+            $table->integer('vac_id');
             $table->foreign('pet_id')->references('id')->on('pets');
             $table->foreign('vac_id')->references('id')->on('vaccines');
             $table->timestamp('date');

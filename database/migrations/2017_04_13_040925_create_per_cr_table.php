@@ -15,6 +15,8 @@ class CreatePerCrTable extends Migration
     {
         Schema::create('pet_cr',function (Blueprint $table ){
             $table->increments('id');
+            $table->integer('pet_id');
+            $table->integer('cr_id');
             $table->foreign('pet_id')->references('id')->on('pets');
             $table->foreign('cr_id')->references('id')->on('clinic_records');
             $table->timestamp('date');

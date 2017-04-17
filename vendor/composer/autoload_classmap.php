@@ -21,6 +21,7 @@ return array(
     'CreateReservationsTable' => $baseDir . '/database/migrations/2017_04_13_040116_create_reservations_table.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2017_04_13_040045_create_roles_table.php',
     'CreateSalonsTable' => $baseDir . '/database/migrations/2017_04_13_040810_create_salons_table.php',
+    'CreateSurgeriesTable' => $baseDir . '/database/migrations/2017_04_14_002706_create_surgeries_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateVaccinesTable' => $baseDir . '/database/migrations/2017_04_13_040201_create_vaccines_table.php',
     'Cron\\AbstractField' => $vendorDir . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
