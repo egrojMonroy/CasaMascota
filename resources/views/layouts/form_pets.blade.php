@@ -8,7 +8,7 @@
 <form class="form-horizontal" role="form" method="POST" action="{{ url('pets') }}">
 {{ csrf_field() }}
   <div class="form-group">
-    <label for="name" class="col-lg-2 control-label">Name</label>
+    <label for="name" class="col-lg-1 control-label">Name</label>
     <div class="col-lg-10">
       <input type="text" class="form-control" name="name" placeholder="Name">
       @if($errors->has('name'))
@@ -84,7 +84,7 @@
 					<label for="breed" class="col-lg-2 control-label">Breed</label>
 						<div class="col-lg-10">
 						<select class="breed" name="breed" id="breed">
-					        <option value="0" disabled="true" selected="true">Choose a Breed</option>
+					        <option value="0" disabled="true" selected="true">Choose</option>
 					    </select>
 						</div>
 				</div>
@@ -106,21 +106,21 @@
 	$(document).ready(function(){
 		$(document).on('change','.family',function(){
 			var id=$(this).val();
-			//console.log(id);
+			console.log(id);
 			var div=$(this).parent();
-			var op="";
+			var op=" ";
 			$.ajax({
 				type:'get',
 				url:'{!!URL::to('findBreed')!!}',
 				data:{'id':id},
 				success:function(data){
-					op+='<option value=0 selected disabled>Choose a Breed</option>';
+					op+='<option selected disabled>Choose a Breed</option>';
 					for(var i=0;i<data.length;i++){
 						op+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
 					}
 					console.log(op);
-					div.find('.breed').html("");
-                    div.find('.breed').append(op);
+					$('#breed').html(" ");
+					$('#breed').append(op);
 				},
 				error:function(){
 
