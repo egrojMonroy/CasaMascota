@@ -22,7 +22,7 @@ class CreateAdoptionsTable extends Migration
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('pet_id')->references('id')->on('pets');
-
+            $table->timestamps();
         });
     }
 

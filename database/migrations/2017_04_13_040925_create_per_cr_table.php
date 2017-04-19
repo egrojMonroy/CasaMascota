@@ -20,6 +20,7 @@ class CreatePerCrTable extends Migration
             $table->foreign('pet_id')->references('id')->on('pets');
             $table->foreign('cr_id')->references('id')->on('clinic_records');
             $table->timestamp('date');
+            $table->timestamps();
         });
     }
 

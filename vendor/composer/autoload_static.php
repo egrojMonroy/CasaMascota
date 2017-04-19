@@ -3161,7 +3161,10 @@ class ComposerStaticInit749c1023b6616617f61009be5b798086
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'breeds_seeder' => __DIR__ . '/../..' . '/database/seeds/breeds_seeder.php',
+        'clinic_records_seeder' => __DIR__ . '/../..' . '/database/seeds/clinic_records_seeder.php',
         'families_seeder' => __DIR__ . '/../..' . '/database/seeds/families_seeder.php',
+        'pet_cr_seeder' => __DIR__ . '/../..' . '/database/seeds/pet_cr_seeder.php',
+        'pet_vac_seeder' => __DIR__ . '/../..' . '/database/seeds/pet_vac_seeder.php',
         'pets_seeder' => __DIR__ . '/../..' . '/database/seeds/pets_seeder.php',
         'petstore\\Breed' => __DIR__ . '/../..' . '/app/Breed.php',
         'petstore\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -3249,7 +3252,9 @@ class ComposerStaticInit749c1023b6616617f61009be5b798086
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'roles_seeder' => __DIR__ . '/../..' . '/database/seeds/roles_seeder.php',
         'users_seeder' => __DIR__ . '/../..' . '/database/seeds/users_seeder.php',
+        'vaccines_seeder' => __DIR__ . '/../..' . '/database/seeds/vaccines_seeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

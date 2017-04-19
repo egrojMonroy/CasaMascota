@@ -2898,7 +2898,10 @@ return array(
     'Webmozart\\Assert\\Assert' => $vendorDir . '/webmozart/assert/src/Assert.php',
     'XdgBaseDir\\Xdg' => $vendorDir . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
     'breeds_seeder' => $baseDir . '/database/seeds/breeds_seeder.php',
+    'clinic_records_seeder' => $baseDir . '/database/seeds/clinic_records_seeder.php',
     'families_seeder' => $baseDir . '/database/seeds/families_seeder.php',
+    'pet_cr_seeder' => $baseDir . '/database/seeds/pet_cr_seeder.php',
+    'pet_vac_seeder' => $baseDir . '/database/seeds/pet_vac_seeder.php',
     'pets_seeder' => $baseDir . '/database/seeds/pets_seeder.php',
     'petstore\\Breed' => $baseDir . '/app/Breed.php',
     'petstore\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -2986,5 +2989,7 @@ return array(
     'phpDocumentor\\Reflection\\Types\\String_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/String_.php',
     'phpDocumentor\\Reflection\\Types\\This' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/This.php',
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+    'roles_seeder' => $baseDir . '/database/seeds/roles_seeder.php',
     'users_seeder' => $baseDir . '/database/seeds/users_seeder.php',
+    'vaccines_seeder' => $baseDir . '/database/seeds/vaccines_seeder.php',
 );

@@ -21,6 +21,7 @@ class CreatePetVacTable extends Migration
             $table->foreign('pet_id')->references('id')->on('pets');
             $table->foreign('vac_id')->references('id')->on('vaccines');
             $table->timestamp('date');
+            $table->timestamps();
         });
     }
 

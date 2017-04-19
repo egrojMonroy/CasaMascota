@@ -18,7 +18,9 @@ class CreateClinicRecordsTable extends Migration
            $table->increments('id');
            $table->text('recipe');
            $table->string('diagnosis');
-           $table->string('observation');
+           $table->float('temperature');
+           $table->float('heartbeat');
+            $table->timestamps();
         });
     }
 

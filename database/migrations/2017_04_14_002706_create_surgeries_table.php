@@ -22,6 +22,7 @@ class CreateSurgeriesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->text('detail');
             $table->timestamp('date');
+            $table->timestamps();
         });
     }
 
