@@ -18,7 +18,7 @@ class user_nit_seeder extends Seeder
             DB::table('user_nit')->insert([
 
 
-                [   'user_id' => $faker->randomElement($array = array (2,6)),
+                [   'id_user' => $faker->randomElement($array = array (2,6)),
                     'nit'  => $faker->numberBetween($min = 2422354, $max = 10000001),
                     'name' => $faker->lastName,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

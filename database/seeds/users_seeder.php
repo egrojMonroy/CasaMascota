@@ -19,7 +19,6 @@ class users_seeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
-
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
