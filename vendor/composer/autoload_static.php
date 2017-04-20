@@ -3158,6 +3158,7 @@ class ComposerStaticInit749c1023b6616617f61009be5b798086
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'UsRol' => __DIR__ . '/../..' . '/database/migrations/2017_04_19_224055_us_rol.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'breeds_seeder' => __DIR__ . '/../..' . '/database/seeds/breeds_seeder.php',
@@ -3253,6 +3254,8 @@ class ComposerStaticInit749c1023b6616617f61009be5b798086
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
         'roles_seeder' => __DIR__ . '/../..' . '/database/seeds/roles_seeder.php',
+        'salons_seeder' => __DIR__ . '/../..' . '/database/seeds/salons_seeder.php',
+        'us_rol_seeder' => __DIR__ . '/../..' . '/database/seeds/us_rol_seeder.php',
         'users_seeder' => __DIR__ . '/../..' . '/database/seeds/users_seeder.php',
         'vaccines_seeder' => __DIR__ . '/../..' . '/database/seeds/vaccines_seeder.php',
     );

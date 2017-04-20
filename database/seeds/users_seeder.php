@@ -23,6 +23,7 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
@@ -34,6 +35,7 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
@@ -44,6 +46,7 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
@@ -52,6 +55,7 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
@@ -60,6 +64,7 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
@@ -68,6 +73,7 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
@@ -77,6 +83,7 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
@@ -85,6 +92,7 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
@@ -93,6 +101,7 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
@@ -101,8 +110,29 @@ class users_seeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
+
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+
+            ],
+
+            ['name' => $faker->firstNameMale,
+                'email' => str_random(10).'@gmail.com',
+                'password' => bcrypt('secret'),
+                //'remember_token'=>str_random(50),
+
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+
+            ],
+
+            ['name' => $faker->firstNameFemale,
+                'email' => str_random(10).'@gmail.com',
+                'password' => bcrypt('secret'),
+                //'remember_token'=>str_random(50),
+
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
             ]
 
@@ -112,6 +142,8 @@ class users_seeder extends Seeder
 
 
 
-   ] );
+
+
+        ] );
     }
 }

@@ -2895,6 +2895,7 @@ return array(
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+    'UsRol' => $baseDir . '/database/migrations/2017_04_19_224055_us_rol.php',
     'Webmozart\\Assert\\Assert' => $vendorDir . '/webmozart/assert/src/Assert.php',
     'XdgBaseDir\\Xdg' => $vendorDir . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
     'breeds_seeder' => $baseDir . '/database/seeds/breeds_seeder.php',
@@ -2990,6 +2991,8 @@ return array(
     'phpDocumentor\\Reflection\\Types\\This' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/This.php',
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
     'roles_seeder' => $baseDir . '/database/seeds/roles_seeder.php',
+    'salons_seeder' => $baseDir . '/database/seeds/salons_seeder.php',
+    'us_rol_seeder' => $baseDir . '/database/seeds/us_rol_seeder.php',
     'users_seeder' => $baseDir . '/database/seeds/users_seeder.php',
     'vaccines_seeder' => $baseDir . '/database/seeds/vaccines_seeder.php',
 );
