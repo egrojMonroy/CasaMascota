@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(clinic_records_seeder::class);
         $this->call(pet_cr_seeder::class);
         $this->call(pet_vac_seeder::class);
-        $this->call(salons_seeder::class);
         $this->call(type_salon_seeder::class);
+        $this->call(salons_seeder::class);
         $this->call(user_nit_seeder::class);
     }
 }
