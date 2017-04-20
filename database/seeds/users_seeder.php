@@ -15,7 +15,7 @@ class users_seeder extends Seeder
     {
         $faker = Faker::create();
         DB::table('users')->insert([
-            ['name' => $faker->firstNameFemale,
+            ['name' => $faker->firstNameMale,
             'last_name' => $faker->lastName,
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
