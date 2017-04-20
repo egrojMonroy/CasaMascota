@@ -20,6 +20,7 @@ class CreateClinicRecordsTable extends Migration
            $table->string('diagnosis');
            $table->float('temperature');
            $table->float('heartbeat');
+           $table->double('cost');
             $table->timestamps();
         });
     }

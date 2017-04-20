@@ -31,10 +31,6 @@ class salons_seeder extends Seeder
 
 
 
-
-
-
-
         ]);}
 
 
