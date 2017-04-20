@@ -23,7 +23,7 @@ return array(
     'CreateRolesTable' => $baseDir . '/database/migrations/2017_04_13_040045_create_roles_table.php',
     'CreateSalonsTable' => $baseDir . '/database/migrations/2017_04_13_040810_create_salons_table.php',
     'CreateSurgeriesTable' => $baseDir . '/database/migrations/2017_04_14_002706_create_surgeries_table.php',
-    'CreateTypeSalonTable' => $baseDir . '/database/migrations/2017_04_20_022344_create_type_salon_table.php',
+    'CreateTypeSalonTable' => $baseDir . '/database/migrations/2017_04_13_040004_create_type_salon_table.php',
     'CreateUserNitTable' => $baseDir . '/database/migrations/2017_04_20_023818_create_user_nit_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateVaccinesTable' => $baseDir . '/database/migrations/2017_04_13_040201_create_vaccines_table.php',
