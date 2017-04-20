@@ -22,7 +22,7 @@ class CreateFactureTable extends Migration
             $table->integer('id_user_nit');
             $table->integer('id_clinic_record');
             $table->foreign('id_clinic_record')->references('id')->on('clinic_records');
-            $table->foreign('id_user_nit')->references(id)->on('user_nit');
+            $table->foreign('id_user_nit')->references('id')->on('user_nit');
             $table->double('total');
             $table->timestamps();
         });

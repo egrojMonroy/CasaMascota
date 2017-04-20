@@ -16,7 +16,7 @@ class CreateUserNitTable extends Migration
         Schema::defaultStringLength(191);
         Schema::create('user_nit',function (Blueprint $table ){
             $table->increments('id');
-            $table->string('id_user');
+            $table->integer('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->integer('nit');
             $table->string('name');

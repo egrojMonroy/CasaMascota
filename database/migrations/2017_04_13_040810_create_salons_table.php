@@ -20,10 +20,10 @@ class CreateSalonsTable extends Migration
             $table->text('observation');
             $table->integer('user_id');
             $table->integer('pet_id');
-            $table->integer('type_salon_id');
+            $table->integer('type_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('pet_id')->references('id')->on('pets');
-            $table->foreign('type_salon_id')->references('id')->on('type_salon');
+            $table->foreign('type_id')->references('id')->on('type_salon');
             $table->timestamps();
         });
     }
