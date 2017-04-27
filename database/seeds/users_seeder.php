@@ -140,6 +140,18 @@ class users_seeder extends Seeder
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
 
+            ],
+
+
+
+            ['name' => 'admin',
+            'last_name' => 'nimda',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin123'),
+            //'remember_token'=>str_random(50),
+
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             ]
 
 

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="utf-8">
@@ -13,9 +14,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+
+
     <!-- Scripts -->
     <script>
-        window.Laravel = {!! json_encode([
+        window.Laravel ={!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
@@ -35,6 +38,7 @@
                     <a class="navbar-brand" href="{{ url('/home') }}">Home</a>
                     <a class="navbar-brand" href="{{ url('/breeds') }}">Breeds</a>
                     <a class="navbar-brand" href="{{ url('/pets')}}">Pets</a>
+                    <a class="navbar-brand" href="{{ url('/reservations')}}">Reservations</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

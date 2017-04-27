@@ -93,6 +93,13 @@ class us_rol_seeder extends Seeder
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
             ],
 
+            [   'user_id'  => '13',
+                'roles_id'=>'1',
+
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+            ],
+
 
 
 

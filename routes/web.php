@@ -22,5 +22,16 @@ Route::get('/home', 'HomeController@index');
 Route::resource('/pets','pets');
 Route::resource('/breeds','breeds');
 
+Route::resource('/reservations','reservations');
+Route::get('/findPet','genController@findPet');
+
+
+
+
 Route::get('/genview','genController@genfunct');
 Route::get('/findBreed','genController@findBreed');
+
+
+
+
+
