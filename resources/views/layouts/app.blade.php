@@ -38,8 +38,14 @@
                     <a class="navbar-brand" href="{{ url('/home') }}">Home</a>
                     <a class="navbar-brand" href="{{ url('/breeds') }}">Breeds</a>
                     <a class="navbar-brand" href="{{ url('/pets')}}">Pets</a>
+<<<<<<< HEAD
                     <a class="navbar-brand" href="{{ url('/salons')}}">Salons</a>
+=======
+                    <a class="navbar-brand" href="{{ url('/users')}}">Users</a>
+>>>>>>> 5e65b547e229093a0bbaa2efb0083ebcc1f4300e
                     <a class="navbar-brand" href="{{ url('/reservations')}}">Reservations</a>
+                    <a class="navbar-brand" href="{{ url('/vaccines')}}">Vaccines</a>
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

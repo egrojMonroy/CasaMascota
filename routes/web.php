@@ -21,9 +21,14 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('/pets','pets');
 Route::resource('/breeds','breeds');
+<<<<<<< HEAD
 Route::resource('/salons','salons');
 
+=======
+Route::resource('/users','users');
+>>>>>>> 5e65b547e229093a0bbaa2efb0083ebcc1f4300e
 Route::resource('/reservations','reservations');
+Route::resource('/vaccines','vaccines');
 Route::get('/findPet','genController@findPet');
 
 
