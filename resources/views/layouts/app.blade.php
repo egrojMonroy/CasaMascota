@@ -40,6 +40,7 @@
                     <a class="navbar-brand" href="{{ url('/pets')}}">Pets</a>
                     <a class="navbar-brand" href="{{ url('/users')}}">Users</a>
                     <a class="navbar-brand" href="{{ url('/reservations')}}">Reservations</a>
+                    <a class="navbar-brand" href="{{ url('/vaccines')}}">Vaccines</a>
 
                 </div>
 

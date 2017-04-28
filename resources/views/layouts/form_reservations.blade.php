@@ -83,3 +83,34 @@
 
 
 
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(document).on('change','#user_id',function(){
+            var id=$(this).val();
+            console.log(id);
+            var div=$(this).parent();
+            var op=" ";
+            $.ajax({
+                type:'get',
+                url:'{!!URL::to('findPet')!!}',
+                data:{'id':id},
+                success:function(data){
+                    op+='<option selected disabled>Elija Mascota</option>';
+                    for(var i=0;i<data.length;i++){
+                        op+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                    }
+                    console.log(op);
+                    $('#pet').html("");
+                    $('#pet').append(op);
+                },
+                error:function(){
+                }
+            });
+        });
+    });
+</script>

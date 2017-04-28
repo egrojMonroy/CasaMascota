@@ -23,6 +23,7 @@ Route::resource('/pets','pets');
 Route::resource('/breeds','breeds');
 Route::resource('/users','users');
 Route::resource('/reservations','reservations');
+Route::resource('/vaccines','vaccines');
 Route::get('/findPet','genController@findPet');
 
 
