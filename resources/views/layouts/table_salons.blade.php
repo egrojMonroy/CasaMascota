@@ -20,11 +20,13 @@
 					@endif
 					@if($row->gender==0)
 						Female
+					@else
+						Undefined
 					@endif</td>
 				<td>{{ $row->breed }}</td>
-				<td><a href="pets/{{ $row->id }}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
+				<td><a href="breeds/{{ $row->id }}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
 				<td>
-					<form action="{{ route('pets.destroy', $row->id) }}" method="POST" >
+					<form action="{{ route('breeds.destroy', $row->id) }}" method="POST" >
 					<input type="hidden" name="_method" value="DELETE">
 					{{ csrf_field() }}
 					<input type="submit" class="btn btn-danger btn-xs" value="Eliminar" >

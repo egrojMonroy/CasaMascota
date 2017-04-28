@@ -107,6 +107,7 @@
       <button type="submit" class="btn btn-default">Grabar</button>
     </div>
   </div>
+  <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
 </form>
 
 
