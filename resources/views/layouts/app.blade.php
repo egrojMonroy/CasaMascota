@@ -38,7 +38,9 @@
                     <a class="navbar-brand" href="{{ url('/home') }}">Home</a>
                     <a class="navbar-brand" href="{{ url('/breeds') }}">Breeds</a>
                     <a class="navbar-brand" href="{{ url('/pets')}}">Pets</a>
+                    <a class="navbar-brand" href="{{ url('/users')}}">Users</a>
                     <a class="navbar-brand" href="{{ url('/reservations')}}">Reservations</a>
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

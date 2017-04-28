@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('/pets','pets');
 Route::resource('/breeds','breeds');
-
+Route::resource('/users','users');
 Route::resource('/reservations','reservations');
 Route::get('/findPet','genController@findPet');
 
