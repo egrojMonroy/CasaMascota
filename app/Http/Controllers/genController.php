@@ -12,15 +12,12 @@ class genController extends Controller{
     public function findBreed(Request $request){
     	$data=DB::table('breeds')->select('id', 'name')->where('family_id', $request->id)->get();
     	return response()->json($data);
-
-
     }
 
 
     public function findPet(Request $request){
         $data=DB::table('pets')->select('id', 'name')->where('user_id', $request->id)->get();
         return response()->json($data);
-
 
     }
 

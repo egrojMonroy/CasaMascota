@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(breeds_seeder::class);
         $this->call(roles_seeder::class);
         $this->call(users_seeder::class);
-        $this->call(us_rol_seeder::class);
+       // $this->call(us_rol_seeder::class);
         $this->call(pets_seeder::class);
         $this->call(vaccines_seeder::class);
         $this->call(clinic_records_seeder::class);

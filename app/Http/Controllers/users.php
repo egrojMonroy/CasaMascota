@@ -13,16 +13,10 @@ class users extends Controller
      */
     public function index()
     {
-
-        //$user= User::all();
-        return view('users');
+        $users = User::all();
+        return view('users')->with(['users' => $users]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
