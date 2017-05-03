@@ -14,7 +14,7 @@ class CreateTypeSalonTable extends Migration
     public function up()
     {
         Schema::defaultStringLength(191);
-        Schema::create('type_salon',function (Blueprint $table ){
+        Schema::create('type_salons',function (Blueprint $table ){
             $table->increments('id');
             $table->string('name');
             $table->integer('cost');
@@ -28,6 +28,6 @@ class CreateTypeSalonTable extends Migration
      * @return void
      */
     public function down()
-    {Schema::dropIfExists('type_salon');
+    {Schema::dropIfExists('type_salons');
     }
 }
