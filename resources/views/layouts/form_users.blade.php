@@ -52,11 +52,9 @@
         <label for="tipo_res" class="col-lg-2 control-label">Tipo de Usuario</label>
         <div class="col-lg-10">
             <select class="form-control" name="tipo_res">
-                <option disabled="true" selected="">Tipo De Usuario</option>
-                <option value="1">Cliente</option>
-                <option value="0">Doctor</option>
-                <option value="2">Peluquero</option>
-                <option value="3">Empleado</option>
+                @foreach($roles as $row)
+                    <option value="{{$row->id}}">{{$row->role}}</option>
+                @endforeach
             </select>
         </div>
     </div>

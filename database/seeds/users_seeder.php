@@ -47,7 +47,7 @@ class users_seeder extends Seeder
 
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-             'rol_id'=>'2'
+             'rol_id'=>'3'
 
             ],
          ['name' => $faker->firstNameFemale,
@@ -58,7 +58,7 @@ class users_seeder extends Seeder
 
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-             'rol_id'=>'3'
+             'rol_id'=>'4'
 
             ],
          ['name' => $faker->firstNameFemale,
@@ -80,10 +80,21 @@ class users_seeder extends Seeder
 
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-             'rol_id'=>'3'
+             'rol_id'=>'2'
 
             ],
 
+        ['name' => $faker->firstNameMale,
+            'last_name' => $faker->lastName,
+            'email' => str_random(10).'@gmail.com',
+            'password' => bcrypt('secret'),
+            //'remember_token'=>str_random(50),
+
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'rol_id'=>'3'
+
+            ],
         ['name' => $faker->firstNameMale,
             'last_name' => $faker->lastName,
             'email' => str_random(10).'@gmail.com',
@@ -103,20 +114,10 @@ class users_seeder extends Seeder
 
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'rol_id'=>'1'
-
-            ],
-        ['name' => $faker->firstNameMale,
-            'last_name' => $faker->lastName,
-            'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
-            //'remember_token'=>str_random(50),
-
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'rol_id'=>'4'
 
             ],
+            //9
         ['name' => $faker->firstNameMale,
             'last_name' => $faker->lastName,
             'email' => str_random(10).'@gmail.com',
@@ -149,7 +150,7 @@ class users_seeder extends Seeder
 
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-                'rol_id'=>'2'
+                'rol_id'=>'4'
 
             ],
 

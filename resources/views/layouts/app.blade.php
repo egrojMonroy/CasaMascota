@@ -38,11 +38,9 @@
                     <a class="navbar-brand" href="{{ url('/home') }}">Home</a>
                     <a class="navbar-brand" href="{{ url('/breeds') }}">Breeds</a>
                     <a class="navbar-brand" href="{{ url('/pets')}}">Pets</a>
-
-                    <a class="navbar-brand" href="{{ url('/salons')}}">Salons</a>
-
-                    <a class="navbar-brand" href="{{ url('/users')}}">Users</a>
                     <a class="navbar-brand" href="{{ url('/reservations')}}">Reservations</a>
+                    <a class="navbar-brand" href="{{ url('/salons')}}">Salons</a>
+                    <a class="navbar-brand" href="{{ url('/users')}}">Users</a>
                     <a class="navbar-brand" href="{{ url('/vaccines')}}">Vaccines</a>
 
                 </div>

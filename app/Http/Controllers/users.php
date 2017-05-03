@@ -4,6 +4,7 @@ namespace petstore\Http\Controllers;
 
 use Illuminate\Http\Request;
 use petstore\User;
+use petstore\Role;
 class users extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class users extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users')->with(['users' => $users]);
+        $roles = Role::all();
+        return view('users')->with(['users' => $users,'roles'=>$roles]);
     }
 
     public function create()

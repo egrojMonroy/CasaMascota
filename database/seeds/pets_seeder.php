@@ -23,7 +23,7 @@ class pets_seeder extends Seeder
             'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
             'gender'=> 'male',
             'breed_id'=>"1",
-            'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+            'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
              'in_adoption'=> "false",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -36,7 +36,7 @@ class pets_seeder extends Seeder
                 'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
                 'gender'=> 'male',
                 'breed_id'=>"5",
-                'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+                'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
                 'in_adoption'=> "false",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -49,7 +49,7 @@ class pets_seeder extends Seeder
                 'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
                 'gender'=> 'female',
                 'breed_id'=>"3",
-                'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+                'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
                 'in_adoption'=> "false",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -63,7 +63,7 @@ class pets_seeder extends Seeder
                 'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
                 'gender'=> 'Male',
                 'breed_id'=>"5",
-                'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+                'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
                 'in_adoption'=> "true",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -78,7 +78,7 @@ class pets_seeder extends Seeder
                 'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
                 'gender'=> 'female',
                 'breed_id'=>"3",
-                'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+                'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
                 'in_adoption'=> "false",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -94,7 +94,7 @@ class pets_seeder extends Seeder
                 'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
                 'gender'=> 'female',
                 'breed_id'=>"11",
-                'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+                'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
                 'in_adoption'=> "true",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -108,7 +108,7 @@ class pets_seeder extends Seeder
                 'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
                 'gender'=> 'Male',
                 'breed_id'=>"15",
-                'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+                'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
                 'in_adoption'=> "true",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -122,7 +122,7 @@ class pets_seeder extends Seeder
                 'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
                 'gender'=> 'Male',
                 'breed_id'=>$faker->numberBetween($min = 1, $max = 20),
-                'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+                'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
                 'in_adoption'=> "false",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -136,7 +136,7 @@ class pets_seeder extends Seeder
                 'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
                 'gender'=> 'Male',
                 'breed_id'=>$faker->numberBetween($min = 1, $max = 20),
-                'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+                'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
                 'in_adoption'=> "true",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -150,7 +150,7 @@ class pets_seeder extends Seeder
                 'urlImg'=>$faker->imageUrl($width = 200, $height = 200),
                 'gender'=> 'Female',
                 'breed_id'=>$faker->numberBetween($min = 1, $max = 20),
-                'user_id'=>$faker->randomElement($array = array (4,8,9,10,11,12)),
+                'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
                 'in_adoption'=> "true",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
