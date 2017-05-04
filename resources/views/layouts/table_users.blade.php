@@ -30,7 +30,7 @@
 				</td>
 				<td><a href="users/{{ $row->id }}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
 				<td>
-					<form action="{{ route('breeds.destroy', $row->bid) }}" method="POST" >
+					<form action="{{ route('users.destroy', $row->id) }}" method="POST" >
 						<input type="hidden" name="_method" value="DELETE">
 						{{ csrf_field() }}
 						<input type="submit" class="btn btn-danger btn-xs" value="Eliminar" >

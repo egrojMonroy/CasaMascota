@@ -19,6 +19,7 @@ class CreateVaccinesTable extends Migration
            $table->string('name');
            $table->string('diseases');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

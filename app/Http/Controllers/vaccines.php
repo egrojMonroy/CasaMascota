@@ -99,6 +99,7 @@ class vaccines extends Controller
      */
     public function destroy($id)
     {
-        //
+        Vaccine::destroy($id);
+        return back();
     }
 }

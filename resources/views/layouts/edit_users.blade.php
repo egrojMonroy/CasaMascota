@@ -43,6 +43,7 @@
             <div class="col-lg-10">
 
                 <select class="form-control" name="rol_id">
+
                     @if($users->rol_id==1)
                         <option value="1">Doctor</option>
                     @endif

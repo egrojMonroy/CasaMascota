@@ -13,7 +13,7 @@ class type_salon_seeder extends Seeder
     public function run()
 
     { $faker = Faker::create();
-        DB::table('type_salon')->insert([
+        DB::table('type_salons')->insert([
 
 
             [   'name'  => "Pequeño",

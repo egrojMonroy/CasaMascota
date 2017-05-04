@@ -23,7 +23,7 @@ class CreateSalonsTable extends Migration
             $table->integer('type_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('pet_id')->references('id')->on('pets');
-            $table->foreign('type_id')->references('id')->on('type_salon');
+            $table->foreign('type_id')->references('id')->on('type_salons');
             $table->timestamps();
         });
     }
