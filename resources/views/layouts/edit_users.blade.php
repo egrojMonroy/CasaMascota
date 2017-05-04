@@ -41,7 +41,29 @@
         <div class="form-group">
             <label for="name" class="col-lg-2 control-label">Rol</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" name="rol_id" value="{{ $users->rol_id }}">
+
+                <select class="form-control" name="rol_id">
+                    @if($users->rol_id==1)
+                        <option value="1">Doctor</option>
+                    @endif
+                    @if($users->rol_id==2)
+                        <option value="2">Peluquero</option>
+                    @endif
+                    @if($users->rol_id==3)
+                        <option value="3">Secretario</option>
+                    @endif
+                    @if($users->rol_id==4)
+                        <option value="4">Empleado</option>
+                    @endif
+                    @if($users->rol_id==5)
+                        <option value="5">Dueño</option>
+                    @endif
+                    <option value="1">Doctor</option>
+                    <option value="2">Peluquero</option>
+                    <option value="3">Secretario</option>
+                    <option value="4">Empleado</option>
+                    <option value="5">Dueño</option>
+                </select>
                 @if($errors->has('email'))
                     <span style="color:red;">{{ $errors->all('email') }}</span>
                 @endif
