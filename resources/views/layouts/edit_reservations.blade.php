@@ -1,6 +1,7 @@
 @if(isset($edit))
 
 	<form class="form-horizontal" role="form" method="POST" action="{{ route('reservations.update', $reservations->last()->id) }}">
+		<input type="hidden" name="_method" value="PUT">
 		{{ csrf_field() }}
 
 
@@ -10,9 +11,12 @@
 			<label for="user-id" class="col-lg-2 control-label">Dueño</label>
 			<div class="col-lg-10">
 				<select class="form-control" name="user_id" id="user_id">
-					<option disabled="true" selected="{{$allreservation->last()->uname}}"</option>
+					<option value="{{$allreservation->last()->uid}}">{{$allreservation->last()->uname}} {{$allreservation->last()->ulname}}</option>
 						@foreach($users as $row)
-						<option value="{{$row->id}}">{{$row->name}} {{$row->last_name}}</option>
+                            @if($row->id==$allreservation->last()->uid)
+                            @else
+						        <option value="{{$row->id}}">{{$row->name}} {{$row->last_name}}</option>
+                            @endif
 					@endforeach
 				</select>
 			</div>
@@ -22,9 +26,15 @@
 		<div class="form-group">
 			<label for="pet" class="col-lg-2 control-label"> Mascota</label>
 			<div class="col-lg-10">
-				<select class="form-control" name="pet" id="pet">
-					<option value="0" disabled="true" selected="true">Elija Mascota</option>
-				</select>
+                <select class="form-control" name="pet" id="pet">
+					<option value="{{$allreservation->last()->pid}}">{{$allreservation->last()->pname}}</option>
+                    @foreach($lpets as $row)
+                        @if($row->lpetid==$allreservation->last()->pid)
+                        @else
+                            <option value="{{$row->lpetid}}">{{$row->lpetname}}</option>
+                        @endif
+                    @endforeach
+                </select>
 			</div>
 		</div>
 
@@ -32,7 +42,12 @@
 		<div class="form-group">
 			<label for="date" class="col-lg-2 control-label">Fecha</label>
 			<div class="col-lg-10">
-				<input type="date" class="form-control" name="date" placeholder="date" value="{{$allreservation->last()->date}}">
+                <?php
+                $aux  = explode(" ",$allreservation->last()->date);
+                $date = $aux[0];
+                $time = $aux[1];
+                ?>
+				<input type="date" class="form-control" name="date" value="{{$date}}">
 				@if($errors->has('date'))
 					<span style="color:red;">{{ $errors->all('date') }}</span>
 				@endif
@@ -44,7 +59,7 @@
 		<div class="form-group">
 			<label for="time" class="col-lg-2 control-label">Hora</label>
 			<div class="col-lg-10">
-				<input type="time" class="form-control" name="time" placeholder="time">
+				<input type="time" class="form-control" name="time" value="{{$time}}">
 				@if($errors->has('time'))
 					<span style="color:red;">{{ $errors->all('time') }}</span>
 				@endif
@@ -57,7 +72,8 @@
 		<div class="form-group">
 			<label for="tipo_res" class="col-lg-2 control-label">Tipo de Reserva</label>
 			<div class="col-lg-10">
-				<select class="form-control" name="tipo_res" value="{{$allreservation->last()->tipo_res}}">
+				<select class="form-control" name="tipo_res">
+					<option disabled="true" selected="">Tipo De Reserva</option>
 					<option value="1">Peluqueria</option>
 					<option value="0">Consulta</option>
 				</select>

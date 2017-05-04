@@ -12,7 +12,7 @@
 		@foreach($allreservations as $row)
 			<tr>
 				<td>{{ $row->id }}</td>
-				<td>{{ $row->date }}</td>
+				<td>{{\Carbon\Carbon::parse($row->date)->format('d/m/Y H:i')}}</td>
 				<td>{{ $row->uname }} {{ $row->ulname }} </td>
 				<td>{{ $row->pname }}</td>
 				<td>@if($row->tipo_res==1)

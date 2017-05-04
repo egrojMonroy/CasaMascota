@@ -3,7 +3,7 @@
 namespace petstore\Http\Controllers;
 use petstore\Reservation;
 use petstore\Pet;
-use petstore\user;
+use petstore\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -22,7 +22,7 @@ class reservations extends Controller
             ->join('users','users.id','=','reservations.user_id')
            ->join('pets','pets.id','=','reservations.pet_id')
             ->select('reservations.id as id','users.id as uid','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
-            ->orderby('users.id', 'asc')
+            ->orderby('date', 'asc')
             ->get();
 
 
@@ -74,11 +74,21 @@ class reservations extends Controller
             ->orderby('users.id', 'asc')
             ->get();
 
+            $userpid=DB::table('reservations')->find($id);
+            $idp=$userpid->user_id;
+            $lpets=DB::table('pets')
+                ->select('id as lpetid','name as lpetname')
+                ->where('user_id',$idp)
+                ->get();
 
 
 
 
-        return view('reservations')->with(['edit' => true,'reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservation'=>$allreservation]);
+
+
+
+
+        return view('reservations')->with(['edit' => true,'reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservation'=>$allreservation,'lpets'=>$lpets]);
 
 
 
