@@ -43,11 +43,6 @@
         </div>
     </div>
 
-
-
-
-
-
     <div class="form-group">
         <label for="tipo_res" class="col-lg-2 control-label">Tipo de Usuario</label>
         <div class="col-lg-10">

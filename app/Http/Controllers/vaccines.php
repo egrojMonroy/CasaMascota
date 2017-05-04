@@ -4,7 +4,7 @@ namespace petstore\Http\Controllers;
 
 use Illuminate\Http\Request;
 use petstore\Vaccine;
-
+use Illuminate\Support\Facades\DB;
 class vaccines extends Controller
 {
     /**
@@ -66,7 +66,8 @@ class vaccines extends Controller
      */
     public function edit($id)
     {
-        //
+        $vaccine = DB::table('vaccines')->find($id);
+        return view('vaccines')->with(['edit' => true, 'vaccine' => $vaccine]);
     }
 
     /**
@@ -78,7 +79,16 @@ class vaccines extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vaccine = Vaccine::find($id);
+        $vaccine->name      = $request->name;
+        $vaccine->diseases  = $request->diseases;
+
+        if($vaccine->save()){
+            return redirect('vaccines')->with('msj', 'Datos modificados');
+        }
+        else{
+            return back();
+        }
     }
 
     /**

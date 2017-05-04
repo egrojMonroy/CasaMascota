@@ -5,6 +5,7 @@ namespace petstore\Http\Controllers;
 use Illuminate\Http\Request;
 use petstore\User;
 use petstore\Role;
+use Illuminate\Support\Facades\DB;
 class users extends Controller
 {
     /**
@@ -68,7 +69,9 @@ class users extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = DB::table('users')->find($id);
+
+        return view('users')->with(['edit' => true, 'users' => $user]);
     }
 
     /**
@@ -80,7 +83,19 @@ class users extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name      = $request->name;
+        $user->email     =$request->email   ;
+        $user->rol_id     =$request->rol_id   ;
+        $user->password     =$request->password  ;
+        $user->last_name     =$request-> last_name  ;
+
+        if($user->save()){
+            return redirect('users')->with('msj', 'Datos modificados');
+        }
+        else{
+            return back();
+        }
     }
 
     /**
