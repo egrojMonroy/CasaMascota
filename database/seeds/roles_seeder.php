@@ -19,7 +19,6 @@ class roles_seeder extends Seeder
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
             ],
-
             ['role'  => 'Peluquero',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
@@ -28,12 +27,14 @@ class roles_seeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
              ],
-
+            ['role'  => 'Empleado',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+            ],
             ['role'  => 'Dueño',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
             ]
-
         ]);
 
 

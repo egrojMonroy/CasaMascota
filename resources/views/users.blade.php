@@ -14,6 +14,7 @@
                                 @include('layouts.edit_users')
                             @else
                                 @include('layouts.form_users')
+                                @include('layouts.table_users')
 
                             @endif
                         @endif

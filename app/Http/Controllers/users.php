@@ -38,6 +38,9 @@ class users extends Controller
         $user->last_name = $request->last_name;
         $user->email     = $request->email;
         $user->password  = bcrypt($request->password);
+        $user->rol_id = $request->tipo_rol;
+
+
         if($user->save()){
             return back()->with('msj', 'Datos guardados');
         }

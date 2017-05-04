@@ -14,6 +14,7 @@
                                 @include('layouts.edit_vaccines')
                             @else
                                 @include('layouts.form_vaccines')
+                                @include('layouts.table_vaccines')
                             @endif
                         @endif
                     </div>

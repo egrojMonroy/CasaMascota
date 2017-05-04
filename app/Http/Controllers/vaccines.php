@@ -14,7 +14,7 @@ class vaccines extends Controller
      */
     public function index()
     {
-        $vaccines = Vaccines::all();
+        $vaccines = Vaccine::all();
         return view('vaccines')->with(['vaccines'=>$vaccines]);
     }
 
