@@ -1,19 +1,29 @@
 <table class="table table-hover">
-	@if(isset($reservations))
+	@if(isset($allreservations))
 		<thead>
-			<th>fecha</th>
-			<th>hora</th>
-			<th>Usuario</th>
+			<th>id</th>
+			<th>Fecha</th>
+			<th>Dueño</th>
+			<th>Mascota</th>
+			<th>Tipo De Reserva</th>
+
 		</thead>
 		<tbody>
-		@foreach($reservations as $row)
+		@foreach($allreservations as $row)
 			<tr>
-				<td>{{ $row->uname }}</td>
+				<td>{{ $row->id }}</td>
+				<td>{{ $row->date }}</td>
+				<td>{{ $row->uname }} {{ $row->ulname }} </td>
 				<td>{{ $row->pname }}</td>
-				<td>{{ $row->uname }}</td>
-				<td><a href="reservations/{{ $row->bid }}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
+				<td>@if($row->tipo_res==1)
+						Peluqueria
+					@endif
+					@if($row->tipo_res==0)
+						Consulta
+					@endif</td>
+				<td><a href="reservations/{{ $row->id }}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
 				<td>
-					<form action="{{ route('reservations.destroy', $row->bid) }}" method="POST" >
+					<form action="{{ route('reservations.destroy', $row->id) }}" method="POST" >
 					<input type="hidden" name="_method" value="DELETE">
 					{{ csrf_field() }}
 					<input type="submit" class="btn btn-danger btn-xs" value="Eliminar" >

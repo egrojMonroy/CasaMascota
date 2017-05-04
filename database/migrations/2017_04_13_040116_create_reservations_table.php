@@ -17,9 +17,9 @@ class CreateReservationsTable extends Migration
            $table->increments('id');
            $table->integer('user_id');
            $table->integer('pet_id');
-           $table->date('date');
-           $table->time('time');
-           $table->string('tipo_res');
+           $table->datetime('date');
+          // $table->time('time');
+           $table->binary('tipo_res');
            $table->foreign('user_id')->references('id')->on('users');
            $table->foreign('pet_id')->references('id')->on('pets');
             $table->timestamps();

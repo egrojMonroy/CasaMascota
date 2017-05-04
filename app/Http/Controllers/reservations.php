@@ -6,7 +6,7 @@ use petstore\Pet;
 use petstore\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;
 class reservations extends Controller
 {
     public function index()
@@ -14,17 +14,21 @@ class reservations extends Controller
         $pet = Pet::all();
 
         $reservation = Reservation::all();
-        $user= User::all();
+        $user= User::where('rol_id',4)->orderBy('name', 'desc')->get();
 
 
 
-      /* $reservation = DB::table('reservations')
-            ->join('users','users.id','=','pets.user_id')
-            ->select('users.id as uid','users.name as uname', 'pets.name as pname', 'pets.id as pid')
+       $allreservations = DB::table('reservations')
+            ->join('users','users.id','=','reservations.user_id')
+           ->join('pets','pets.id','=','reservations.pet_id')
+            ->select('reservations.id as id','users.id as uid','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
             ->orderby('users.id', 'asc')
             ->get();
-        $family = Family::all();*/
-        return view('reservations')->with(['reservations' => $reservation,'pets' => $pet,'users'=>$user]);
+
+
+
+
+        return view('reservations')->with(['reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservations'=>$allreservations]);
     }
 
 
@@ -37,8 +41,10 @@ class reservations extends Controller
         $reservation = new Reservation();
         $reservation->user_id = $request->user_id;
         $reservation->pet_id = $request->pet;
-        $reservation->date = $request->date;
-        $reservation->time=$request->time;
+        $superdate= $request->date.' '.$request->time;
+        $datetime =Carbon::createFromFormat('Y-m-d H:i', $superdate)->toDateTimeString();
+        $reservation->date =$datetime;
+       // $reservation->time=$request->time;
         $reservation->pet_id = $request->pet;
         $reservation->tipo_res = $request->tipo_res;
         if($reservation->save()){
@@ -48,9 +54,53 @@ class reservations extends Controller
             return back();
         }
     }
-    public function update()
-    {
 
+
+
+
+    public function edit($id){
+        $pet = Pet::all();
+
+        $reservation = Reservation::all();
+        $user= User::where('rol_id',4)->orderBy('name', 'desc')->get();
+
+
+
+        $allreservation = DB::table('reservations')
+            ->join('users','users.id','=','reservations.user_id')
+            ->join('pets','pets.id','=','reservations.pet_id')
+            ->select('reservations.id as id','users.id as uid','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
+            ->where('reservations.id', $id)
+            ->orderby('users.id', 'asc')
+            ->get();
+
+
+
+
+
+        return view('reservations')->with(['edit' => true,'reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservation'=>$allreservation]);
+
+
+
+
+    }
+    public function update(Request $request, $id)
+    {
+        $reservation = Reservation::find($id);
+        $reservation->user_id = $request->user_id;
+        $reservation->pet_id = $request->pet;
+        $superdate= $request->date.' '.$request->time;
+        $datetime =Carbon::createFromFormat('Y-m-d H:i', $superdate)->toDateTimeString();
+        $reservation->date =$datetime;
+        // $reservation->time=$request->time;
+        $reservation->pet_id = $request->pet;
+        $reservation->tipo_res = $request->tipo_res;
+        if($reservation->save()){
+            return back()->with('msj', 'Datos guardados');
+        }
+        else{
+            return back();
+        }
     }
 
 

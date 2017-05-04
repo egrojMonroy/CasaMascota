@@ -13,6 +13,7 @@
                             @include('layouts.edit_reservations')
                         @else
                             @include('layouts.form_reservations')
+                            @include('layouts.table_reservations')
 
                         @endif
                     @endif
