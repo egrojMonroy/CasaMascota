@@ -47,6 +47,7 @@ class reservations extends Controller
        // $reservation->time=$request->time;
         $reservation->pet_id = $request->pet;
         $reservation->tipo_res = $request->tipo_res;
+
         if($reservation->save()){
             return back()->with('msj', 'Datos guardados');
         }
@@ -100,11 +101,12 @@ class reservations extends Controller
         $reservation->user_id = $request->user_id;
         $reservation->pet_id = $request->pet;
         $superdate= $request->date.' '.$request->time;
-        $datetime =Carbon::createFromFormat('Y-m-d H:i', $superdate)->toDateTimeString();
+        $datetime =Carbon::parse($superdate)->format('Y-m-d H:i');
         $reservation->date =$datetime;
         // $reservation->time=$request->time;
         $reservation->pet_id = $request->pet;
         $reservation->tipo_res = $request->tipo_res;
+
         if($reservation->save()){
             return back()->with('msj', 'Datos guardados');
         }

@@ -1,6 +1,6 @@
 @if(isset($edit))
 
-	<form class="form-horizontal" role="form" method="POST" action="{{ route('reservations.update', $reservations->last()->id) }}">
+	<form class="form-horizontal" role="form" method="POST" action="{{ route('reservations.update', $allreservation->last()->id) }}">
 		<input type="hidden" name="_method" value="PUT">
 		{{ csrf_field() }}
 
