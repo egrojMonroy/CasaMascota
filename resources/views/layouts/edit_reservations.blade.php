@@ -1,12 +1,7 @@
 @if(isset($edit))
-
 	<form class="form-horizontal" role="form" method="POST" action="{{ route('reservations.update', $allreservation->last()->id) }}">
 		<input type="hidden" name="_method" value="PUT">
 		{{ csrf_field() }}
-
-
-
-
 		<div class="form-group">
 			<label for="user-id" class="col-lg-2 control-label">Dueño</label>
 			<div class="col-lg-10">
@@ -73,20 +68,21 @@
 			<label for="tipo_res" class="col-lg-2 control-label">Tipo de Reserva</label>
 			<div class="col-lg-10">
 				<select class="form-control" name="tipo_res">
-					<option disabled="true" selected="">Tipo De Reserva</option>
+					@if($allreservation->last()->tipo_res==1)
+						<option value="1">Peluqueria</option>
+					@endif
+					@if($allreservation->last()->tipo_res==0)
+						<option value="2">Consulta</option>
+					@endif
 					<option value="1">Peluqueria</option>
 					<option value="0">Consulta</option>
 				</select>
 			</div>
 		</div>
 
-
-
-
-
 		<div class="form-group">
 			<div class="col-lg-offset-2 col-lg-10">
-				<button type="submit" class="btn btn-default">Save</button>
+				<button type="submit" class="btn btn-default">Update</button>
 			</div>
 		</div>
 	</form>

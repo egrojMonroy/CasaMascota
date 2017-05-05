@@ -22,10 +22,10 @@
 						Secretario
 					@endif
 					@if($row->rol_id==4)
-						Empleado
+						Dueño
 					@endif
 					@if($row->rol_id==5)
-						Dueño
+						Empleado
 					@endif
 				</td>
 				<td><a href="users/{{ $row->id }}/edit" class="btn btn-warning btn-xs">Modificar</a></td>

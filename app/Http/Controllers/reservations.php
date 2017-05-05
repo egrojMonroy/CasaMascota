@@ -20,7 +20,7 @@ class reservations extends Controller
 
        $allreservations = DB::table('reservations')
             ->join('users','users.id','=','reservations.user_id')
-           ->join('pets','pets.id','=','reservations.pet_id')
+            ->join('pets','pets.id','=','reservations.pet_id')
             ->select('reservations.id as id','users.id as uid','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
             ->orderby('date', 'asc')
             ->get();
@@ -98,17 +98,17 @@ class reservations extends Controller
     public function update(Request $request, $id)
     {
         $reservation = Reservation::find($id);
-        $reservation->user_id = $request->user_id;
-        $reservation->pet_id = $request->pet;
+        $reservation->user_id           = $request->user_id;
+        $reservation->pet_id            = $request->pet;
         $superdate= $request->date.' '.$request->time;
         $datetime =Carbon::parse($superdate)->format('Y-m-d H:i');
-        $reservation->date =$datetime;
+        $reservation->date              =$datetime;
         // $reservation->time=$request->time;
-        $reservation->pet_id = $request->pet;
-        $reservation->tipo_res = $request->tipo_res;
+        $reservation->pet_id            = $request->pet;
+        $reservation->tipo_res          = $request->tipo_res;
 
         if($reservation->save()){
-            return back()->with('msj', 'Datos guardados');
+            return redirect('reservations')->with('msj', 'Datos guardados');
         }
         else{
             return back();
@@ -117,14 +117,10 @@ class reservations extends Controller
 
 
 
-    public function delete()
+   public function destroy($id)
     {
-
-    }
-
-    public function show()
-    {
-
+        Reservation::find($id)->delete();
+        return back();
     }
 
 }

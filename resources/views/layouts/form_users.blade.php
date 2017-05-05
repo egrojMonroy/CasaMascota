@@ -50,8 +50,8 @@
                 <option value="1">Doctor</option>
                 <option value="2">Peluquero</option>
                 <option value="3">Secretario</option>
-                <option value="4">Empleado</option>
-                <option value="5">Dueño</option>
+                <option value="4">Dueño</option>
+                <option value="5">Empleado</option>
             </select>
         </div>
     </div>

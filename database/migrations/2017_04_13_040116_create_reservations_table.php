@@ -19,10 +19,11 @@ class CreateReservationsTable extends Migration
            $table->integer('pet_id');
            $table->datetime('date');
           // $table->time('time');
-           $table->binary('tipo_res');
+           $table->integer('tipo_res');
            $table->foreign('user_id')->references('id')->on('users');
            $table->foreign('pet_id')->references('id')->on('pets');
             $table->timestamps();
+            $table->softDeletes();
         });
 
 
