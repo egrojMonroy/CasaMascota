@@ -39,6 +39,14 @@
 				</td>
 			</tr>
 		@endforeach
+
 		</tbody>
 	@endif
+
 </table>
+
+{{$users->render()}}
+
+
+<br>
+<Br>

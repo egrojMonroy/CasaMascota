@@ -15,9 +15,10 @@ class users extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         $roles = Role::all();
-        return view('users')->with(['users' => $users,'roles'=>$roles]);
+        $count =$users->count();
+        return view('users')->with(['users' => $users,'roles'=>$roles,'count_users']);
     }
 
     public function create()
@@ -60,6 +61,7 @@ class users extends Controller
     {
         //
     }
+
 
     /**
      * Show the form for editing the specified resource.
