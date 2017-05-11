@@ -53,10 +53,10 @@
                     @if($users->rol_id==3)
                         <option value="3">Secretario</option>
                     @endif
-                    @if($users->rol_id==4)
+                    @if($users->rol_id==5)
                         <option value="4">Empleado</option>
                     @endif
-                    @if($users->rol_id==5)
+                    @if($users->rol_id==4)
                         <option value="5">Dueño</option>
                     @endif
                     <option value="1">Doctor</option>

@@ -15,8 +15,8 @@
         <label for="user-id" class="col-lg-2 control-label">Nombre</label>
         <div class="col-lg-10">
 
-                <input type="text" id="name" name="name">
-
+                <input type="text" id="name" name="name" required>
+            <font size="4" color="red">*</font>
         </div>
     </div>
 
@@ -24,7 +24,8 @@
     <div class="form-group">
         <label for="pet" class="col-lg-2 control-label"> Apellido</label>
         <div class="col-lg-10">
-                <input type="text" id="last_name" name="last_name">
+                <input type="text" id="last_name" name="last_name" required>
+            <font size="4" color="red">*</font>
         </div>
     </div>
 
@@ -32,17 +33,20 @@
     <div class="form-group">
         <label for="date" class="col-lg-2 control-label">Email</label>
         <div class="col-lg-10">
-            <input type="text" id="email" name="email">
+            <input type="email" id="email" name="email"  required>
+            <font size="4" color="red">*</font>
         </div>
     </div>
 
     <div class="form-group">
         <label for="date" class="col-lg-2 control-label">Password </label>
         <div class="col-lg-10">
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" required>
+            <font size="4" color="red">*</font
+
         </div>
     </div>
-
+    <br><br>
     <div class="form-group">
         <label for="tipo_res" class="col-lg-2 control-label">Tipo de Usuario</label>
         <div class="col-lg-10">

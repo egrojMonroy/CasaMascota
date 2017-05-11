@@ -21,10 +21,10 @@
 					@if($row->rol_id==3)
 						Secretario
 					@endif
-					@if($row->rol_id==4)
+					@if($row->rol_id==5)
 						Dueño
 					@endif
-					@if($row->rol_id==5)
+					@if($row->rol_id==4	)
 						Empleado
 					@endif
 				</td>
