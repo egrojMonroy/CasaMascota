@@ -8,4 +8,13 @@ class Pet extends Model{
     protected $fillable = [
         'name', 'weight', 'height', 'age', 'urlImg', 'gender', 'breed_id'
     ];
+
+
+
+    public function reservations(){
+
+
+
+        return $this->hasMany('Reservation');
+    }
 }

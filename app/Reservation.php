@@ -15,5 +15,16 @@ class Reservation extends Model
 
     protected $dates = ['deleted_at'];
 
+    public function user(){
 
+
+            return$this->belongsTo('User');
+
+    }
+    public function pet(){
+
+
+        return$this->belongsTo('pet');
+
+    }
 }

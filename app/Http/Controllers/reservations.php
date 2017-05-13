@@ -18,7 +18,7 @@ class reservations extends Controller
 
 
 
-       $allreservations = DB::table('reservations')
+       $allreservations = Reservation::query()
             ->join('users','users.id','=','reservations.user_id')
             ->join('pets','pets.id','=','reservations.pet_id')
             ->select('reservations.id as id','users.id as uid','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
@@ -67,7 +67,7 @@ class reservations extends Controller
 
 
 
-        $allreservation = DB::table('reservations')
+        $allreservation = Reservation::query()
             ->join('users','users.id','=','reservations.user_id')
             ->join('pets','pets.id','=','reservations.pet_id')
             ->select('reservations.id as id','users.id as uid','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
@@ -75,11 +75,10 @@ class reservations extends Controller
             ->orderby('users.id', 'asc')
             ->get();
 
-            $userpid=DB::table('reservations')->find($id);
+            $userpid=Reservation::find($id);
             $idp=$userpid->user_id;
-            $lpets=DB::table('pets')
+            $lpets=Pet::where('user_id',$idp)
                 ->select('id as lpetid','name as lpetname')
-                ->where('user_id',$idp)
                 ->get();
 
 
