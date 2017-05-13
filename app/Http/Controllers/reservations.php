@@ -38,6 +38,30 @@ class reservations extends Controller
 
     }
     public function store(Request $request){
+
+
+        $this->validate($request,[
+
+            'user_id'=> 'required',
+            'pet_id'=> 'required',
+            'tipo_res'=>'required'
+
+
+
+
+
+
+
+        ],[
+                'user_id.required'=> 'Seleccione un Dueño',
+                'pet_id.required'=> 'Seleccione una Mascota',
+                'tipo_res.required'=>'Seleccione el tipo de reserva'
+
+
+
+
+
+        ]);
         $reservation = new Reservation();
         $reservation->user_id = $request->user_id;
         $reservation->pet_id = $request->pet;
