@@ -18,4 +18,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     protected $dates = ['deleted_at'];
+
+
+    public function reservations(){
+
+
+
+        return $this->hasMany('Reservation');
+    }
 }

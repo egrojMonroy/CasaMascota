@@ -21,7 +21,13 @@
           <option value="{{$row->id}}">{{$row->name}} {{$row->last_name}}</option>
         @endforeach
       </select>
+        @if($errors->has('user_id'))
+            <div class="alert alert-danger">
+            {{$errors->first('user_id')}}
+            </div>
+        @endif
     </div>
+
   </div>
 
 
@@ -31,6 +37,11 @@
       <select class="form-control" name="pet" id="pet">
         <option value="0" disabled="true" selected="true">Elija Mascota</option>
       </select>
+        @if($errors->has('pet_id'))
+            <div class="alert alert-danger">
+            {{$errors->first('pet_id')}}
+            </div>
+        @endif
     </div>
   </div>
 
@@ -38,10 +49,12 @@
   <div class="form-group">
     <label for="date" class="col-lg-2 control-label">Fecha</label>
     <div class="col-lg-10">
-      <input type="date" class="form-control" name="date" placeholder="date">
-      @if($errors->has('date'))
-      <span style="color:red;">{{ $errors->all('date') }}</span>
-      @endif
+      <input type="date" class="form-control" name="date" id="date" placeholder="date">
+        @if($errors->has('date'))
+            <div class="alert alert-danger">
+                {{$errors->all('date')}}
+            </div>
+        @endif
     </div>
   </div>
 
@@ -50,9 +63,11 @@
   <div class="form-group">
     <label for="time" class="col-lg-2 control-label">Hora</label>
     <div class="col-lg-10">
-      <input type="time" class="form-control" name="time" placeholder="time">
+      <input type="time" class="form-control" name="time" id="time" placeholder="time">
       @if($errors->has('time'))
-        <span style="color:red;">{{ $errors->all('time') }}</span>
+        <span class="alert alert-danger">
+            {{ $errors->all('time') }}
+        </span>
       @endif
     </div>
   </div>
@@ -63,11 +78,16 @@
   <div class="form-group">
     <label for="tipo_res" class="col-lg-2 control-label">Tipo de Reserva</label>
     <div class="col-lg-10">
-      <select class="form-control" name="tipo_res">
+      <select class="form-control" name="tipo_res" id="tipo_res">
         <option disabled="true" selected="">Tipo De Reserva</option>
         <option value="1">Peluqueria</option>
         <option value="0">Consulta</option>
       </select>
+        @if($errors->has('tipo_res'))
+            <div class="alert alert-danger">
+                {{$errors->first('tipo_res')}}
+            </div>
+        @endif
     </div>
   </div>
 
