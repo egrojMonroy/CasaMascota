@@ -14,6 +14,11 @@
                             @endif
 					@endforeach
 				</select>
+				@if($errors->has('user_id'))
+					<div class="alert alert-danger">
+						{{$errors->first('user_id')}}
+					</div>
+				@endif
 			</div>
 		</div>
 
@@ -30,6 +35,11 @@
                         @endif
                     @endforeach
                 </select>
+				@if($errors->has('pet'))
+					<div class="alert alert-danger">
+						{{$errors->first('pet')}}
+					</div>
+				@endif
 			</div>
 		</div>
 
@@ -77,6 +87,11 @@
 					<option value="1">Peluqueria</option>
 					<option value="0">Consulta</option>
 				</select>
+				@if($errors->has('tipo_res'))
+					<div class="alert alert-danger">
+						{{$errors->first('tipo_res')}}
+					</div>
+				@endif
 			</div>
 		</div>
 

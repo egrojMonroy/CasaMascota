@@ -7,6 +7,7 @@ use petstore\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 class reservations extends Controller
 {
     public function index()
@@ -23,12 +24,15 @@ class reservations extends Controller
             ->join('pets','pets.id','=','reservations.pet_id')
             ->select('reservations.id as id','users.id as uid','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
             ->orderby('date', 'asc')
-            ->get();
+            ->paginate(5);
+
+
+        $count =$allreservations->count();
 
 
 
 
-        return view('reservations')->with(['reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservations'=>$allreservations]);
+        return view('reservations')->with(['reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservations'=>$allreservations,'count_allreservations']);
     }
 
 
@@ -37,13 +41,14 @@ class reservations extends Controller
     {
 
     }
+
     public function store(Request $request){
 
 
         $this->validate($request,[
 
             'user_id'=> 'required',
-            'pet_id'=> 'required',
+            'pet'=> 'required',
             'tipo_res'=>'required'
 
 
@@ -54,7 +59,7 @@ class reservations extends Controller
 
         ],[
                 'user_id.required'=> 'Seleccione un Dueño',
-                'pet_id.required'=> 'Seleccione una Mascota',
+                'pet.required'=> 'Seleccione una Mascota',
                 'tipo_res.required'=>'Seleccione el tipo de reserva'
 
 
@@ -98,7 +103,7 @@ class reservations extends Controller
             ->where('reservations.id', $id)
             ->orderby('users.id', 'asc')
             ->get();
-
+       // dd($allreservation);
             $userpid=Reservation::find($id);
             $idp=$userpid->user_id;
             $lpets=Pet::where('user_id',$idp)
@@ -118,8 +123,36 @@ class reservations extends Controller
 
 
     }
+
+
+
     public function update(Request $request, $id)
     {
+
+       $this->validate($request,[
+
+            'user_id'=> 'required',
+            'pet'=> 'required',
+            'tipo_res'=>'required'
+
+
+
+
+
+
+
+        ],[
+            'user_id.required'=> 'Seleccione un Dueño',
+            'pet.required'=> 'Seleccione una Mascota',
+            'tipo_res.required'=>'Seleccione el tipo de reserva'
+
+
+
+
+
+        ]);
+
+
         $reservation = Reservation::find($id);
         $reservation->user_id           = $request->user_id;
         $reservation->pet_id            = $request->pet;

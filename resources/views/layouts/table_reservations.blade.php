@@ -35,3 +35,4 @@
 		</tbody>
 	@endif
 </table>
+{{$allreservations->render()}}

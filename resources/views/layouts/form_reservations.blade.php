@@ -11,10 +11,10 @@
 
 
 
-  <div class="form-group">
+  <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
     <label for="user-id" class="col-lg-2 control-label">Dueño</label>
     <div class="col-lg-10">
-      <select class="form-control" name="user_id" id="user_id">
+      <select class="form-control" name="user_id" id="user_id"  required>
 
         <option disabled="true" selected="">Dueño</option>
         @foreach($users as $row)
@@ -31,15 +31,15 @@
   </div>
 
 
-  <div class="form-group">
+  <div class="form-group {{ $errors->has('pet') ? ' has-error' : '' }}">
     <label for="pet" class="col-lg-2 control-label"> Mascota</label>
     <div class="col-lg-10">
       <select class="form-control" name="pet" id="pet">
         <option value="0" disabled="true" selected="true">Elija Mascota</option>
       </select>
-        @if($errors->has('pet_id'))
+        @if($errors->has('pet'))
             <div class="alert alert-danger">
-            {{$errors->first('pet_id')}}
+            {{$errors->first('pet')}}
             </div>
         @endif
     </div>
@@ -75,7 +75,7 @@
 
 
 
-  <div class="form-group">
+  <div class="form-group {{ $errors->has('tipo_res') ? ' has-error' : '' }}">
     <label for="tipo_res" class="col-lg-2 control-label">Tipo de Reserva</label>
     <div class="col-lg-10">
       <select class="form-control" name="tipo_res" id="tipo_res">
