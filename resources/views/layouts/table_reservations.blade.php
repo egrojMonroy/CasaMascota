@@ -1,7 +1,7 @@
 <table class="table table-hover">
 	@if(isset($allreservations))
 		<thead>
-			<th>id</th>
+			
 			<th>Fecha</th>
 			<th>Dueño</th>
 			<th>Mascota</th>
@@ -11,7 +11,6 @@
 		<tbody>
 		@foreach($allreservations as $row)
 			<tr>
-				<td>{{ $row->id }}</td>
 				<td>{{\Carbon\Carbon::parse($row->date)->format('d/m/Y H:i')}}</td>
 				<td>{{ $row->uname }} {{ $row->ulname }} </td>
 				<td>{{ $row->pname }}</td>

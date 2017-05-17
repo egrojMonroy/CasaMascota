@@ -49,7 +49,8 @@ class reservations extends Controller
 
             'user_id'=> 'required',
             'pet'=> 'required',
-            'tipo_res'=>'required'
+            'tipo_res'=>'required',
+
 
 
 
@@ -60,7 +61,8 @@ class reservations extends Controller
         ],[
                 'user_id.required'=> 'Seleccione un Dueño',
                 'pet.required'=> 'Seleccione una Mascota',
-                'tipo_res.required'=>'Seleccione el tipo de reserva'
+                'tipo_res.required'=>'Seleccione el tipo de reserva',
+
 
 
 
@@ -70,10 +72,7 @@ class reservations extends Controller
         $reservation = new Reservation();
         $reservation->user_id = $request->user_id;
         $reservation->pet_id = $request->pet;
-        $superdate= $request->date.' '.$request->time;
-        $datetime =Carbon::createFromFormat('Y-m-d H:i', $superdate)->toDateTimeString();
-        $reservation->date =$datetime;
-       // $reservation->time=$request->time;
+        $reservation->date=$request->date;
         $reservation->pet_id = $request->pet;
         $reservation->tipo_res = $request->tipo_res;
 
@@ -95,6 +94,9 @@ class reservations extends Controller
         $user= User::where('rol_id',4)->orderBy('name', 'desc')->get();
 
 
+      /*  $allreservation2 = Reservation::query()
+            ->select('date')
+            ->get();*/
 
         $allreservation = Reservation::query()
             ->join('users','users.id','=','reservations.user_id')
@@ -103,7 +105,7 @@ class reservations extends Controller
             ->where('reservations.id', $id)
             ->orderby('users.id', 'asc')
             ->get();
-       // dd($allreservation);
+       //dd($allreservation2);
             $userpid=Reservation::find($id);
             $idp=$userpid->user_id;
             $lpets=Pet::where('user_id',$idp)
@@ -156,9 +158,9 @@ class reservations extends Controller
         $reservation = Reservation::find($id);
         $reservation->user_id           = $request->user_id;
         $reservation->pet_id            = $request->pet;
-        $superdate= $request->date.' '.$request->time;
+        $superdate= $request->date;
         $datetime =Carbon::parse($superdate)->format('Y-m-d H:i');
-        $reservation->date              =$datetime;
+        $reservation->date =$datetime;
         // $reservation->time=$request->time;
         $reservation->pet_id            = $request->pet;
         $reservation->tipo_res          = $request->tipo_res;

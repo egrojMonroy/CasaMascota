@@ -47,34 +47,14 @@
 		<div class="form-group">
 			<label for="date" class="col-lg-2 control-label">Fecha</label>
 			<div class="col-lg-10">
-                <?php
-                $aux  = explode(" ",$allreservation->last()->date);
-                $date = $aux[0];
-                $time = $aux[1];
-                ?>
-				<input type="date" class="form-control" name="date" value="{{$date}}">
+              <input type="datetime-local" class="form-control" name="date" value="{{str_replace(" ", "T",$allreservation->last()->date)}}">
 				@if($errors->has('date'))
 					<span style="color:red;">{{ $errors->all('date') }}</span>
 				@endif
 			</div>
 		</div>
 
-
-
-		<div class="form-group">
-			<label for="time" class="col-lg-2 control-label">Hora</label>
-			<div class="col-lg-10">
-				<input type="time" class="form-control" name="time" value="{{$time}}">
-				@if($errors->has('time'))
-					<span style="color:red;">{{ $errors->all('time') }}</span>
-				@endif
-			</div>
-		</div>
-
-
-
-
-		<div class="form-group">
+		    <div class="form-group">
 			<label for="tipo_res" class="col-lg-2 control-label">Tipo de Reserva</label>
 			<div class="col-lg-10">
 				<select class="form-control" name="tipo_res">

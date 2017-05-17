@@ -46,10 +46,10 @@
   </div>
 
 
-  <div class="form-group">
+  <div class="form-group {{ $errors->has('date') ? ' has-error' : '' }}">
     <label for="date" class="col-lg-2 control-label">Fecha</label>
     <div class="col-lg-10">
-      <input type="date" class="form-control" name="date" id="date" placeholder="date">
+      <input type="datetime-local" class="form-control" name="date" id="date" placeholder="date">
         @if($errors->has('date'))
             <div class="alert alert-danger">
                 {{$errors->all('date')}}
@@ -58,19 +58,6 @@
     </div>
   </div>
 
-
-
-  <div class="form-group">
-    <label for="time" class="col-lg-2 control-label">Hora</label>
-    <div class="col-lg-10">
-      <input type="time" class="form-control" name="time" id="time" placeholder="time">
-      @if($errors->has('time'))
-        <span class="alert alert-danger">
-            {{ $errors->all('time') }}
-        </span>
-      @endif
-    </div>
-  </div>
 
 
 
