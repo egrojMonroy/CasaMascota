@@ -3,8 +3,7 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
-
-class vaccines_seeder extends Seeder
+class vac_dis_seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,29 +12,27 @@ class vaccines_seeder extends Seeder
      */
     public function run()
     {
-        DB::table('vaccines')->insert([
+        DB::table('vac_dis')->insert([
 
-                ['name'  => 'Puppy dp',
+                [ 'vac_id'=> '1',
+                    'dis_id'=>'1',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 ],
-                ['name'  => 'Polivalente',
-
+                [ 'vac_id'=> '2',
+                    'dis_id'=>'2',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 ],
-                ['name'  => 'Rabia',
+                ['vac_id'=> '3',
+                    'dis_id'=>'4',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 ],
-                [   'name'  => 'Trivalente felina',
+                [   'vac_id'=> '4',
+                    'dis_id'=>'5',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]]
         );
-
-
     }
-
-    //
-
 }
