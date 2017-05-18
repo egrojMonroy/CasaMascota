@@ -19,7 +19,7 @@ class reservations extends Controller
             ->join('user_roles','user_roles.user_id','=','users.id')
             ->where('user_roles.role_id',4)
             ->get();
-        dd($user);
+        //dd($user);
 
 
 
@@ -54,6 +54,7 @@ class reservations extends Controller
             'user_id'=> 'required',
             'pet'=> 'required',
             'tipo_res'=>'required',
+            'date'=>'required|unique:reservations',
 
 
 
@@ -66,6 +67,11 @@ class reservations extends Controller
                 'user_id.required'=> 'Seleccione un Dueño',
                 'pet.required'=> 'Seleccione una Mascota',
                 'tipo_res.required'=>'Seleccione el tipo de reserva',
+                'date.required'=>'Seleccione una fecha',
+                'date.unique'=>'La fecha de reserva ya fue escogida'
+
+
+
 
 
 

@@ -52,7 +52,7 @@
       <input type="datetime-local" class="form-control" name="date" id="date" placeholder="date">
         @if($errors->has('date'))
             <div class="alert alert-danger">
-                {{$errors->all('date')}}
+                {{$errors->first('date')}}
             </div>
         @endif
     </div>
