@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(user_nit_seeder::class);
         $this->call(diseases_seeder::class);
         $this->call(vac_dis_seeder::class);
+        $this->call(user_roles_seeder::class);
     }
 }

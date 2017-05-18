@@ -5,6 +5,7 @@ namespace petstore;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -25,5 +26,9 @@ class User extends Authenticatable
 
 
         return $this->hasMany('Reservation');
+    }
+    public function roles()
+    {
+        return $this->belongsToMany('Role','user_roles');
     }
 }

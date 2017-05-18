@@ -15,7 +15,11 @@ class reservations extends Controller
         $pet = Pet::all();
 
         $reservation = Reservation::all();
-        $user= User::where('rol_id',4)->orderBy('name', 'desc')->get();
+        $user= User::query()
+            ->join('user_roles','user_roles.user_id','=','users.id')
+            ->where('user_roles.role_id',4)
+            ->get();
+        dd($user);
 
 
 
@@ -27,12 +31,12 @@ class reservations extends Controller
             ->paginate(5);
 
 
-        $count =$allreservations->count();
 
 
 
 
-        return view('reservations')->with(['reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservations'=>$allreservations,'count_allreservations']);
+
+        return view('reservations')->with(['reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservations'=>$allreservations]);
     }
 
 
