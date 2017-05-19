@@ -1,5 +1,3 @@
-
-
 @extends('layouts.app')
 @section('content')
     <div class="container">
@@ -8,7 +6,6 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ Auth::user()->name }} - Users </div>
                     <div class="panel-body">
-
                         @if(isset($view))
                             @include('layouts.view_users')
                         @else
@@ -17,7 +14,6 @@
                             @else
                                 @include('layouts.form_users')
                                 @include('layouts.table_users')
-
                             @endif
                         @endif
                     </div>

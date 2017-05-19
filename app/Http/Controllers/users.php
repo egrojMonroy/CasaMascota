@@ -111,7 +111,20 @@ class users extends Controller
      */
     public function edit($id)
     {
-        $user = DB::table('users')->find($id);
+        $user = User::find($id);
+        $rol_usuario = User_role::query()
+            ->where('user_roles.user_id',$id)
+            ->get();
+
+
+        $roles []='';
+
+        foreach($rol_usuario as $rol){
+            $roles[] = $rol->role_id;
+        }
+
+
+        $user->roles= $roles;
 
         return view('users')->with(['edit' => true, 'users' => $user]);
     }
