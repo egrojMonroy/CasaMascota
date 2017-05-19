@@ -119,10 +119,13 @@ class users extends Controller
 
         $roles []='';
 
-        foreach($rol_usuario as $rol){
-            $roles[] = $rol->role_id;
+        for($i = 0; $i<6;$i++){
+            $roles[$i]=0;
         }
 
+        foreach($rol_usuario as $rol){
+            $roles[$rol->role_id] = 1;
+        }
 
         $user->roles= $roles;
 

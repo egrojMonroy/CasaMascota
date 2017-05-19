@@ -41,33 +41,31 @@
         <div class="form-group">
             <label for="name" class="col-lg-2 control-label">Rol</label>
             <div class="col-lg-10">
-                @foreach($users->roles as $role)
-                    @if($role == 1)
+
+                    @if($users->roles[1])
                         <input type="checkbox" name="opcion[]" value="1" checked>Doctor<br>
                     @else
                         <input type="checkbox" name="opcion[]" value="1">Doctor<br>
                     @endif
 
-                    @if($role == 2)
+                    @if($users->roles[2])
                         <input type="checkbox" name="opcion[]" value="2" checked>Peluquero<br>
                     @else
                         <input type="checkbox" name="opcion[]" value="2">Peluquero<br>
                     @endif
 
-                    @if($role == 3)
+                    @if($users->roles[3])
                             <input type="checkbox" name="opcion[]" value="3" checked>Secretario<br>
                     @else <input type="checkbox" name="opcion[]" value="3" >Secretario<br>
                     @endif
 
-                    @if($role == 4)<input type="checkbox" name="opcion[]" value="4" checked>Empleado<br>
-                     @else <input type="checkbox" name="opcion[]" value="4">Empleado<br>
+                    @if($users->roles[4])<input type="checkbox" name="opcion[]" value="4" checked>Dueño<br>
+                     @else <input type="checkbox" name="opcion[]" value="4">Dueño<br>
                     @endif
 
-                    @if($role == 5) <input type="checkbox" name="opcion[]" value="5" checked>Dueño<br>
-                    @else <input type="checkbox" name="opcion[]" value="5">Dueño<br>
+                    @if($users->roles[5]) <input type="checkbox" name="opcion[]" value="5" checked>Empleado<br>
+                    @else <input type="checkbox" name="opcion[]" value="5">Empleado<br>
                     @endif
-
-                @endforeach
 
                 @if($errors->has('email'))
                     <span style="color:red;">{{ $errors->all('email') }}</span>
