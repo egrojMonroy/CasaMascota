@@ -98,6 +98,7 @@ class pets extends Controller{
         $pet->gender    = $request->gender;
         $pet->breed_id  = $request->breed;
         $pet->user_id   = $request->user_id;
+        $pet->updatedBy = Auth::user()->name.' '.Auth::user()->last_name;
         $pet->in_adoption = 0;
         if($pet->save()){
             return back()->with('msj', 'Datos guardados');
