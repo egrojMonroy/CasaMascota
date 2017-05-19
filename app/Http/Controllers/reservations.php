@@ -188,7 +188,7 @@ class reservations extends Controller
         $reservation->deletedBy   = '';
 
         if($reservation->save()){
-            return redirect('reservations')->with('msj', 'Datos guardados');
+            return redirect('reservations')->with('msj', 'Datos Modificados');
         }
         else{
             return back();
@@ -204,7 +204,7 @@ class reservations extends Controller
        $reservation->deletedBy   = Auth::user()->name.' '.Auth::user()->last_name;
         if($reservation->save()){
             Reservation::destroy($id);
-            return redirect('reservations')->with('msj', 'Datos modificados');
+            return redirect('reservations')->with('msj', 'Datos Eliminados');
         }
         else{
             return back();
