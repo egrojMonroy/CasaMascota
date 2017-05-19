@@ -7,6 +7,7 @@ use petstore\User;
 use petstore\Role;
 use Illuminate\Support\Facades\DB;
 use petstore\User_role;
+use Illuminate\Database;
 
 class users extends Controller
 {
@@ -141,14 +142,62 @@ class users extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $user = User::find($id);
         $user->name      = $request->name;
         $user->email     =$request->email   ;
-        $user->rol_id     =$request->rol_id   ;
-        $user->password     =$request->password  ;
+
         $user->last_name     =$request-> last_name  ;
+        // Creo la variable opcion para tener un array ordenado
+        // donde sean booleanos los roles
+
+        $opcion[]='';
+        for($i = 0; $i<6;$i++){
+            $opcion[$i]=0;
+        }
+        foreach($request->opcion as $rol){
+            $opcion[$rol] = 1;
+        }
+
+        ///Creo variables extras para sacar el id de role_user y asi poder borrar luego :(
+        for($i=1;$i<6;$i++){
+            if(!$opcion[$i]){
+                $idrol_us = User_role::query()->where('user_id',$id)->where('role_id',$i)->get();
+
+                if(count($idrol_us)==1){
+                    foreach ($idrol_us as $idrol){
+                        User_role::destroy($idrol->id);}
+                    }
+
+            }else{
+                $idrol_us = User_role::query()->where('user_id',$id)->where('role_id',$i)->get();
+                if(count($idrol_us)==1){
+                    foreach ($idrol_us as $idrol){
+                        User_role::destroy($idrol->id);}
+                    $roles = new User_role;
+                    $roles->user_id = $id;
+                    $roles->role_id = $i;
+
+                    try {
+                        $roles->save();
+                    } catch ( \Illuminate\Database\QueryException $e) {
+                        dd("heeelo");
+                    }}
+                }
+
+
+            }
+
+
 
         if($user->save()){
+            foreach ($request->opcion as $opcion){
+                $roles = new User_role;
+                $roles->user_id = $user->id;
+                $roles->role_id = $opcion;
+                $roles->save();
+            }
+
             return redirect('users')->with('msj', 'Datos modificados');
         }
         else{

@@ -90,15 +90,11 @@ class user_roles_seeder extends Seeder
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
             ],   [   'user_id'  => '12',
-                'role_id' => '4',
+                'role_id' => '3',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
             ],
-            [   'user_id'  => '5',
-                'role_id' => '4',
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
-            ],
+
             [   'user_id'  => '6',
                 'role_id' => '4',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
