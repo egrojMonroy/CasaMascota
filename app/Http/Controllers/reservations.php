@@ -7,7 +7,7 @@ use petstore\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 class reservations extends Controller
 {
     public function index()
@@ -85,6 +85,9 @@ class reservations extends Controller
         $reservation->date=$request->date;
         $reservation->pet_id = $request->pet;
         $reservation->tipo_res = $request->tipo_res;
+        $reservation->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        $reservation->updatedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        $reservation->deletedBy   = '';
 
         if($reservation->save()){
             return back()->with('msj', 'Datos guardados');
@@ -101,7 +104,10 @@ class reservations extends Controller
         $pet = Pet::all();
 
         $reservation = Reservation::all();
-        $user= User::where('rol_id',4)->orderBy('name', 'desc')->get();
+        $user= User::query()
+            ->join('user_roles','user_roles.user_id','=','users.id')
+            ->where('user_roles.role_id',4)
+            ->get();
 
 
       /*  $allreservation2 = Reservation::query()
@@ -145,7 +151,8 @@ class reservations extends Controller
 
             'user_id'=> 'required',
             'pet'=> 'required',
-            'tipo_res'=>'required'
+            'tipo_res'=>'required',
+           'date'=>'required|unique:reservations',
 
 
 
@@ -156,7 +163,9 @@ class reservations extends Controller
         ],[
             'user_id.required'=> 'Seleccione un Dueño',
             'pet.required'=> 'Seleccione una Mascota',
-            'tipo_res.required'=>'Seleccione el tipo de reserva'
+            'tipo_res.required'=>'Seleccione el tipo de reserva',
+           'date.required'=>'Seleccione una fecha',
+            'date.unique'=>'La fecha de reserva ya fue escogida'
 
 
 
@@ -174,6 +183,9 @@ class reservations extends Controller
         // $reservation->time=$request->time;
         $reservation->pet_id            = $request->pet;
         $reservation->tipo_res          = $request->tipo_res;
+        $reservation->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        $reservation->updatedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        $reservation->deletedBy   = '';
 
         if($reservation->save()){
             return redirect('reservations')->with('msj', 'Datos guardados');
@@ -187,8 +199,16 @@ class reservations extends Controller
 
    public function destroy($id)
     {
-        Reservation::find($id)->delete();
-        return back();
+        $reservation = Reservation::find($id);
+
+       $reservation->deletedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        if($reservation->save()){
+            Reservation::destroy($id);
+            return redirect('reservations')->with('msj', 'Datos modificados');
+        }
+        else{
+            return back();
+        }
     }
 
 }

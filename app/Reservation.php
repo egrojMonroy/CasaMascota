@@ -10,7 +10,7 @@ class Reservation extends Model
     use Notifiable;
     use SoftDeletes;
     protected $fillable = [
-        'user_id', 'pet_id',  'date', 'tipo_res'
+        'user_id', 'pet_id',  'date', 'tipo_res', 'createdBy', 'updatedBy'
     ];
 
     protected $dates = ['deleted_at'];
