@@ -22,6 +22,10 @@ class CreatePetsTable extends Migration{
             $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('in_adoption');
             $table->timestamps();
+            $table->string('createdBy');
+            $table->string('updatedBy');
+            $table->softDeletes();
+            $table->string('deletedBy');
         });
     }
 

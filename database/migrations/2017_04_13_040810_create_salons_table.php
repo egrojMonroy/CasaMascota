@@ -25,6 +25,10 @@ class CreateSalonsTable extends Migration
             $table->foreign('pet_id')->references('id')->on('pets');
             $table->foreign('type_id')->references('id')->on('type_salons');
             $table->timestamps();
+            $table->string('createdBy');
+            $table->string('updatedBy');
+            $table->softDeletes();
+            $table->string('deletedBy');
         });
     }
 

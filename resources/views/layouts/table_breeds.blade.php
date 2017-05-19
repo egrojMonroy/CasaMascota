@@ -21,5 +21,7 @@
 			</tr>
 		@endforeach
 		</tbody>
+		{{$breeds->render()}}
 	@endif
+
 </table>

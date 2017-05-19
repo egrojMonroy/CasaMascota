@@ -28,6 +28,9 @@ class salons_seeder extends Seeder
 
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ]
         ]);
         }

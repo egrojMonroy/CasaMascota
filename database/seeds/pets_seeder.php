@@ -24,9 +24,12 @@ class pets_seeder extends Seeder
             'gender'=> '1',
             'breed_id'=>"1",
             'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-             'in_adoption'=> "false",
+            'in_adoption'=> "0",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
             ['name' => "Rufus",
@@ -37,9 +40,12 @@ class pets_seeder extends Seeder
                 'gender'=> '1',
                 'breed_id'=>"5",
                 'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-                'in_adoption'=> "false",
+                'in_adoption'=> "0",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
             ['name' => "Petarda",
@@ -50,9 +56,12 @@ class pets_seeder extends Seeder
                 'gender'=> '0',
                 'breed_id'=>"3",
                 'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-                'in_adoption'=> "false",
+                'in_adoption'=> "0",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
 
@@ -64,9 +73,12 @@ class pets_seeder extends Seeder
                 'gender'=> '1',
                 'breed_id'=>"5",
                 'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-                'in_adoption'=> "true",
+                'in_adoption'=> "1",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
 
@@ -79,9 +91,12 @@ class pets_seeder extends Seeder
                 'gender'=> '0',
                 'breed_id'=>"3",
                 'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-                'in_adoption'=> "false",
+                'in_adoption'=> "0",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
 
@@ -95,9 +110,12 @@ class pets_seeder extends Seeder
                 'gender'=> '0',
                 'breed_id'=>"11",
                 'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-                'in_adoption'=> "true",
+                'in_adoption'=> "1",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
 
@@ -109,9 +127,12 @@ class pets_seeder extends Seeder
                 'gender'=> '1',
                 'breed_id'=>"15",
                 'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-                'in_adoption'=> "true",
+                'in_adoption'=> "1",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
 
@@ -123,9 +144,12 @@ class pets_seeder extends Seeder
                 'gender'=> '1',
                 'breed_id'=>$faker->numberBetween($min = 1, $max = 20),
                 'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-                'in_adoption'=> "false",
+                'in_adoption'=> "0",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
 
@@ -137,9 +161,12 @@ class pets_seeder extends Seeder
                 'gender'=> '1',
                 'breed_id'=>$faker->numberBetween($min = 1, $max = 20),
                 'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-                'in_adoption'=> "true",
+                'in_adoption'=> "1",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
 
@@ -151,9 +178,12 @@ class pets_seeder extends Seeder
                 'gender'=> '0',
                 'breed_id'=>$faker->numberBetween($min = 1, $max = 20),
                 'user_id'=>$faker->randomElement($array = array (4,8,9,11,12)),
-                'in_adoption'=> "true",
+                'in_adoption'=> "1",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'createdBy'=>Carbon::now()->format('admin'),
+            'updatedBy'=>Carbon::now()->format('admin'),
+            'deletedBy'=>Carbon::now()->format('')
             ],
 
 

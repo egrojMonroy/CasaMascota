@@ -12,7 +12,7 @@
   <div class="form-group">
     <label for="name" class="col-lg-1 control-label">Name</label>
     <div class="col-lg-10">
-      <input type="text" class="form-control" name="name" placeholder="Name">
+      <input type="text" class="form-control" name="name" placeholder="Name" required>
       @if($errors->has('name'))
       <span style="color:red;">{{ $errors->all('name') }}</span>
       @endif
@@ -22,9 +22,9 @@
   	<tr>
   		<td>
   			<div class="form-group">
-			    <label for="weight" class="col-lg-1 control-label">Weight</label>
+			    <label for="weight" class="col-lg-1 control-label">Weight (Kilograms))</label>
 			    <div class="col-lg-10">
-			      <input type="text" class="form-control" name="weight" placeholder="Weight">
+			      <input type="text" class="form-control" name="weight" placeholder="Weight" required>
 			      @if($errors->has('weight'))
 			      <span style="color:red;">{{ $errors->all('weight') }}</span>
 			      @endif
@@ -33,9 +33,9 @@
   		</td>
   		<td>
   			<div class="form-group">
-		    <label for="height" class="col-lg-1 control-label">Height</label>
+		    <label for="height" class="col-lg-1 control-label">Height (Centimeters)</label>
 		    <div class="col-lg-10">
-		      <input type="text" class="form-control" name="height" placeholder="Height">
+		      <input type="text" class="form-control" name="height" placeholder="Height" required>
 		      @if($errors->has('height'))
 		      <span style="color:red;">{{ $errors->all('height') }}</span>
 		      @endif
@@ -46,7 +46,7 @@
   			<div class="form-group">
 		    <label for="age" class="col-lg-1 control-label">Age</label>
 		    <div class="col-lg-10">
-		      <input type="date" class="form-control" name="age" placeholder="Age">
+		      <input type="date" class="form-control" name="age" placeholder="Age" required>
 		      @if($errors->has('age'))
 		      <span style="color:red;">{{ $errors->all('age') }}</span>
 		      @endif
@@ -59,7 +59,7 @@
 	<div class="form-group">
 		<label for="gender" class="col-lg-1 control-label">Gender</label>
 			<div class="col-lg-10">
-			<select class="form-control" name="gender">
+			<select class="form-control" name="gender" required>
 				<option value="1">Male</option>
 				<option value="0">Female</option>
 			</select>
@@ -72,7 +72,7 @@
 				<div class="form-group">
 					<label for="family" class="col-lg-2 control-label">Family</label>
 						<div class="col-lg-10">
-						<select class="form-control" name="family" id="family">
+						<select class="form-control" name="family" id="family" required>
 							<option disabled="true" selected="">Choose a Family</option>
 							@foreach($families as $row)
 							<option value="{{$row->id}}">{{$row->name}}</option>
@@ -85,7 +85,7 @@
 				<div class="form-group">
 					<label for="breed" class="col-lg-2 control-label"> Breed</label>
 						<div class="col-lg-10">
-						<select class="form-control" name="breed" id="breed">
+						<select class="form-control" name="breed" id="breed" required>
 					        <option value="0" disabled="true" selected="true">Choose a Breed</option>
 					    </select>
 						</div>
@@ -96,7 +96,7 @@
 <div class="form-group">
 			    <label for="urlimg" class="col-lg-1 control-label">Photo</label>
 			    <div class="col-lg-10">
-			      <input type="file" name="urlimg">
+			      <input type="file" name="urlimg" required>
 			      @if($errors->has('weight'))
 			      <span style="color:red;">{{ $errors->all('weight') }}</span>
 			      @endif
