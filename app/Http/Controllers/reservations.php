@@ -115,7 +115,7 @@ class reservations extends Controller
             ->get();
 
 
-      
+
         $allreservation = Reservation::query()
             ->join('users','users.id','=','reservations.user_id')
             ->join('pets','pets.id','=','reservations.pet_id')

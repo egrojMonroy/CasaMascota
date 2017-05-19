@@ -64,7 +64,7 @@
 						<option value="1">Peluqueria</option>
 					@endif
 					@if($allreservation->last()->tipo_res==0)
-						<option value="2">Consulta</option>
+						<option value="0">Consulta</option>
 					@endif
 					<option value="1">Peluqueria</option>
 					<option value="0">Consulta</option>
