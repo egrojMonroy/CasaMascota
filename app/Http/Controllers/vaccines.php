@@ -3,6 +3,7 @@
 namespace petstore\Http\Controllers;
 
 use Illuminate\Http\Request;
+use petstore\Diseases;
 use petstore\Vaccine;
 use Illuminate\Support\Facades\DB;
 class vaccines extends Controller
@@ -15,7 +16,8 @@ class vaccines extends Controller
     public function index()
     {
         $vaccines = Vaccine::all();
-        return view('vaccines')->with(['vaccines'=>$vaccines]);
+        $diseases = Diseases::all();
+        return view('vaccines')->with(['vaccines'=>$vaccines,'diseases'=>$diseases]);
     }
 
     /**

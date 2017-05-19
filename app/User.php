@@ -12,7 +12,7 @@ class User extends Authenticatable
         use Notifiable;
         use SoftDeletes;
     protected $fillable = [
-        'name','last_name', 'email', 'password','rol_id'
+        'name','last_name', 'email', 'password'
     ];
 
     protected $hidden = [
@@ -29,6 +29,6 @@ class User extends Authenticatable
     }
     public function roles()
     {
-        return $this->belongsToMany('Role','user_roles');
+        return $this->belongsToMany('App\Role','user_roles');
     }
 }

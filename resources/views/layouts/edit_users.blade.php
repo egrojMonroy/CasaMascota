@@ -42,29 +42,31 @@
             <label for="name" class="col-lg-2 control-label">Rol</label>
             <div class="col-lg-10">
 
-                <select class="form-control" name="rol_id">
+                    @if($users->roles[1])
+                        <input type="checkbox" name="opcion[]" value="1" checked>Doctor<br>
+                    @else
+                        <input type="checkbox" name="opcion[]" value="1">Doctor<br>
+                    @endif
 
-                    @if($users->rol_id==1)
-                        <option value="1">Doctor</option>
+                    @if($users->roles[2])
+                        <input type="checkbox" name="opcion[]" value="2" checked>Peluquero<br>
+                    @else
+                        <input type="checkbox" name="opcion[]" value="2">Peluquero<br>
                     @endif
-                    @if($users->rol_id==2)
-                        <option value="2">Peluquero</option>
+
+                    @if($users->roles[3])
+                            <input type="checkbox" name="opcion[]" value="3" checked>Secretario<br>
+                    @else <input type="checkbox" name="opcion[]" value="3" >Secretario<br>
                     @endif
-                    @if($users->rol_id==3)
-                        <option value="3">Secretario</option>
+
+                    @if($users->roles[4])<input type="checkbox" name="opcion[]" value="4" checked>Dueño<br>
+                     @else <input type="checkbox" name="opcion[]" value="4">Dueño<br>
                     @endif
-                    @if($users->rol_id==5)
-                        <option value="4">Empleado</option>
+
+                    @if($users->roles[5]) <input type="checkbox" name="opcion[]" value="5" checked>Empleado<br>
+                    @else <input type="checkbox" name="opcion[]" value="5">Empleado<br>
                     @endif
-                    @if($users->rol_id==4)
-                        <option value="5">Dueño</option>
-                    @endif
-                    <option value="1">Doctor</option>
-                    <option value="2">Peluquero</option>
-                    <option value="3">Secretario</option>
-                    <option value="4">Empleado</option>
-                    <option value="5">Dueño</option>
-                </select>
+
                 @if($errors->has('email'))
                     <span style="color:red;">{{ $errors->all('email') }}</span>
                 @endif

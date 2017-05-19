@@ -6,6 +6,7 @@ use petstore\User;
 use petstore\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use petstore\User_role;
 
 class RegisterController extends Controller
 {
@@ -63,11 +64,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'last_name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password'])
         ]);
+        $roles = new User_role;
+        $roles->user_id = $user->id;
+        $roles->role_id = 4;
+        $roles->save();
+        return $user;
+        //
     }
 }
