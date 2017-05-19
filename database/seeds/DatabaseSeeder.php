@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(diseases_seeder::class);
         $this->call(vac_dis_seeder::class);
         $this->call(user_roles_seeder::class);
+        $this->call(reservations_seeder::class);
     }
 }
