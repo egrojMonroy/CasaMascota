@@ -35,14 +35,29 @@
                     </button>
 
                     <!-- Branding Image -->
+                    @if(isset(Auth::user()->rol_id))
+                        @if(Auth::user()->rol_id==3)
+                
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Control <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a class="navbar-brand" href="{{ url('/breeds') }}">Breeds</a></li>
+                                <li><a class="navbar-brand" href="{{ url('/salons')}}">Salons</a></li>
+                                <li><a class="navbar-brand" href="{{ url('/users')}}">Users</a></li>
+                                <li><a class="navbar-brand" href="{{ url('/vaccines')}}">Vaccines</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                        @endif
+                    
                     <a class="navbar-brand" href="{{ url('/home') }}">Home</a>
-                    <a class="navbar-brand" href="{{ url('/breeds') }}">Breeds</a>
                     <a class="navbar-brand" href="{{ url('/pets')}}">Pets</a>
                     <a class="navbar-brand" href="{{ url('/reservations')}}">Reservations</a>
-                    <a class="navbar-brand" href="{{ url('/salons')}}">Salons</a>
-                    <a class="navbar-brand" href="{{ url('/users')}}">Users</a>
-                    <a class="navbar-brand" href="{{ url('/vaccines')}}">Vaccines</a>
-
+                    @endif
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

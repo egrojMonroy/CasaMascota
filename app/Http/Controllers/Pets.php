@@ -7,18 +7,19 @@ use petstore\Pet;
 use petstore\Family;
 use petstore\Breed;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class pets extends Controller{
 
     public function index(){
         $pet = Pet::all();
         $family = Family::all();
-        $my_pets = DB::table('pets')   
+        $my_pets = Pet::query()   
                     ->join('breeds','breeds.id','=','pets.breed_id')
                     ->join('users', 'users.id','=', 'pets.user_id')
-                    ->select('pets.id as id','pets.name as pet','weight','height','age', 'gender', 'breeds.name as breed', 'users.name as user')
+                    ->select('pets.id as id','pets.name as pet','weight','height','age', 'gender', 'breeds.name as breed', 'users.name as user', 'users.rol_id as rol')
                     ->orderby('breeds.id', 'asc')
-                    ->get();
+                    ->paginate(5);
         return view('pets')->with(['pets' => $pet, 'families' => $family, 'my_pets' => $my_pets]);
     }
 
@@ -27,6 +28,27 @@ class pets extends Controller{
     }
 
     public function store(Request $request){
+
+         $this->validate($request,[
+
+            'name'=> 'required',
+            'weight'=> 'required|numeric',
+            'height'=> 'required|numeric',
+            'age'=> 'required|date',
+            'urlimg'=> 'required',
+            'gender'=> 'required|boolean',
+            'breed'=> 'required',
+            'user_id'=> 'required',
+        ],[
+            'name'=> 'A name is required',
+            'weight'=> 'The weight is required',
+            'height'=> 'The height is required',
+            'age'=> 'The age is required',
+            'urlimg'=> 'An image is required',
+            'gender'=> 'Please select a gender',
+            'breed'=> 'Please select a breed',
+            'user_id'=> 'required',
+        ]);
         $pet = new Pet();
         $pet->name      = $request->name;
         $pet->weight    = $request->weight;
@@ -36,7 +58,11 @@ class pets extends Controller{
         $pet->gender    = $request->gender;
         $pet->breed_id  = $request->breed;
         $pet->user_id   = $request->user_id;
+        $pet->createdBy = Auth::user()->name.' '.Auth::user()->last_name;
+        $pet->updatedBy = Auth::user()->name.' '.Auth::user()->last_name;
+        $pet->deletedBy = '';
         $pet->in_adoption = 0;
+    
         if($pet->save()){
             return back()->with('msj', 'Datos guardados');
         }
@@ -82,6 +108,14 @@ class pets extends Controller{
     }
 
     public function destroy($id){
-        //
+        $pet = Pet::find($id);
+        $pet->deletedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        if($pet->save()){
+            pet::destroy($id);
+            return redirect('pets')->with('msj', 'Dato eliminado');
+        }
+        else{
+            return back();
+        }
     }
 }

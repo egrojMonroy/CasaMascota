@@ -1,3 +1,4 @@
+@if(Auth::user()->rol_id==3)
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -22,3 +23,6 @@
     </div>
 </div>
 @endsection
+@else
+
+@endif
