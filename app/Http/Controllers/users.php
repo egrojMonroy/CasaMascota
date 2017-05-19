@@ -177,7 +177,7 @@ class users extends Controller
                     $roles = new User_role;
                     $roles->user_id = $id;
                     $roles->role_id = $i;
-
+                    ///problemas con softdeletes al reinsertar datos, Como?
                     try {
                         $roles->save();
                     } catch ( \Illuminate\Database\QueryException $e) {
