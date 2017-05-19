@@ -46,7 +46,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a class="navbar-brand" href="{{ url('/breeds') }}">Breeds</a></li>
-                                <li><a class="navbar-brand" href="{{ url('/salons')}}">Salons</a></li>
+                                <!-- <li><a class="navbar-brand" href="{{ url('/salons')}}">Salons</a></li> -->
                                 <li><a class="navbar-brand" href="{{ url('/users')}}">Users</a></li>
                                 <li><a class="navbar-brand" href="{{ url('/vaccines')}}">Vaccines</a></li>
                             </ul>
