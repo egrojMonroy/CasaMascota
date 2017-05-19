@@ -2,15 +2,15 @@
 	<form class="form-horizontal" role="form" method="POST" action="{{ route('reservations.update', $allreservation->last()->id) }}">
 		<input type="hidden" name="_method" value="PUT">
 		{{ csrf_field() }}
-		<div class="form-group">
+		<div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
 			<label for="user-id" class="col-lg-2 control-label">Dueño</label>
 			<div class="col-lg-10">
-				<select class="form-control" name="user_id" id="user_id">
+				<select class="form-control" name="user_id" id="user_id" >
 					<option value="{{$allreservation->last()->uid}}">{{$allreservation->last()->uname}} {{$allreservation->last()->ulname}}</option>
 						@foreach($users as $row)
                             @if($row->id==$allreservation->last()->uid)
                             @else
-						        <option value="{{$row->id}}">{{$row->name}} {{$row->last_name}}</option>
+						        <option value="{{$row->user_id}}">{{$row->name}} {{$row->last_name}}</option>
                             @endif
 					@endforeach
 				</select>
@@ -23,7 +23,7 @@
 		</div>
 
 
-		<div class="form-group">
+		<div class="form-group {{ $errors->has('pet') ? ' has-error' : '' }}">
 			<label for="pet" class="col-lg-2 control-label"> Mascota</label>
 			<div class="col-lg-10">
                 <select class="form-control" name="pet" id="pet">
@@ -44,17 +44,19 @@
 		</div>
 
 
-		<div class="form-group">
+		<div class="form-group {{ $errors->has('date') ? ' has-error' : '' }}">
 			<label for="date" class="col-lg-2 control-label">Fecha</label>
 			<div class="col-lg-10">
-              <input type="datetime-local" class="form-control" name="date" value="{{str_replace(" ", "T",$allreservation->last()->date)}}">
+              <input type="datetime-local" class="form-control" name="date" value="{{str_replace(" ", "T",$allreservation->last()->date)}}" required>
 				@if($errors->has('date'))
-					<span style="color:red;">{{ $errors->all('date') }}</span>
+					<div class="alert alert-danger">
+						{{$errors->first('date')}}
+					</div>
 				@endif
 			</div>
 		</div>
 
-		    <div class="form-group">
+		<div class="form-group {{ $errors->has('tipo_res') ? ' has-error' : '' }}">
 			<label for="tipo_res" class="col-lg-2 control-label">Tipo de Reserva</label>
 			<div class="col-lg-10">
 				<select class="form-control" name="tipo_res">

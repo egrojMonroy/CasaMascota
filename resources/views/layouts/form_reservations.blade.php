@@ -18,7 +18,7 @@
 
         <option disabled="true" selected="">Dueño</option>
         @foreach($users as $row)
-          <option value="{{$row->id}}">{{$row->name}} {{$row->last_name}}</option>
+          <option value="{{$row->user_id}}">{{$row->name}} {{$row->last_name}}</option>
         @endforeach
       </select>
         @if($errors->has('user_id'))
@@ -34,7 +34,7 @@
   <div class="form-group {{ $errors->has('pet') ? ' has-error' : '' }}">
     <label for="pet" class="col-lg-2 control-label"> Mascota</label>
     <div class="col-lg-10">
-      <select class="form-control" name="pet" id="pet">
+      <select class="form-control" name="pet" id="pet" required>
         <option value="0" disabled="true" selected="true">Elija Mascota</option>
       </select>
         @if($errors->has('pet'))
@@ -49,7 +49,7 @@
   <div class="form-group {{ $errors->has('date') ? ' has-error' : '' }}">
     <label for="date" class="col-lg-2 control-label">Fecha</label>
     <div class="col-lg-10">
-      <input type="datetime-local" class="form-control" name="date" id="date" placeholder="date">
+      <input type="datetime-local" class="form-control" name="date" id="date" placeholder="date" required>
         @if($errors->has('date'))
             <div class="alert alert-danger">
                 {{$errors->first('date')}}
@@ -65,7 +65,7 @@
   <div class="form-group {{ $errors->has('tipo_res') ? ' has-error' : '' }}">
     <label for="tipo_res" class="col-lg-2 control-label">Tipo de Reserva</label>
     <div class="col-lg-10">
-      <select class="form-control" name="tipo_res" id="tipo_res">
+      <select class="form-control" name="tipo_res" id="tipo_res" required>
         <option disabled="true" selected="">Tipo De Reserva</option>
         <option value="1">Peluqueria</option>
         <option value="0">Consulta</option>

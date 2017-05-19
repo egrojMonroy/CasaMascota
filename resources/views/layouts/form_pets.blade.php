@@ -6,7 +6,15 @@
 @if(session()->has('errormsj'))
 <div class="alert alert-danger">No se guardaron los datos</div>
 @endif
-
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form class="form-horizontal" role="form" method="POST" action="{{ url('pets') }}">
 {{ csrf_field() }}
   <div class="form-group">
@@ -24,7 +32,7 @@
   			<div class="form-group">
 			    <label for="weight" class="col-lg-1 control-label">Weight (Kilograms))</label>
 			    <div class="col-lg-10">
-			      <input type="text" class="form-control" name="weight" placeholder="Weight" required>
+			      <input type="text" class="form-control" name="weight" placeholder="Weight" onkeypress="return soloNumeros(event)" required>
 			      @if($errors->has('weight'))
 			      <span style="color:red;">{{ $errors->all('weight') }}</span>
 			      @endif
@@ -35,7 +43,7 @@
   			<div class="form-group">
 		    <label for="height" class="col-lg-1 control-label">Height (Centimeters)</label>
 		    <div class="col-lg-10">
-		      <input type="text" class="form-control" name="height" placeholder="Height" required>
+		      <input type="text" class="form-control" name="height" placeholder="Height" onkeypress="return soloNumeros(event)" required>
 		      @if($errors->has('height'))
 		      <span style="color:red;">{{ $errors->all('height') }}</span>
 		      @endif

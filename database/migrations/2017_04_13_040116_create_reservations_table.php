@@ -23,7 +23,10 @@ class CreateReservationsTable extends Migration
            $table->foreign('user_id')->references('id')->on('users');
            $table->foreign('pet_id')->references('id')->on('pets');
             $table->timestamps();
+            $table->string('createdBy');
+            $table->string('updatedBy');
             $table->softDeletes();
+            $table->string('deletedBy');
         });
 
 
