@@ -9,15 +9,14 @@
 {{ csrf_field() }}
 
 
-
-
   <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
     <label for="user-id" class="col-lg-2 control-label">Dueño</label>
     <div class="col-lg-10">
       <select class="form-control" name="user_id" id="user_id"  required>
 
         <option disabled="true" selected="">Dueño</option>
-        @foreach($users as $row)
+          @foreach($users as $row)
+
           <option value="{{$row->user_id}}">{{$row->name}} {{$row->last_name}}</option>
         @endforeach
       </select>

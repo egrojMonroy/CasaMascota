@@ -16,10 +16,14 @@ class reservations extends Controller
 
         $reservation = Reservation::all();
         $user= User::query()
+            ->select('users.id as user_id','users.name as name','users.last_name as last_name')
             ->join('user_roles','user_roles.user_id','=','users.id')
+            ->join('pets','pets.user_id','=','users.id')
             ->where('user_roles.role_id',4)
+            ->orderby('users.name', 'asc')
+            ->groupby('users.id')
             ->get();
-        //dd($user);
+
 
 
 
