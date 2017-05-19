@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use petstore\User;
 use petstore\Role;
 use Illuminate\Support\Facades\DB;
+use petstore\User_role;
+
 class users extends Controller
 {
     /**
@@ -17,8 +19,29 @@ class users extends Controller
     {
         $users = User::paginate(10);
         $roles = Role::all();
+
+
+
+                foreach ($users as $user){
+                    $rol_usuario = User_role::query()
+                        ->join('roles','roles.id','=','user_roles.role_id')
+                        ->where('user_roles.user_id',$user->id)
+                        ->get();
+
+                    $roles;
+                    $first = $rol_usuario->first();
+                    foreach($rol_usuario as $rol){
+                        if($rol == $first)
+                        $roles = $rol->role;
+                        else
+                        $roles = $roles.','.$rol->role;
+                    }
+                    $user->roles= $roles;
+                }
+
+
         $count =$users->count();
-        return view('users')->with(['users' => $users,'roles'=>$roles,'count_users']);
+        return view('users')->with(['users' => $users]);
     }
 
     public function create()
@@ -40,10 +63,19 @@ class users extends Controller
         $user->last_name = $request->last_name;
         $user->email     = $request->email;
         $user->password  = bcrypt($request->password);
-        $user->rol_id = $request->tipo_rol;
+
 
 
         if($user->save()){
+
+             foreach ($request->opcion as $opcion){
+                 $roles = new User_role;
+                 $roles->user_id = $user->id;
+                 $roles->role_id = $opcion;
+                 $roles->save();
+            }
+
+
             return back()->with('msj', 'Datos guardados');
         }
         else{

@@ -8,27 +8,33 @@
 <form class="form-horizontal" role="form" method="POST" action="{{ url('vaccines') }}">
     {{ csrf_field() }}
 
-
-
-
-    <div class="form-group">
+    <div class="form-group" >
         <label for="user-id" class="col-lg-2 control-label">Name</label>
         <div class="col-lg-10">
-
             <input type="text" id="name" name="name">
-
         </div>
     </div>
-
-
-    <div class="form-group">
-        <label for="pet" class="col-lg-2 control-label">Diseases</label>
+    <br>
+    <div class="form-group" align="right">
         <div class="col-lg-10">
-            <input type="text" id="diseases" name="diseases">
+            <button type="button" name="add" id="add" class="btn btn-success">Add diseases</button>
         </div>
     </div>
 
-
+    <br><br>
+    <div class="table-responsive" id="group">
+                <div class="form-group" id="smallgroup1">
+                    <label for="tipo_res" class="col-lg-2 control-label">Tipo de Usuario</label>
+                    <div class="col-lg-4">
+                        <select class="form-control" name="tipo_rol">
+                            @foreach($diseases as $disease)
+                            <option value="{{$disease->id}}">{{$disease->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button class ="delete_button" type="button" name="remove" id="1" class="btn btn-danger">Delete</button>
+                </div>
+    </div>
 
 
     <div class="form-group">
@@ -42,32 +48,28 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-<script type="text/javascript">
+<script>
     $(document).ready(function(){
-        $(document).on('change','#user_id',function(){
-            var id=$(this).val();
-            console.log(id);
-            var div=$(this).parent();
-            var op=" ";
-            $.ajax({
-                type:'get',
-                url:'{!!URL::to('findPet')!!}',
-                data:{'id':id},
-                success:function(data){
-                    op+='<option selected disabled>Elija Mascota</option>';
-                    for(var i=0;i<data.length;i++){
-                        op+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
-                    }
-                    console.log(op);
-
-                    $('#pet').html("");
-                    $('#pet').append(op);
-                },
-                error:function(){
-
-                }
-            });
+        var i=2;
+        $('#add').click(function () {
+            $('#group').append(
+           '<div class="form-group" id="smallgroup'+i+'">'+
+                '<label for="tipo_res" class="col-lg-2 control-label">Tipo de Usuario</label>'+
+            '<div class="col-lg-4">'+
+                '<select class="form-control" name="tipo_rol">'+
+                    '@foreach($diseases as $disease)<option value="{{$disease->id}}">{{$disease->name}}</option>@endforeach'+
+                '</select>'+
+                '</div>'+
+                '<button class ="delete_button" type="button" name="remove" id="'+i+'" class="btn btn-danger">Delete</button>'+
+            '</div>'
+            )
+            i++;
         });
+        $(document).on('click', '.delete_button', function(){
+            var button_id =$(this).attr("id");
+
+            $('#smallgroup'+button_id+'').remove();
+        })
     });
+
 </script>

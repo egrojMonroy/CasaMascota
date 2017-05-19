@@ -42,7 +42,7 @@
         <label for="date" class="col-lg-2 control-label">Password </label>
         <div class="col-lg-10">
                 <input type="password" id="password" name="password" required>
-            <font size="4" color="red">*</font
+            <font size="4" color="red">*</font>
 
 
         </div>
@@ -52,13 +52,12 @@
     <div class="form-group">
         <label for="tipo_res" class="col-lg-2 control-label">Tipo de Usuario</label>
         <div class="col-lg-10">
-            <select class="form-control" name="tipo_rol">
-                <option value="1">Doctor</option>
-                <option value="2">Peluquero</option>
-                <option value="3">Secretario</option>
-                <option value="4">Empleado</option>
-                <option value="5">Dueño</option>
-            </select>
+            <input type="checkbox" name="opcion[]" value="1">Doctor<br>
+            <input type="checkbox" name="opcion[]" value="2">Peluquero<br>
+            <input type="checkbox" name="opcion[]" value="3">Secretario<br>
+            <input type="checkbox" name="opcion[]" value="4">Empleado<br>
+            <input type="checkbox" name="opcion[]" value="5">Dueño<br>
+
         </div>
     </div>
 

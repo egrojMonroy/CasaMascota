@@ -1,14 +1,15 @@
 <?php
 
 namespace petstore;
-
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class User_role extends Model
+
+class Diseases extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'user_id','role_id'
+        'name'
     ];
-    protected $dates = ['deleted_at'];
+    //protected $dates = ['deleted_at'];
 }
