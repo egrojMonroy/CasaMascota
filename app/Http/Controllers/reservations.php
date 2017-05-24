@@ -32,8 +32,8 @@ class reservations extends Controller
             ->join('users','users.id','=','reservations.user_id')
             ->join('pets','pets.id','=','reservations.pet_id')
             ->select('reservations.id as id','users.id as uid','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
-            ->orderby('date', 'asc')
-            ->paginate(5);
+            ->orderby('date', 'desc')
+            ->paginate(7);
 
 
 
@@ -110,8 +110,12 @@ class reservations extends Controller
 
         $reservation = Reservation::all();
         $user= User::query()
+            ->select('users.id as user_id','users.name as name','users.last_name as last_name')
             ->join('user_roles','user_roles.user_id','=','users.id')
+            ->join('pets','pets.user_id','=','users.id')
             ->where('user_roles.role_id',4)
+            ->orderby('users.name', 'asc')
+            ->groupby('users.id')
             ->get();
 
 
