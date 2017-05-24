@@ -67,8 +67,34 @@
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <button type="submit" class="btn btn-default">Save</button>
+            <button type="submit" class="btn btn-default" id="save">Save</button>
         </div>
     </div>
 </form>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function validate_form()
+    {
+        $(':checkbox').click(function() {
+            checked = $("input[type=checkbox]:checked").length;
+            if(checked==0){
+
+                $( "#save" ).prop( "disabled", true );
+            }
+            else{
+                $( "#save" ).prop( "disabled", false);
+            }
+        });
+       /* $('#save').click(function() {
+            checked = $("input[type=checkbox]:checked").length;
+            if(checked==0){
+
+                $( "#save" ).prop( "disabled", true );
+            }
+            else{
+                $( "#save" ).prop( "disabled", false);
+            }
+        });*/
+    });
+</script>

@@ -35,28 +35,28 @@
             <div class="col-lg-10">
 
                     @if($users->roles[1])
-                        <input type="checkbox" name="opcion[]" value="1" checked>Doctor<br>
+                        <input type="checkbox" id="checkbox" name="opcion[]" value="1" checked>Doctor<br>
                     @else
-                        <input type="checkbox" name="opcion[]" value="1">Doctor<br>
+                        <input type="checkbox" id="checkbox" name="opcion[]" value="1">Doctor<br>
                     @endif
 
                     @if($users->roles[2])
-                        <input type="checkbox" name="opcion[]" value="2" checked>Peluquero<br>
+                        <input type="checkbox" id="checkbox" name="opcion[]" value="2" checked>Peluquero<br>
                     @else
-                        <input type="checkbox" name="opcion[]" value="2">Peluquero<br>
+                        <input type="checkbox" id="checkbox" name="opcion[]" value="2">Peluquero<br>
                     @endif
 
                     @if($users->roles[3])
-                            <input type="checkbox" name="opcion[]" value="3" checked>Secretario<br>
-                    @else <input type="checkbox" name="opcion[]" value="3" >Secretario<br>
+                            <input type="checkbox" id="checkbox" name="opcion[]" value="3" checked>Secretario<br>
+                    @else <input type="checkbox" id="checkbox" name="opcion[]" value="3" >Secretario<br>
                     @endif
 
-                    @if($users->roles[4])<input type="checkbox" name="opcion[]" value="4" checked>Dueño<br>
-                     @else <input type="checkbox" name="opcion[]" value="4">Dueño<br>
+                    @if($users->roles[4])<input type="checkbox" id="checkbox" name="opcion[]" value="4" checked>Dueño<br>
+                     @else <input type="checkbox" id="checkbox" name="opcion[]" value="4">Dueño<br>
                     @endif
 
-                    @if($users->roles[5]) <input type="checkbox" name="opcion[]" value="5" checked>Empleado<br>
-                    @else <input type="checkbox" name="opcion[]" value="5">Empleado<br>
+                    @if($users->roles[5]) <input type="checkbox" id="checkbox" name="opcion[]" value="5" checked>Empleado<br>
+                    @else <input type="checkbox" id="checkbox" name="opcion[]" value="5">Empleado<br>
                     @endif
 
                 @if($errors->has('email'))
@@ -67,8 +67,26 @@
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-default">Update</button>
+                <button type="submit" id="update" class="btn btn-default">Update</button>
             </div>
         </div>
     </form>
 @endif
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function validate_form()
+    {
+        $(':checkbox').click(function() {
+                    checked = $("input[type=checkbox]:checked").length;
+                if(checked==0){
+                    console.log("ENTRA");
+                    $( "#update" ).prop( "disabled", true );
+                }
+                else{
+                    $( "#update" ).prop( "disabled", false);
+                }
+        });
+    });
+</script>
