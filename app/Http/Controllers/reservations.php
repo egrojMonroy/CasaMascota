@@ -59,7 +59,7 @@ class reservations extends Controller
             'user_id'=> 'required',
             'pet'=> 'required',
             'tipo_res'=>'required',
-            'date'=>'required|unique:reservations',
+            'date'=>'required',
 
 
 
