@@ -31,7 +31,7 @@ class breeds extends Controller{
 
         $this->validate($request,[
 
-            'family_id'=> 'required',
+            'family'=> 'required',
             'name'=> 'required|max:45',
         ],[
                 'family_id.required'=> 'Family is required',
@@ -39,10 +39,10 @@ class breeds extends Controller{
         ]);
 
         $breed = new Breed();
-        $breed->family_id   = $request->family;
-        $breed->name        = $request->name;
-        $breed->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
-        $breed->updatedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        $breed->family_id   = strtoupper($request->family);
+        $breed->name        = strtoupper($request->name);
+        $breed->createdBy   = strtoupper(Auth::user()->name.' '.Auth::user()->last_name);
+        $breed->updatedBy   = strtoupper(Auth::user()->name.' '.Auth::user()->last_name);
         $breed->deletedBy   = '';
         if($breed->save()){
             return back()->with('msj', 'Datos guardados');
@@ -69,9 +69,9 @@ class breeds extends Controller{
 
     public function update(Request $request, $id){
         $breed = Breed::find($id);
-        $breed->name        = $request->name;
-        $breed->family_id   = $request->family;
-        $breed->updatedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        $breed->name        = strtoupper($request->name);
+        $breed->family_id   = strtoupper($request->family);
+        $breed->updatedBy   = strtoupper(Auth::user()->name.' '.Auth::user()->last_name);
         if($breed->save()){
             return redirect('breeds')->with('msj', 'Datos modificados');
         }
@@ -82,10 +82,10 @@ class breeds extends Controller{
 
     public function destroy($id){
         $breed = Breed::find($id);
-        $breed->deletedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        $breed->deletedBy   = strtoupper(Auth::user()->name.' '.Auth::user()->last_name);
         if($breed->save()){
             Breed::destroy($id);
-            return redirect('breeds')->with('msj', 'Datos modificados');
+            return redirect('breeds')->with('msj', 'Dato eliminado');
         }
         else{
             return back();

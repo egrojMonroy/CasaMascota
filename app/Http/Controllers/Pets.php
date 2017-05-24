@@ -50,16 +50,16 @@ class pets extends Controller{
             'user_id'=> 'required',
         ]);
         $pet = new Pet();
-        $pet->name      = $request->name;
-        $pet->weight    = $request->weight;
-        $pet->height    = $request->height;
-        $pet->age       = $request->age;
-        $pet->urlImg    = $request->urlimg;
-        $pet->gender    = $request->gender;
-        $pet->breed_id  = $request->breed;
-        $pet->user_id   = $request->user_id;
-        $pet->createdBy = Auth::user()->name.' '.Auth::user()->last_name;
-        $pet->updatedBy = Auth::user()->name.' '.Auth::user()->last_name;
+        $pet->name      = strtoupper($request->name);
+        $pet->weight    = strtoupper($request->weight);
+        $pet->height    = strtoupper($request->height);
+        $pet->age       = strtoupper($request->age);
+        $pet->urlImg    = strtoupper($request->urlimg);
+        $pet->gender    = strtoupper($request->gender);
+        $pet->breed_id  = strtoupper($request->breed);
+        $pet->user_id   = strtoupper($request->user_id);
+        $pet->createdBy = strtoupper(Auth::user()->name.' '.Auth::user()->last_name);
+        $pet->updatedBy = strtoupper(Auth::user()->name.' '.Auth::user()->last_name);
         $pet->deletedBy = '';
         $pet->in_adoption = 0;
     
@@ -90,18 +90,18 @@ class pets extends Controller{
 
     public function update(Request $request, $id){
         $pet = Pet::find($id);
-        $pet->name      = $request->name;
-        $pet->weight    = $request->weight;
-        $pet->height    = $request->height;
-        $pet->age       = $request->age;
-        $pet->urlImg    = $request->urlimg;
-        $pet->gender    = $request->gender;
-        $pet->breed_id  = $request->breed;
-        $pet->user_id   = $request->user_id;
-        $pet->updatedBy = Auth::user()->name.' '.Auth::user()->last_name;
+        $pet->name      = strtoupper($request->name);
+        $pet->weight    = strtoupper($request->weight);
+        $pet->height    = strtoupper($request->height);
+        $pet->age       = strtoupper($request->age);
+        $pet->urlImg    = strtoupper($request->urlimg);
+        $pet->gender    = strtoupper($request->gender);
+        $pet->breed_id  = strtoupper($request->breed);
+        $pet->user_id   = strtoupper($request->user_id);
+        $pet->updatedBy = strtoupper(Auth::user()->name.' '.Auth::user()->last_name);
         $pet->in_adoption = 0;
         if($pet->save()){
-            return back()->with('msj', 'Datos guardados');
+            return back()->with('msj', 'Datos modificados');
         }
         else{
             return back();
@@ -110,7 +110,7 @@ class pets extends Controller{
 
     public function destroy($id){
         $pet = Pet::find($id);
-        $pet->deletedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+        $pet->deletedBy   = strtoupper(Auth::user()->name.' '.Auth::user()->last_name);
         if($pet->save()){
             pet::destroy($id);
             return redirect('pets')->with('msj', 'Dato eliminado');

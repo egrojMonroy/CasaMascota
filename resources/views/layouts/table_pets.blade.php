@@ -10,7 +10,6 @@
 		</thead>
 		<tbody>
 		@foreach($my_pets as $row)
-		@if(Auth::user()->rol_id==3 || Auth::user()->rol==$row->rol)
 			<tr>
 				<td>{{ $row->pet }}</td>
 				<td>{{ $row->weight }}</td>
@@ -33,7 +32,6 @@
 
 				</td>
 			</tr>
-		@endif	
 		@endforeach
 		</tbody>
 		{{$my_pets->render()}}
