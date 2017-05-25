@@ -3,6 +3,9 @@
 namespace petstore\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mockery\Exception;
+use petstore\vac_di;
+use petstore\vacdi;
 use petstore\Diseases;
 use petstore\Vaccine;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +18,25 @@ class vaccines extends Controller
      */
     public function index()
     {
-        $vaccines = Vaccine::all();
+        $vaccines = Vaccine::paginate(10);
         $diseases = Diseases::all();
+        foreach ($vaccines as $vaccine){
+            $dis_vac = vac_di::query()
+                ->join('diseases','diseases.id','=','vac_dis.dis_id')
+                ->where('vac_dis.vac_id',$vaccine->id)
+                ->get();
+
+
+            $first = $dis_vac->first();
+            foreach($dis_vac as $rol){
+                if($rol == $first)
+                    $dis = $rol->name;
+                else
+                    $dis = $dis.', '.$rol->name;
+            }
+            $vaccine->diseases= $dis;
+        }
+
         return view('vaccines')->with(['vaccines'=>$vaccines,'diseases'=>$diseases]);
     }
 
@@ -40,12 +60,29 @@ class vaccines extends Controller
     {
         $vaccine = new Vaccine();
         $vaccine->name = $request->input('name');
-        $vaccine->diseases = $request->input('diseases');
+        vac_di::query()->where('vac_id',$vaccine->id)->delete();
+        if(count(array_unique($request->tipo_rol))<count($request->tipo_rol))
+        {
+            return redirect('vaccines')->with('errorselect','Mal');
+        }
+        else
+
         if($vaccine->save()){
-            return back()->with('msj', 'Datos guardados');
+            foreach ($request->tipo_rol as $tipo){
+                $dis = new vac_di();
+                $dis->vac_id = $vaccine->id;
+                $dis->dis_id = $tipo;
+
+
+
+                $dis->save();
+
+            }
+            $diseases = Diseases::all();
+            return redirect('vaccines')->with('msj', 'Datos guardados');
         }
         else{
-            return back();
+            return view('vaccines');
         }
     }
 
@@ -68,8 +105,17 @@ class vaccines extends Controller
      */
     public function edit($id)
     {
-        $vaccine = DB::table('vaccines')->find($id);
-        return view('vaccines')->with(['edit' => true, 'vaccine' => $vaccine]);
+        $vaccine = Vaccine::find($id);
+
+        $dis = vac_di::query()
+            ->join('diseases','diseases.id','=','vac_dis.dis_id')
+            ->where('vac_dis.vac_id',$id)
+            ->get();
+
+        $diseases = Diseases::all();
+
+        return view('vaccines')
+            ->with(['edit' => true, 'vaccine' => $vaccine,'diseases_name'=>$dis,'diseases'=>$diseases]);
     }
 
     /**
@@ -83,9 +129,9 @@ class vaccines extends Controller
     {
         $vaccine = Vaccine::find($id);
         $vaccine->name      = $request->name;
-        $vaccine->diseases  = $request->diseases;
-
         if($vaccine->save()){
+            vac_di::query()->where('vac_id',$vaccine->id)->delete();
+
             return redirect('vaccines')->with('msj', 'Datos modificados');
         }
         else{

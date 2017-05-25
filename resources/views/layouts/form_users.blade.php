@@ -8,9 +8,6 @@
 <form class="form-horizontal" role="form" method="POST" action="{{ url('users') }}">
     {{ csrf_field() }}
 
-
-
-
     <div class="form-group">
         <label for="user-id" class="col-lg-2 control-label">Nombre</label>
         <div class="col-lg-10">
@@ -86,15 +83,15 @@
                 $( "#save" ).prop( "disabled", false);
             }
         });
-       /* $('#save').click(function() {
+        $('#save').click(function() {
             checked = $("input[type=checkbox]:checked").length;
             if(checked==0){
-
+                alert('Seleccione al menos un tipo de usuario ');
                 $( "#save" ).prop( "disabled", true );
             }
             else{
                 $( "#save" ).prop( "disabled", false);
             }
-        });*/
+        });
     });
 </script>

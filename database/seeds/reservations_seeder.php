@@ -15,8 +15,6 @@ class reservations_seeder extends Seeder
     {
         $faker = Faker::create();
         DB::table('reservations')->insert([
-
-
             [
                 'user_id'=>'4',
                 'pet_id'=>'1',
@@ -129,7 +127,6 @@ class reservations_seeder extends Seeder
                 'updatedBy'=>Carbon::now()->format('admin'),
                 'deletedBy'=>Carbon::now()->format('')
             ],
-
             [
                 'user_id'=>'12',
                 'pet_id'=>'10',
@@ -141,10 +138,6 @@ class reservations_seeder extends Seeder
                 'updatedBy'=>Carbon::now()->format('admin'),
                 'deletedBy'=>Carbon::now()->format('')
             ],
-
-
-
-
         ]);
     }
 }

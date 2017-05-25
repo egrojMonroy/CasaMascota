@@ -23,3 +23,4 @@
         </tbody>
     @endif
 </table>
+{{$vaccines->render()}}

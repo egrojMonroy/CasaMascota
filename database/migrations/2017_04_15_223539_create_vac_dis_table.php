@@ -13,6 +13,7 @@ class CreateVacDisTable extends Migration
             $table->increments('id');
             $table->integer('vac_id');
             $table->integer('dis_id');
+            $table->unique(['vac_id','dis_id']);
             $table->foreign('dis_id')->references('id')->on('diseases');
             $table->foreign('vac_id')->references('id')->on('vaccines');
             $table->timestamps();

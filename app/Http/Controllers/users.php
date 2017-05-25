@@ -40,8 +40,6 @@ class users extends Controller
                     $user->roles= $roles;
                 }
 
-
-        $count =$users->count();
         return view('users')->with(['users' => $users]);
     }
 
@@ -117,7 +115,6 @@ class users extends Controller
             ->where('user_roles.user_id',$id)
             ->get();
 
-
         $roles []='';
 
         for($i = 0; $i<6;$i++){
@@ -178,6 +175,6 @@ class users extends Controller
     {
       //  User_role::where('user_id',$id)->delete();
         User::destroy($id);
-        return back();
+        return redirect('users');
     }
 }

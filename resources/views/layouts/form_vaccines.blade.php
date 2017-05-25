@@ -4,6 +4,9 @@
 @if(session()->has('errormsj'))
     <div class="alert alert-danger">No se guardaron los datos</div>
 @endif
+@if(session()->has('errorselect'))
+    <div class="alert alert-danger">No diseases duplicadas</div>
+@endif
 
 <form class="form-horizontal" role="form" method="POST" action="{{ url('vaccines') }}">
     {{ csrf_field() }}
@@ -22,11 +25,11 @@
     </div>
 
     <br><br>
-    <div class="table-responsive" id="group">
+    <div  id="group">
                 <div class="form-group" id="smallgroup1">
-                    <label for="tipo_res" class="col-lg-2 control-label">Tipo de Usuario</label>
+                    <label for="tipo_res" class="col-lg-2 control-label">Disease</label>
                     <div class="col-lg-4">
-                        <select class="form-control" name="tipo_rol">
+                        <select class="form-control" name="tipo_rol[]">
                             @foreach($diseases as $disease)
                             <option value="{{$disease->id}}">{{$disease->name}}</option>
                             @endforeach
@@ -54,9 +57,9 @@
         $('#add').click(function () {
             $('#group').append(
            '<div class="form-group" id="smallgroup'+i+'">'+
-                '<label for="tipo_res" class="col-lg-2 control-label">Tipo de Usuario</label>'+
+                '<label for="tipo_res" class="col-lg-2 control-label">Disease</label>'+
             '<div class="col-lg-4">'+
-                '<select class="form-control" name="tipo_rol">'+
+                '<select class="form-control" name="tipo_rol[]" id="desease'+i+'">'+
                     '@foreach($diseases as $disease)<option value="{{$disease->id}}">{{$disease->name}}</option>@endforeach'+
                 '</select>'+
                 '</div>'+
