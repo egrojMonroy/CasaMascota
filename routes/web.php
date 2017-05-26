@@ -36,6 +36,6 @@ Route::get('/findBreed','genController@findBreed');
 //Jorge
 Route::resource('/vaccines','vaccines');
 Route::resource('/users','users');
-
+Route::get('/edits','users@edit_especial');
 //End Jorge
 

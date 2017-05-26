@@ -16,7 +16,7 @@ class breeds_seeder extends Seeder
         DB::table('breeds')->insert([
 
         //seeder de razas de perro
-            ['name'  => "Cooker",
+            ['name'  => "COOKER",
             'family_id'=>"1",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),

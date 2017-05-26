@@ -65,7 +65,7 @@ class vaccines extends Controller
 
         ]);
         $vaccine = new Vaccine();
-        $vaccine->name = $request->input('name');
+        $vaccine->name = strtoupper($request->input('name'));
         vac_di::query()->where('vac_id',$vaccine->id)->delete();
         if(count(array_unique($request->tipo_rol))<count($request->tipo_rol))
         {
@@ -135,7 +135,7 @@ class vaccines extends Controller
     {
         $vaccine = Vaccine::find($id);
 
-        $vaccine->name      = $request->name;
+        $vaccine->name      = strtoupper($request->name);
 
         if(count(array_unique($request->tipo_dis))<count($request->tipo_dis))
         {

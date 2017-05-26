@@ -67,25 +67,19 @@ class users extends Controller
             'email.required'=> 'Email is required',
             'password.required'=> 'Password is required',
         ]);
-
         $user = new User();
-        $user->name      = $request->name;
-        $user->last_name = $request->last_name;
+        $user->name      = strtoupper($request->name);
+        $user->last_name = strtoupper($request->last_name);
         $user->email     = $request->email;
         $user->password  = bcrypt($request->password);
 
-
-
         if($user->save()){
-
              foreach ($request->opcion as $opcion){
                  $roles = new User_role;
                  $roles->user_id = $user->id;
                  $roles->role_id = $opcion;
                  $roles->save();
             }
-
-
             return back()->with('msj', 'Datos guardados');
         }
         else{
@@ -152,10 +146,10 @@ class users extends Controller
     {
 
         $user = User::find($id);
-        $user->name      = $request->name;
+        $user->name      = strtoupper($request->name);
         $user->email     =$request->email   ;
 
-        $user->last_name     =$request-> last_name  ;
+        $user->last_name     =$request-> strtoupper(last_name)  ;
         // Creo la variable opcion para tener un array ordenado
         // donde sean booleanos los roles
         User_role::where('user_id',$id)->delete();

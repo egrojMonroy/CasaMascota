@@ -15,41 +15,41 @@ class diseases_seeder extends Seeder
     {
         DB::table('diseases')->insert([
 
-                [   'name'  => 'rabia',
+                [   'name'  => 'RABIA',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 ],
-                ['name'  => 'gripe',
+                ['name'  => 'GRIPE',
 
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 ],
-                ['name'  => 'hematomas',
+                ['name'  => 'HEMATOMAS',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 ],
-                [   'name'  => 'vomito',
+                [   'name'  => 'VOMITO',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')],
-                [   'name'  => 'dolor de abdomen ',
+                [   'name'  => 'DOLOR DE ABDOMEN',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')],
-                [   'name'  => 'bronconeumonia',
+                [   'name'  => 'BRONCONEUMONIA',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')],
-                [   'name'  => 'Otitis',
+                [   'name'  => 'OTITIS',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')],
-                [   'name'  => 'vomito',
+                [   'name'  => 'VOMITO',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')],
-                [   'name'  => 'moquillo',
+                [   'name'  => 'MOQUILLO',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')],
-                [   'name'  => 'parvovirus',
+                [   'name'  => 'PARVOVIRUS',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')],
-                [   'name'  => 'leptospirosis',
+                [   'name'  => 'LEPTOSPIROSIS',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]
 
