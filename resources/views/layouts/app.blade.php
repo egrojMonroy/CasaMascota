@@ -88,11 +88,12 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <a href="{{ route('users.') }}">
+                                        <a href="/users/{{\Illuminate\Support\Facades\Auth::id() }}/edit2">
                                             settings
                                         </a>
 
                                     </li>
+
                                 </ul>
 
                             </li>

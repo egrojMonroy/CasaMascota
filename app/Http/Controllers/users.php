@@ -3,6 +3,7 @@
 namespace petstore\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use petstore\User;
 use petstore\Role;
 use Illuminate\Support\Facades\DB;
@@ -146,7 +147,7 @@ class users extends Controller
         $user->name      = strtoupper($request->name);
         $user->email     =$request->email   ;
 
-        $user->last_name     =$request-> strtoupper(last_name)  ;
+        $user->last_name     = strtoupper($request->last_name) ;
         // Creo la variable opcion para tener un array ordenado
         // donde sean booleanos los roles
         User_role::where('user_id',$id)->delete();
@@ -178,5 +179,29 @@ class users extends Controller
       //  User_role::where('user_id',$id)->delete();
         User::destroy($id);
         return redirect('users');
+    }
+    public function edit_own($id){
+        $user = User::find($id);
+
+        return view('users')->with(['edit2' => true, 'users' => $user]);
+    }
+    public function update_own(Request $request, $id){
+
+        $user = User::find($id);
+        $user->name      = strtoupper($request->name);
+        $user->email     =$request->email   ;
+        $user->last_name     = strtoupper($request-> last_name);
+
+        if(password_verify($request->old_password,$user->password)){
+            $user->password=bcrypt($request->new_password);
+        }else{
+            return back()->with('errormsj','Old Password incorrect');
+        }
+        if($user->save()) {
+            return redirect('/home')->with('msj', 'Datos modificados');
+        }
+        else {
+            return back();
+        }
     }
 }

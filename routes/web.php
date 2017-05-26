@@ -36,6 +36,7 @@ Route::get('/findBreed','genController@findBreed');
 //Jorge
 Route::resource('/vaccines','vaccines');
 Route::resource('/users','users');
-Route::get('/edits','users@edit_especial');
+Route::get('/users/{user}/edit2 ','users@edit_own');
+Route::get('/update/{user}','users@update_own')->name('users.update_own');
 //End Jorge
 
