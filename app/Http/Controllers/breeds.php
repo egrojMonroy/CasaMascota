@@ -18,7 +18,6 @@ class breeds extends Controller{
                     ->select('families.id as fid','families.name as fname', 'breeds.name as bname', 'breeds.id as bid')
                     ->orderby('families.id', 'asc')
                     ->paginate(5);
-
         $family = Family::all();
         return view('breeds')->with(['breeds' => $breed, 'families' => $family]);
     }
