@@ -128,10 +128,22 @@ class vaccines extends Controller
     public function update(Request $request, $id)
     {
         $vaccine = Vaccine::find($id);
+
         $vaccine->name      = $request->name;
+        vac_di::query()->where('vac_id',$id)->delete();
+        if(count(array_unique($request->tipo_rol))<count($request->tipo_rol))
+        {
+            ///////////////AQUIIIIIIIIIIIIII ESTOY
+            return redirect('layouts.edit_vaccines')->with('errorselect','Mal');
+        }
         if($vaccine->save()){
             vac_di::query()->where('vac_id',$vaccine->id)->delete();
-
+            foreach ($request->tipo_dis as $dis){
+                $nuevo = new vac_di();
+                $nuevo->dis_id = $dis;
+                $nuevo->vac_id = $id;
+                $nuevo->save();
+            }
             return redirect('vaccines')->with('msj', 'Datos modificados');
         }
         else{
