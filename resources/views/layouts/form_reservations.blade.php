@@ -9,12 +9,12 @@
 {{ csrf_field() }}
 
 
-  <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
-    <label  for="user-idla" class="col-lg-2 control-label"> Dueño</label>
-    <div class="col-lg-10">
-      <select  name="user_id" id="user_id"  required>
+    <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
+        <label for="user-id" class="col-lg-2 control-label">Dueño</label>
+        <div class="col-lg-10">
+            <select class="form-control" name="user_id" id="user_id"  required>
 
-            <option></option>
+                <option disabled="true" selected="">Dueño</option>
           @foreach($users as $row)
           <option value="{{$row->user_id}}">{{$row->name}} {{$row->last_name}}</option>
         @endforeach
@@ -93,19 +93,6 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-
-
-
-
-
-<script type="text/javascript">
-
-    $("#user_id").select2({
-        placeholder: "Select a Name",
-        allowClear: true,
-    });
-</script>
 
 
 <script type="text/javascript">
