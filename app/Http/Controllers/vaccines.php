@@ -58,6 +58,12 @@ class vaccines extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'name'=> 'required',
+        ],[
+            'name.required'=> 'name is required',
+
+        ]);
         $vaccine = new Vaccine();
         $vaccine->name = $request->input('name');
         vac_di::query()->where('vac_id',$vaccine->id)->delete();

@@ -8,41 +8,58 @@
 <form class="form-horizontal" role="form" method="POST" action="{{ url('users') }}">
     {{ csrf_field() }}
 
-    <div class="form-group">
+    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
         <label for="user-id" class="col-lg-2 control-label">Nombre</label>
         <div class="col-lg-10">
-
                 <input type="text" id="name" name="name" required>
             <font size="4" color="red">*</font>
+            @if($errors->first('name'))
+                <div class="alert alert-danger">
+                    {{$errors->first('name')}}
+                </div>
+            @endif
         </div>
     </div>
 
 
-    <div class="form-group">
+    <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
         <label for="pet" class="col-lg-2 control-label"> Apellido</label>
         <div class="col-lg-10">
                 <input type="text" id="last_name" name="last_name" required>
             <font size="4" color="red">*</font>
         </div>
+        @if($errors->first('last_name'))
+            <div class="alert alert-danger">
+                {{$errors->first('last_name')}}
+            </div>
+        @endif
     </div>
 
 
-    <div class="form-group">
+    <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
         <label for="date" class="col-lg-2 control-label">Email</label>
         <div class="col-lg-10">
             <input type="email" id="email" name="email"  required>
             <font size="4" color="red">*</font>
         </div>
+        @if($errors->has('email'))
+            <div class="alert alert-danger">
+                {{$errors->first('email')}}
+            </div>
+        @endif
     </div>
 
-    <div class="form-group">
+    <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
         <label for="date" class="col-lg-2 control-label">Password </label>
         <div class="col-lg-10">
                 <input type="password" id="password" name="password" required>
             <font size="4" color="red">*</font>
-
-
         </div>
+        @if($errors->has('password'))
+            <div class="alert alert-danger">
+                {{$errors->first('password')}}
+            </div>
+        @endif
     </div>
 
     <br><br>

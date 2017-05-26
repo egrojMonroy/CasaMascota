@@ -12,11 +12,19 @@
     {{ csrf_field() }}
 
     <div class="form-group" >
-        <label for="user-id" class="col-lg-2 control-label">Name</label>
+        <label for="user-id" class="col-lg-2 control-label" >Name</label>
         <div class="col-lg-10">
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" required>
+            <font size="4" color="red">*</font>
+            @if($errors->first('name'))
+                <div class="alert alert-danger">
+                    {{$errors->first('name')}}
+                </div>
+            @endif
         </div>
-    </div>
+
+        </div>
+
     <br>
     <div class="form-group" align="right">
         <div class="col-lg-10">
