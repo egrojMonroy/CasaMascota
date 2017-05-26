@@ -15,20 +15,20 @@ class vaccines_seeder extends Seeder
     {
         DB::table('vaccines')->insert([
 
-                ['name'  => 'Puppy dp',
+                ['name'  => 'PUPPY DP',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 ],
-                ['name'  => 'Polivalente',
+                ['name'  => 'POLIVALENTE',
 
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 ],
-                ['name'  => 'Rabia',
+                ['name'  => 'RABIA',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
                 ],
-                [   'name'  => 'Trivalente felina',
+                [   'name'  => 'TRIVALENTE FELINA',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')]]
         );

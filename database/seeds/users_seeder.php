@@ -15,8 +15,8 @@ class users_seeder extends Seeder
     {
         $faker = Faker::create();
         DB::table('users')->insert([
-            ['name' => $faker->firstNameMale,
-            'last_name' => $faker->lastName,
+            ['name' => strtoupper($faker->firstNameMale),
+            'last_name' => strtoupper($faker->lastName),
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -26,8 +26,8 @@ class users_seeder extends Seeder
 
 
 
-         ['name' => $faker->firstNameFemale,
-            'last_name' => $faker->lastName,
+         ['name' => strtoupper($faker->firstNameFemale),
+            'last_name' => strtoupper($faker->lastName),
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
@@ -38,8 +38,8 @@ class users_seeder extends Seeder
             ],
 
 
-         ['name' => $faker->firstNameFemale,
-             'last_name' => $faker->lastName,
+         ['name' => strtoupper($faker->firstNameFemale),
+             'last_name' => strtoupper($faker->lastName),
              'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
@@ -48,19 +48,8 @@ class users_seeder extends Seeder
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
 
             ],
-         ['name' => $faker->firstNameFemale,
-             'last_name' => $faker->lastName,
-             'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
-            //'remember_token'=>str_random(50),
-
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-
-
-            ],
-         ['name' => $faker->firstNameFemale,
-             'last_name' => $faker->lastName,
+         ['name' => strtoupper($faker->firstNameFemale),
+             'last_name' => strtoupper($faker->lastName),
              'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
@@ -70,8 +59,19 @@ class users_seeder extends Seeder
 
 
             ],
-         ['name' => $faker->firstNameMale,
-             'last_name' => $faker->lastName,
+         ['name' => strtoupper($faker->firstNameFemale),
+             'last_name' => strtoupper($faker->lastName),
+             'email' => str_random(10).'@gmail.com',
+            'password' => bcrypt('secret'),
+            //'remember_token'=>str_random(50),
+
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+
+
+            ],
+         ['name' => strtoupper($faker->firstNameMale),
+             'last_name' => strtoupper($faker->lastName),
              'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
@@ -82,8 +82,8 @@ class users_seeder extends Seeder
 
             ],
 
-        ['name' => $faker->firstNameMale,
-            'last_name' => $faker->lastName,
+        ['name' => strtoupper($faker->firstNameMale),
+            'last_name' => strtoupper($faker->lastName),
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
@@ -93,8 +93,8 @@ class users_seeder extends Seeder
 
 
             ],
-        ['name' => $faker->firstNameMale,
-            'last_name' => $faker->lastName,
+        ['name' => strtoupper($faker->firstNameMale),
+            'last_name' => strtoupper($faker->lastName),
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
@@ -104,8 +104,8 @@ class users_seeder extends Seeder
 
 
             ],
-        ['name' => $faker->firstNameMale,
-            'last_name' => $faker->lastName,
+        ['name' => strtoupper($faker->firstNameMale),
+            'last_name' => strtoupper($faker->lastName),
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
@@ -116,8 +116,8 @@ class users_seeder extends Seeder
 
             ],
             //9
-        ['name' => $faker->firstNameMale,
-            'last_name' => $faker->lastName,
+        ['name' => strtoupper($faker->firstNameMale),
+            'last_name' => strtoupper($faker->lastName),
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             //'remember_token'=>str_random(50),
@@ -127,8 +127,8 @@ class users_seeder extends Seeder
 
             ],
 
-            ['name' => $faker->firstNameMale,
-                'last_name' => $faker->lastName,
+            ['name' => strtoupper($faker->firstNameMale),
+                'last_name' => strtoupper($faker->lastName),
                 'email' => str_random(10).'@gmail.com',
                 'password' => bcrypt('secret'),
                 //'remember_token'=>str_random(50),
@@ -138,8 +138,8 @@ class users_seeder extends Seeder
 
             ],
 
-            ['name' => $faker->firstNameFemale,
-                'last_name' => $faker->lastName,
+            ['name' => strtoupper($faker->firstNameFemale),
+                'last_name' => strtoupper($faker->lastName),
                 'email' => str_random(10).'@gmail.com',
                 'password' => bcrypt('secret'),
                 //'remember_token'=>str_random(50),

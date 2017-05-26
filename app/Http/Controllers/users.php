@@ -186,17 +186,28 @@ class users extends Controller
         return view('users')->with(['edit2' => true, 'users' => $user]);
     }
     public function update_own(Request $request, $id){
+        $this->validate($request,[
+            'name'=> 'required|alpha',
+            'last_name'=> 'required|alpha|max:45',
+            'email'=>'required|email',
+
+        ],[
+            'name.required'=> 'name is required',
+            'last_name.required'=> 'Last name is required',
+            'email.required'=> 'Email is required',
+
+        ]);
 
         $user = User::find($id);
         $user->name      = strtoupper($request->name);
         $user->email     =$request->email   ;
         $user->last_name     = strtoupper($request-> last_name);
-
-        if(password_verify($request->old_password,$user->password)){
+        if($user->old_password!=null){
+        if(password_verify($request->old_password,$user->password) ){
             $user->password=bcrypt($request->new_password);
         }else{
             return back()->with('errormsj','Old Password incorrect');
-        }
+        }}
         if($user->save()) {
             return redirect('/home')->with('msj', 'Datos modificados');
         }
