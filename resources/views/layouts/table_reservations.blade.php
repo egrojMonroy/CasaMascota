@@ -19,16 +19,58 @@
 					@endif
 					@if($row->tipo_res==0)
 						Consulta
-					@endif</td>
-				<td><a href="reservations/{{ $row->id }}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
+					@endif
+				</td>
 				<td>
-					<form action="{{ route('reservations.destroy',$row->id) }}" method="POST" >
+
+					<?php
+                    $date = \Carbon\Carbon::parse($row->date)->format('Y/m/d');
+					$dateToday = \Carbon\Carbon::today()->addDay(1)->format('Y/m/d');
+
+                    if($date <= $dateToday) {
+                        ?>
+
+						<input type="submit" class="btn btn-warning btn-xs disabled" value="Modificar" >
+					<?php
+                    } else {
+                        ?>
+						<a href="reservations/{{ $row->id }}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
+						<?php
+                    }
+					?>
+
+				<td>
+                    <?php
+                    $date = \Carbon\Carbon::parse($row->date)->format('Y/m/d');
+                    $dateToday = \Carbon\Carbon::today()->addDay(1)->format('Y/m/d');
+
+                    if($date <= $dateToday) {
+                        ?>
+
+							<input type="submit" class="btn btn-danger btn-xs disabled" value="Eliminar" >
+
+
+				</td>
+                <?php
+                } else {
+                ?>
+
+				<form action="{{ route('reservations.destroy',$row->id) }}" method="POST" >
 					<input type="hidden" name="_method" value="DELETE">
 					{{ csrf_field() }}
 					<input type="submit" class="btn btn-danger btn-xs" value="Eliminar" >
 				</form>
 
 				</td>
+                <?php
+                }
+                ?>
+
+
+
+
+
+
 			</tr>
 		@endforeach
 		</tbody>
