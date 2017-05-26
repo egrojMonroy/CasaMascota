@@ -59,7 +59,8 @@ class reservations extends Controller
             'user_id'=> 'required',
             'pet'=> 'required',
             'tipo_res'=>'required',
-            'date'=>'required|date|after:'.\Carbon\Carbon::tomorrow().'|before:'.\Carbon\Carbon::tomorrow()->addMonth(1),
+            'date'=>'required|date|after:'.\Carbon\Carbon::tomorrow()->setTime(7,59).'|before:'.\Carbon\Carbon::tomorrow()->addMonth(1)->setTime(7,59),
+
 
 
 
@@ -73,7 +74,7 @@ class reservations extends Controller
                 'pet.required'=> 'Seleccione una Mascota',
                 'tipo_res.required'=>'Seleccione el tipo de reserva',
                 'date.required'=>'Seleccione una fecha',
-                'date.after'=>'La fecha debe estar en el futuro',
+                'date.after'=>'La fecha debe estar en el futuro desde las 8 de la mañana',
                  'date.before'=>'La fecha excedio el limite de reserva'
 
 
@@ -159,7 +160,7 @@ class reservations extends Controller
             'user_id'=> 'required',
             'pet'=> 'required',
             'tipo_res'=>'required',
-           'date'=>'required|date|after:'.\Carbon\Carbon::tomorrow().'|before:'.\Carbon\Carbon::tomorrow()->addMonth(1),
+           'date'=>'required|date|after:'.\Carbon\Carbon::tomorrow()->setTime(7,59).'|before:'.\Carbon\Carbon::tomorrow()->addMonth(1)->setTime(7,59),
 
 
 
@@ -172,7 +173,7 @@ class reservations extends Controller
             'pet.required'=> 'Seleccione una Mascota',
             'tipo_res.required'=>'Seleccione el tipo de reserva',
            'date.required'=>'Seleccione una fecha',
-           'date.after'=>'La fecha debe estar en el futuro',
+           'date.after'=>'La fecha debe estar en el futuro desde las 8 de la mañana',
            'date.before'=>'La fecha excedio el limite de reserva'
 
 

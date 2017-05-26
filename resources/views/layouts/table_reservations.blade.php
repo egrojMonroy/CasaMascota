@@ -22,11 +22,9 @@
 					@endif
 				</td>
 				<td>
-
 					<?php
                     $date = \Carbon\Carbon::parse($row->date)->format('Y/m/d');
 					$dateToday = \Carbon\Carbon::today()->addDay(1)->format('Y/m/d');
-
                     if($date <= $dateToday) {
                         ?>
 
