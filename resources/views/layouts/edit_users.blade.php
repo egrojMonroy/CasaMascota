@@ -64,12 +64,25 @@
                 @endif
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" id="update" class="btn btn-default">Update</button>
-            </div>
-        </div>
+        
+        <table>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10" style="margin-left: 45px;">
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10" style="margin-left: 100px;">
+                            <a  href="{{route('users.index')}}" class="btn btn-danger">Cancelar</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </form>
 @endif
 

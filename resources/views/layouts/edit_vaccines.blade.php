@@ -1,3 +1,7 @@
+@if(session()->has('errorselect'))
+    <div class="alert alert-danger">No diseases duplicadas</div>
+@endif
+
 @if(isset($edit))
     <form class="form-horizontal" role="form" method="POST" action="{{ route('vaccines.update', $vaccine->id) }}">
         <input type="hidden" name="_method" value="PUT">
@@ -36,12 +40,24 @@
 
         @endforeach
         </div>
-
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit" class="btn btn-default">Update</button>
-            </div>
-        </div>
+        <table>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10" style="margin-left: 45px;">
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10" style="margin-left: 100px;">
+                            <a  href="{{route('vaccines.index')}}" class="btn btn-danger">Cancelar</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </form>
 @endif
 
