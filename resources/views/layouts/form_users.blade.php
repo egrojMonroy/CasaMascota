@@ -9,10 +9,9 @@
     {{ csrf_field() }}
 
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        <label for="user-id" class="col-lg-2 control-label">Nombre</label>
+        <label for="user-id" class="col-lg-2 control-label">Nombre <font size="4" color="red">*</font></label>
         <div class="col-lg-10">
-                <input type="text" id="name" name="name" required>
-            <font size="4" color="red">*</font>
+                <input class="form-control" type="text" id="name" name="name" required>
             @if($errors->first('name'))
                 <div class="alert alert-danger">
                     {{$errors->first('name')}}
@@ -21,12 +20,10 @@
         </div>
     </div>
 
-
     <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-        <label for="pet" class="col-lg-2 control-label"> Apellido</label>
+        <label for="pet" class="col-lg-2 control-label"> Apellido <font size="4" color="red">*</font></label>
         <div class="col-lg-10">
-                <input type="text" id="last_name" name="last_name" required>
-            <font size="4" color="red">*</font>
+                <input class="form-control" type="text" id="last_name" name="last_name" required>
         </div>
         @if($errors->first('last_name'))
             <div class="alert alert-danger">
@@ -37,10 +34,9 @@
 
 
     <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-        <label for="date" class="col-lg-2 control-label">Email</label>
+        <label for="date" class="col-lg-2 control-label">Email <font size="4" color="red">*</font></label>
         <div class="col-lg-10">
-            <input type="email" id="email" name="email"  required>
-            <font size="4" color="red">*</font>
+            <input class="form-control" type="email" id="email" name="email"  required>
         </div>
         @if($errors->has('email'))
             <div class="alert alert-danger">
@@ -50,10 +46,9 @@
     </div>
 
     <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-        <label for="date" class="col-lg-2 control-label">Password </label>
+        <label for="date" class="col-lg-2 control-label">Password <font size="4" color="red">*</font></label>
         <div class="col-lg-10">
-                <input type="password" id="password" name="password" required>
-            <font size="4" color="red">*</font>
+                <input class="form-control" type="password" id="password" name="password" required>
         </div>
         @if($errors->has('password'))
             <div class="alert alert-danger">
