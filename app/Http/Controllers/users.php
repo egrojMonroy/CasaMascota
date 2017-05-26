@@ -20,25 +20,22 @@ class users extends Controller
     {
         $users = User::paginate(10);
         $roles = Role::all();
+        foreach ($users as $user){
+            $rol_usuario = User_role::query()
+                ->join('roles','roles.id','=','user_roles.role_id')
+                ->where('user_roles.user_id',$user->id)
+                ->get();
 
-
-
-                foreach ($users as $user){
-                    $rol_usuario = User_role::query()
-                        ->join('roles','roles.id','=','user_roles.role_id')
-                        ->where('user_roles.user_id',$user->id)
-                        ->get();
-
-                    $roles;
-                    $first = $rol_usuario->first();
-                    foreach($rol_usuario as $rol){
-                        if($rol == $first)
-                        $roles = $rol->role;
-                        else
-                        $roles = $roles.','.$rol->role;
-                    }
-                    $user->roles= $roles;
-                }
+            $roles;
+            $first = $rol_usuario->first();
+            foreach($rol_usuario as $rol){
+                if($rol == $first)
+                $roles = $rol->role;
+                else
+                $roles = $roles.','.$rol->role;
+            }
+            $user->roles= $roles;
+        }
 
         return view('users')->with(['users' => $users]);
     }
