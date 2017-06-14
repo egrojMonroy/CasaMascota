@@ -11,7 +11,7 @@ class Rooms extends Controller
 
     public function index()
     {
-        $rooms = Room::paginate(10);
+        $rooms = Room::paginate(5);
         $type= TypeRoom::all();
 
 
