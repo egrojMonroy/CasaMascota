@@ -1,8 +1,8 @@
 <table class="table table-hover">
 	@if(isset($breeds))
 		<thead>
-			<th>Family</th>
-			<th>Breed</th>
+			<th>@sortablelink('family')</th>
+			<th>@sortablelink('breed')</th>
 		</thead>
 		<tbody>
 		@foreach($breeds as $row)

@@ -176,6 +176,7 @@ return [
         // petstore\Providers\BroadcastServiceProvider::class,
         petstore\Providers\EventServiceProvider::class,
         petstore\Providers\RouteServiceProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
 
     ],
 
