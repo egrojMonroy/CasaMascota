@@ -3,32 +3,64 @@
 namespace petstore\Http\Controllers;
 
 use Illuminate\Http\Request;
+use petstore\Assignation;
+use petstore\Room;
+use petstore\User;
+use Illuminate\Support\Facades\Auth;
 
 class assignations extends Controller
 {
-*/
+
     public function index()
     {
-        $vaccines = Vaccine::paginate(10);
-        $diseases = Diseases::all();
-        foreach ($vaccines as $vaccine){
-            $dis_vac = vac_di::query()
-                ->join('diseases','diseases.id','=','vac_dis.dis_id')
-                ->where('vac_dis.vac_id',$vaccine->id)
+        $assignations = Assignation::query()
+        ->get();
+        $rooms = Room::query()
+                  ->select('rooms.id as room_id','rooms.name as room_name','rooms.type_room_id as type_room_id','type_rooms.type as type_room_name','rooms.number as number')
+                    ->join('type_rooms','type_rooms.id','=','rooms.type_room_id')
+                     ->join('assignations','assignations.room_id','=','rooms.id')
+                    ->orderby('rooms.name', 'asc')
+                    ->groupby('rooms.id','type_rooms.type')
+                     ->get();
+        $roomie = Room::query()
+            ->select('rooms.id as room_id_lol','rooms.name as room_name','rooms.type_room_id as type_room_id','rooms.number as number')
+            ->orderby('rooms.id', 'asc')
+            ->get();
+        $users = User::query()
+                ->select('users.id as id','users.name as name','users.last_name as last_name')
+                ->join('user_roles','user_roles.user_id','=','users.id')
+                ->where('user_roles.role_id',1)
+                 ->orWhere('user_roles.role_id',2)
+                ->orderby('users.name', 'asc')
+                ->groupby('users.id')
                 ->get();
 
+
+        foreach ($rooms as $roomy){
+            $user_room = Assignation::query()
+            ->select('users.name as user_name','users.last_name as last_name','assignations.id as a_id')
+                ->join('users','users.id','=','assignations.user_id')
+                ->where('assignations.room_id',$roomy->room_id)
+                ->orderby('users.name')
+                ->get();
+
+
             $dis='';
-            $first = $dis_vac->first();
-            foreach($dis_vac as $rol){
+            $first = $user_room->first();
+            foreach($user_room as $rol){
                 if($rol == $first)
-                    $dis = $rol->name;
+                { $dis = $rol->user_name.' '.$rol->last_name;
+                    $lol= $rol->a_id;}
+
                 else
-                    $dis = $dis.', '.$rol->name;
+                    $dis = $dis.', '.$rol->user_name.' '.$rol->last_name;
+
             }
-            $vaccine->diseases= $dis;
+            $roomy->users= $dis;
+            $roomy->a_id=$lol;
         }
 
-        return view('vaccines')->with(['vaccines'=>$vaccines,'diseases'=>$diseases]);
+        return view('assignations')->with(['assignations'=>$assignations,'users'=>$users,'rooms'=>$rooms,'roomie'=>$roomie]);
     }
 
     /**
@@ -49,38 +81,40 @@ class assignations extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name'=> 'required',
-        ],[
-            'name.required'=> 'name is required',
 
-        ]);
-        $vaccine = new Vaccine();
-        $vaccine->name = strtoupper($request->input('name'));
-        vac_di::query()->where('vac_id',$vaccine->id)->delete();
-        if(count(array_unique($request->tipo_rol))<count($request->tipo_rol))
+        $assignation = new Assignation();
+        $assignation->room_id = $request->room_id;
+
+
+
+
+        Assignation::query()->where('room_id',$assignation->id)->delete();
+
+
+        if(count(array_unique($request->user_id))<count($request->user_id))
         {
-            return redirect('vaccines')->with('errorselect','Mal');
+
+            return redirect('assignations')->with('errorselect','Mal');
         }
         else
+            foreach ($request->user_id as $tipo){
 
-            if($vaccine->save()){
-                foreach ($request->tipo_rol as $tipo){
-                    $dis = new vac_di();
-                    $dis->vac_id = $vaccine->id;
-                    $dis->dis_id = $tipo;
+                $dis = new Assignation();
+
+                $dis->room_id = $assignation->room_id;
+                $dis->user_id = $tipo;
+                $dis->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
+                $dis->updatedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+                $dis->deletedBy   = '';
+
+                $dis->save();
 
 
-
-                    $dis->save();
-
-                }
-                $diseases = Diseases::all();
-                return redirect('vaccines')->with('msj', 'Datos guardados');
             }
-            else{
-                return view('vaccines');
-            }
+
+                return back()->with('msj', 'Datos guardados');
+
+
     }
 
     /**
@@ -102,17 +136,35 @@ class assignations extends Controller
      */
     public function edit($id)
     {
-        $vaccine = Vaccine::find($id);
+        $assignation = Assignation::find($id);
 
-        $dis = vac_di::query()
-            ->join('diseases','diseases.id','=','vac_dis.dis_id')
-            ->where('vac_dis.vac_id',$id)
+        $dis = Assignation::query()
+            ->select('users.name as user_name','users.last_name as last_name')
+            ->join('users','users.id','=','assignations.user_id')
+            ->where('assignations.room_id',$assignation->room_id)
+            ->orderby('users.name')
             ->get();
 
-        $diseases = Diseases::all();
+        $users = User::query()
+            ->select('users.id as id','users.name as name','users.last_name as last_name')
+            ->join('user_roles','user_roles.user_id','=','users.id')
+            ->where('user_roles.role_id',1)
+            ->orWhere('user_roles.role_id',2)
+            ->orderby('users.name', 'asc')
+            ->groupby('users.id')
+            ->get();
+        $rooms = Room::query()
+            ->select('rooms.id as room_id','rooms.name as room_name','rooms.type_room_id as type_room_id','type_rooms.type as type_room_name','rooms.number as number')
+            ->join('type_rooms','type_rooms.id','=','rooms.type_room_id')
+            ->join ('assignations','assignations.room_id','=','rooms.id')
+            ->where('assignations.id',$id)
+            ->orderby('rooms.name', 'asc')
+            ->groupby('type_rooms.type','rooms.id')
+            ->get();
 
-        return view('vaccines')
-            ->with(['edit' => true, 'vaccine' => $vaccine,'diseases_name'=>$dis,'diseases'=>$diseases]);
+
+        return view('assignations')
+            ->with(['edit' => true, 'assignation' => $assignation,'users_name'=>$dis,'users'=>$users,'rooms'=>$rooms]);
     }
 
     /**
@@ -124,29 +176,46 @@ class assignations extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vaccine = Vaccine::find($id);
+        $assignation = Assignation::find($id);
+        $yolo= Assignation::query()
+            ->select('room_id')
+            ->where('assignations.id',$request->$a_id)
+            ->get();
+        foreach ($yolo as $lolo){
+        $assignation->room_id = $lolo->room_id;
 
-        $vaccine->name      = strtoupper($request->name);
+        }
 
-        if(count(array_unique($request->tipo_dis))<count($request->tipo_dis))
+
+
+
+
+
+        Assignation::query()->where('room_id',$assignation->id)->delete();
+
+
+        if(count(array_unique($request->user_id))<count($request->user_id))
         {
 
-            return redirect('vaccines/'.$id.'/edit')->with('errorselect','Mal');
+            return redirect('assignations/'.$id.'/edit')->with('errorselect','Mal');
         }
-        vac_di::query()->where('vac_id',$id)->delete();
-        if($vaccine->save()){
-            vac_di::query()->where('vac_id',$vaccine->id)->delete();
-            foreach ($request->tipo_dis as $dis){
-                $nuevo = new vac_di();
-                $nuevo->dis_id = $dis;
-                $nuevo->vac_id = $id;
-                $nuevo->save();
+        else
+            foreach ($request->user_id as $tipo){
+
+                $dis = new Assignation();
+
+                $dis->room_id = $lolo->room_id;
+                $dis->user_id = $tipo;
+                $dis->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
+                $dis->updatedBy   = Auth::user()->name.' '.Auth::user()->last_name;
+                $dis->deletedBy   = '';
+
+                $dis->save();
+
+
             }
-            return redirect('vaccines')->with('msj', 'Datos modificados');
-        }
-        else{
-            return back();
-        }
+
+        return redirect('assignations')->with('msj', 'Datos guardados');
     }
 
     /**
@@ -157,7 +226,7 @@ class assignations extends Controller
      */
     public function destroy($id)
     {
-        Vaccine::destroy($id);
+        Assignation::destroy($id);
         return back();
     }
 }

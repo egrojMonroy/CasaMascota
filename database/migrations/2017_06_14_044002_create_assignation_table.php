@@ -16,11 +16,10 @@ class CreateAssignationTable extends Migration
         Schema::defaultStringLength(191);
         Schema::create('assignations',function (Blueprint $table ){
             $table->increments('id');
-            $table->integer('user_id');
             $table->integer('room_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id');
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->timestamp('date');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->string('createdBy');
             $table->string('updatedBy');
