@@ -22,6 +22,9 @@ Auth::routes();
 Route::resource('/reservations','reservations');
 Route::get('/findPet','genController@findPet');
 
+
+Route::resource('/rooms','rooms');
+
 //end Chris
 
 //Pietro

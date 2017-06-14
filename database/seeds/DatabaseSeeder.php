@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(vac_dis_seeder::class);
         $this->call(user_roles_seeder::class);
         $this->call(reservations_seeder::class);
+        $this->call(type_rooms_seeder::class);
     }
 }

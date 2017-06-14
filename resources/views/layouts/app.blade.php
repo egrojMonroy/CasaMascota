@@ -49,6 +49,7 @@
                                 <!-- <li><a class="navbar-brand" href="{{ url('/salons')}}">Salons</a></li> -->
                                 <li><a class="navbar-brand" href="{{ url('/users')}}">Users</a></li>
                                 <li><a class="navbar-brand" href="{{ url('/vaccines')}}">Vaccines</a></li>
+                                <li><a class="navbar-brand" href="{{ url('/rooms')}}">Salones</a></li>
                             </ul>
                         </li>
                     </ul>
