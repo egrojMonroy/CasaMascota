@@ -44,6 +44,7 @@
                                 Control <span class="caret"></span>
                             </a>
 
+                            <?php  ?>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a class="navbar-brand" href="{{ url('/breeds') }}">Breeds</a></li>
                                 <!-- <li><a class="navbar-brand" href="{{ url('/salons')}}">Salons</a></li> -->
@@ -52,6 +53,7 @@
                                 <li><a class="navbar-brand" href="{{ url('/rooms')}}">Crear Sala</a></li>
                                 <li><a class="navbar-brand" href="{{ url('/assignations')}}">Asignar Sala</a></li>
                             </ul>
+                            
                         </li>
                     </ul>
 

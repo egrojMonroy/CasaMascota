@@ -11,7 +11,7 @@
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
         <label for="name" class="col-lg-2 control-label">Nombre</label>
         <div class="col-lg-10">
-            <input class="form-control" type="text" id="name" name="name" required>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Nombre" required>
             @if($errors->first('name'))
                 <div class="alert alert-danger">
                     {{$errors->first('name')}}
@@ -23,7 +23,7 @@
     <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
         <label for="type" class="col-lg-2 control-label">Tipo De Sala</label>
         <div class="col-lg-10">
-            <select class="form-control" name="type" id="type"  required>
+            <select class="form-control" name="type" id="type" required>
 
                 <option disabled="true" selected="">Tipo De Sala</option>
                 @foreach($type as $row)

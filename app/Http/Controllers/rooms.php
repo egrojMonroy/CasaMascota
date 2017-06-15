@@ -44,11 +44,8 @@ class Rooms extends Controller
             'name.required'=> 'Un nombre es necesario',
             'name.unique'=> 'Ya existe ese nombre',
             'type.required'=>'Elija una sala a crear'
-
-
         ]);
         $room = new Room();
-
         $room->name = strtoupper( $request->name);
         $room->type_room_id = $request->type;
         $que= Room::query()
@@ -57,23 +54,13 @@ class Rooms extends Controller
             ->orderby('type_room_id', 'desc')
             ->groupby('type_room_id')
             ->count();
-
-
-
-
-
-        if($que==0)
-        {
-
+        
+        if($que==0){
             $room->number=1;
-
         }
-        else
-
-        {
+        else{
             $room->number=($que)+1;
-
-            }
+        }
 
         $room->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
         $room->updatedBy   = Auth::user()->name.' '.Auth::user()->last_name;
