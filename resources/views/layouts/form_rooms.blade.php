@@ -40,8 +40,26 @@
 
     </div>
 
+<!--    Aqui pongo las opciones de franjas horarias -->
+    <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
+        <label for="name" class="col-lg-2 control-label">Franja Horaria</label>
+        <div class="col-lg-10">
 
+            <select class="form-control" name="franja" id="franja"  required>
 
+                <option disabled="true" selected="">{{$franjas[0]}}</option>
+                @for($i=1;$i<=10;++$i)
+                    <option value="{{$franjas[$i]}}">{{$franjas[$i]}}</option>
+                @endfor
+            </select>
+
+            @if($errors->has('franja'))
+                <div class="alert alert-danger">
+                    {{$errors->first('franja')}}
+                </div>
+            @endif
+        </div>
+    </div>
 
 
 

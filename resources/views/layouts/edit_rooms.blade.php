@@ -15,6 +15,7 @@
             </div>
         </div>
 
+
         <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
             <label for="type" class="col-lg-2 control-label">Tipo De Sala</label>
             <div class="col-lg-10">
@@ -25,12 +26,32 @@
                     @if($roomy->type_room_id==2)
                         <option value="0">QUIROFANO</option>
                     @endif
-                        @if($roomy->type_room_id==3)
-                            <option value="0">PELUQUERIA</option>
-                        @endif
+                    @if($roomy->type_room_id==3)
+                        <option value="0">PELUQUERIA</option>
+                    @endif
                     <option value="1">CONSULTORIO</option>
                     <option value="2">QUIROFANO</option>
                     <option value="3">PELUQUERIA</option>
+                </select>
+
+                @if($errors->has('type'))
+                    <div class="alert alert-danger">
+                        {{$errors->first('type')}}
+                    </div>
+                @endif
+            </div>
+
+        </div>
+
+        <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
+            <label for="type" class="col-lg-2 control-label">Franja Horaria</label>
+            <div class="col-lg-10">
+                <select class="form-control" name="franja" id="franja"  required>
+
+                    <option value="{{$roomy->franja}}">{{$roomy->franja}}</option>
+                    @for($i=1;$i<=10;++$i)
+                        <option value="{{$franjas[$i]}}">{{$franjas[$i]}}</option>
+                    @endfor
                 </select>
 
                 @if($errors->has('type'))

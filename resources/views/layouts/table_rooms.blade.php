@@ -5,7 +5,7 @@
         <th>Nombre</th>
         <th>Sala</th>
         <th>Número</th>
-
+        <th>Franja horaria</th>
 
         </thead>
         <tbody>
@@ -25,7 +25,7 @@
                     @endif
                 </td>
                 <td>{{ $row->number }}</td>
-
+                <td>{{$row->franja}}</td>
                 <td><a href="rooms/{{ $row->id }}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
                 <td>
                     <form action="{{ route('rooms.destroy', $row->id) }}" method="POST" >
