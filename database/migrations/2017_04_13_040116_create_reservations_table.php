@@ -20,8 +20,10 @@ class CreateReservationsTable extends Migration
            $table->datetime('date');
           // $table->time('time');
            $table->integer('tipo_res');
+           $table->integer('sala_id');
            $table->foreign('user_id')->references('id')->on('users');
            $table->foreign('pet_id')->references('id')->on('pets');
+            $table->foreign('sala_id')->references('id')->on('rooms');
             $table->timestamps();
             $table->string('createdBy');
             $table->string('updatedBy');

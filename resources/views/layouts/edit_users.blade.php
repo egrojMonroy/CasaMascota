@@ -55,8 +55,8 @@
                      @else <input type="checkbox" id="checkbox" name="opcion[]" value="4">Dueño<br>
                     @endif
 
-                    @if($users->roles[5]) <input type="checkbox" id="checkbox" name="opcion[]" value="5" checked>Empleado<br>
-                    @else <input type="checkbox" id="checkbox" name="opcion[]" value="5">Empleado<br>
+                    @if($users->roles[5]) <input type="checkbox" id="checkbox" name="opcion[]" value="5" checked>Cirujano<br>
+                    @else <input type="checkbox" id="checkbox" name="opcion[]" value="5">Cirujano<br>
                     @endif
 
                 @if($errors->has('email'))

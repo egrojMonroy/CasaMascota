@@ -23,6 +23,7 @@
 		</div>
 
 
+
 		<div class="form-group {{ $errors->has('pet') ? ' has-error' : '' }}">
 			<label for="pet" class="col-lg-2 control-label"> Mascota</label>
 			<div class="col-lg-10">
@@ -43,31 +44,22 @@
 			</div>
 		</div>
 
-
-		<div class="form-group {{ $errors->has('date') ? ' has-error' : '' }}">
-			<label for="date" class="col-lg-2 control-label">Fecha</label>
-			<div class="col-lg-10">
-              <input type="datetime-local" class="form-control" name="date" value="{{str_replace(" ", "T",$allreservation->last()->date)}}" required>
-				@if($errors->has('date'))
-					<div class="alert alert-danger">
-						{{$errors->first('date')}}
-					</div>
-				@endif
-			</div>
-		</div>
-
 		<div class="form-group {{ $errors->has('tipo_res') ? ' has-error' : '' }}">
 			<label for="tipo_res" class="col-lg-2 control-label">Tipo de Reserva</label>
 			<div class="col-lg-10">
-				<select class="form-control" name="tipo_res">
+				<select class="form-control" name="tipo_res" id="tipo_res">
 					@if($allreservation->last()->tipo_res==1)
 						<option value="1">Peluqueria</option>
 					@endif
 					@if($allreservation->last()->tipo_res==0)
 						<option value="0">Consulta</option>
 					@endif
+					@if($allreservation->last()->tipo_res==2)
+						<option value="2">Quirofano</option>
+					@endif
 					<option value="1">Peluqueria</option>
 					<option value="0">Consulta</option>
+					<option value="2">Quirofano</option>
 				</select>
 				@if($errors->has('tipo_res'))
 					<div class="alert alert-danger">
@@ -76,6 +68,34 @@
 				@endif
 			</div>
 		</div>
+
+		<div class="form-group {{ $errors->has('sala') ? ' has-error' : '' }}">
+			<label for="date" class="col-lg-2 control-label">Sala</label>
+			<div class="col-lg-10">
+				<select class="form-control" name="sala_id" id="sala_id"  required>
+					<option selected="" value="{{$sala_id}}">{{$sala_name}}</option>
+				</select>
+				@if($errors->has('sala'))
+					<div class="alert alert-danger">
+						{{$errors->first('sala')}}
+					</div>
+				@endif
+			</div>
+		</div>
+
+		<div class="form-group {{ $errors->has('date') ? ' has-error' : '' }}">
+			<label for="date" class="col-lg-2 control-label">Fecha</label>
+			<div class="col-lg-10">
+              <input type="datetime-local" class="form-control" id ="date" name="date" step="{{$step}}" value="{{str_replace(" ", "T",$allreservation->last()->date)}}" required>
+				@if($errors->has('date'))
+					<div class="alert alert-danger">
+						{{$errors->first('date')}}
+					</div>
+				@endif
+			</div>
+		</div>
+
+
 <table>
 	<tr>
 	<td>
@@ -122,6 +142,70 @@
                         console.log(op);
                         $('#pet').html("");
                         $('#pet').append(op);
+                    },
+                    error:function(){
+                    }
+                });
+            });
+            $('#sala_id').on('change',function(){
+
+                var id=$(this).val();
+                console.log(id);
+                var div=$(this).parent();
+                var op=" ";
+                $.ajax({
+                    type:'get',
+                    url:'{!!URL::to('findFranja')!!}',
+                    data:{'id':id},
+                    success:function(data){
+                        alert(data);
+                        var print = $('#date').attr('step');
+                        $('#date').attr('step',''+data);
+                        console.log('foo'+print);
+                    },
+                    error:function(){
+                    }
+                });
+            });
+
+            $('#tipo_res').on('change',function () {
+                var id=$(this).val();
+                console.log(id);
+                var div=$(this).parent();
+                var op=" ";
+                $.ajax({
+                    type:'get',
+                    url:'{!!URL::to('findSala')!!}',
+                    data:{'id':id},
+                    success:function(data){
+                        console.log("lllllllega");
+                        op+='<option selected="" value="{{$sala_id}}">{{$sala_name}}</option>';
+                        for(var i=0;i<data.length;i++){
+                            op+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                        }
+                        console.log(op);
+                        $('#sala_id').html("");
+                        $('#sala_id').append(op);
+                    },
+                    error:function(){
+                    }
+                });
+            });
+            $('#date').on('change',function () {
+                var id=$(this).val();
+
+                console.log(id);
+                var div=$(this).parent();
+                var op=" ";
+                $.ajax({
+                    type:'get',
+                    url:'{!!URL::to('findCheck')!!}',
+                    data:{'id':id},
+                    success:function(data){
+                        if(data==1){
+                            alert();
+                        }
+                        console.log(data);
                     },
                     error:function(){
                     }

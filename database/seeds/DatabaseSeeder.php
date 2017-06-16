@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(breeds_seeder::class);
         $this->call(roles_seeder::class);
         $this->call(users_seeder::class);
-       // $this->call(us_rol_seeder::class);
+        $this->call(type_rooms_seeder::class);
+        $this->call(rooms_seeder::class);
+        // $this->call(us_rol_seeder::class);
         $this->call(pets_seeder::class);
         $this->call(vaccines_seeder::class);
         $this->call(clinic_records_seeder::class);
@@ -29,7 +31,8 @@ class DatabaseSeeder extends Seeder
         $this->call(diseases_seeder::class);
         $this->call(vac_dis_seeder::class);
         $this->call(user_roles_seeder::class);
+
         $this->call(reservations_seeder::class);
-        $this->call(type_rooms_seeder::class);
+
     }
 }

@@ -5,8 +5,8 @@ namespace petstore\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use petstore\app\Room;
 use petstore\Http\Controllers\Auth\ResetPasswordController;
+use petstore\Reservation;
 
 class genController extends Controller{
     public function genfunct(){
@@ -54,6 +54,7 @@ class genController extends Controller{
     }
 
 
+
     public function findUser(Request $request){
 
         if($request->type_room_id==1){$cunt=1;}
@@ -65,7 +66,15 @@ class genController extends Controller{
             ->orderby('users.name', 'asc')
             ->groupby('users.id')
             ->get();
-        return response()->json($data);
+        return response()->json($data);}
+
+
+    public function findCheck(Request $request){
+        $date = $request->id;
+        $date=Carbon::parse($date);
+        ////$exito = Reservation::query()->where('date',$date)->count;
+        $data =DB::table('reservations')->select('id')->where('date', $date)->get()->count();
+        return $data;
 
     }
 }

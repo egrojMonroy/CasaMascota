@@ -200,6 +200,7 @@ class assignations extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request,[
 
             'user_id[]'=> 'required',
@@ -211,6 +212,7 @@ class assignations extends Controller
 
 
         ]);
+
         $assignation = Room::find($id);
 
 

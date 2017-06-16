@@ -33,7 +33,7 @@ class roles_seeder extends Seeder
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
             ],
 
-            ['role'  => 'Empleado',
+            ['role'  => 'Cirujano',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s')
         ]

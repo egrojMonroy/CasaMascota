@@ -2,6 +2,7 @@
 
 namespace petstore\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use petstore\Room;
 use petstore\TypeRoom;
@@ -11,14 +12,40 @@ class Rooms extends Controller
 
     public function index()
     {
+
         $rooms = Room::paginate(5);
         $type= TypeRoom::all();
 
 
+        //listado de franjas posibles;
+        $franjas = $this->horario();
 
-        return view('rooms')->with(['rooms'=>$rooms,'type'=>$type]);
+        return view('rooms')->with(['rooms'=>$rooms,'type'=>$type,'franjas'=>$franjas]);
+
     }
+    public function horario(){
+        $franjas = collect();
+        $starttime = Carbon::create(0,0,0,0);
+        $endtime = Carbon::create(0,0,0,5);
+        $franjas->push($starttime->toTimeString());
+        $franjas->push($starttime->addMinutes(30)->toTimeString());
+        $starttime=Carbon::create(0,0,0,0);
+        $franjas->push($starttime->addHour()->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
 
+
+
+        /*
+        for($starttime;$starttime<=$endtime;$starttime=$starttime->addMinutes(30)) {
+                  $franjas->push($starttime->toTimeString());
+            }
+        */
+        return $franjas;
+     }
     /**
      * Show the form for creating a new resource.
      *
@@ -39,15 +66,18 @@ class Rooms extends Controller
     {
         $this->validate($request,[
             'name'=> 'required|unique:rooms,name',
-            'type'=> 'required'
+            'type'=> 'required',
+            'franja'=>'required',
         ],[
             'name.required'=> 'Un nombre es necesario',
             'name.unique'=> 'Ya existe ese nombre',
-            'type.required'=>'Elija una sala a crear'
+            'type.required'=>'Elija una sala a crear',
+            'franja.required'=>'Elija franja horaria'
         ]);
         $room = new Room();
         $room->name = strtoupper( $request->name);
         $room->type_room_id = $request->type;
+        $room->franja = $request->franja;
         $que= Room::query()
             ->select('type_room_id')
             ->where('type_room_id',$request->type)
@@ -95,11 +125,11 @@ class Rooms extends Controller
     {
         $roomy = Room::find($id);
 
-
+        $franjas = $this->horario();
 
         $typy = TypeRoom::all();
 
-        return view('rooms')->with(['edit' => true, 'roomy' => $roomy]);
+        return view('rooms')->with(['edit' => true, 'roomy' => $roomy,'franjas'=>$franjas]);
     }
 
     /**
@@ -113,11 +143,13 @@ class Rooms extends Controller
     {
         $this->validate($request,[
             'name'=> 'required',
-            'type'=> 'required'
+            'type'=> 'required',
+            'franja'=> 'required',
         ],[
             'name.required'=> 'Un nombre es necesario',
 
-            'type.required'=>'Elija una sala a crear'
+            'type.required'=>'Elija una sala a crear',
+            'franja.required'=>'Elija franja horaria',
 
 
         ]);
