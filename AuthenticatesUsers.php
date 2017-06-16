@@ -104,7 +104,7 @@ trait AuthenticatesUsers
         $roles = Role::all();
         $rol_usuario = DB::select('select role_id from user_roles, roles, users WHERE users.id = :id AND users.id = user_roles.user_id AND user_roles.role_id = roles.id ', ['id' => $users[0]->id]);
         foreach ($rol_usuario as $row ) {
-            if($row->role_id==3 || $row->role_id==5){
+            if($row->role_id==3){
                 $request->session()->push('role_id', $row->role_id);
                 $request->session()->push('user_id', $users[0]->id);
             }else{
