@@ -42,6 +42,7 @@
                             $url =  "{$_SERVER['REQUEST_URI']}";
                         if(strcmp($url, "/login")!='0'){
                             $p = session()->all();
+                            dd ($p);
                             if(count($p)>4){
                                 $p = array_chunk($p,1);
                                 $rol = $p[4][0][0];            
