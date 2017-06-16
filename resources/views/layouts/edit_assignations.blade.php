@@ -6,27 +6,18 @@
     <form class="form-horizontal" role="form" method="POST" action="{{ route('assignations.update', $assignation->id) }}">
         <input type="hidden" name="_method" value="PUT">
         {{ csrf_field() }}
-
-        <div class="form-group {{ $errors->has('room_id') ? ' has-error' : '' }}">
-            <label for="room" class="col-lg-2 control-label">Sala</label>
+        <div class="form-group">
+            <label for="room_id" class="col-lg-2 control-label">Sala</label>
             <div class="col-lg-10">
+                <select class="form-control" name="room_id" id="room_idi" DISABLED required>
 
-                <select class="form-control" name="room_id" id="room_id" DISABLED required>
-                    @foreach($rooms as $roo)
-                    <option selected="" value="{{$roo->room_id}}" disabled> {{$roo->room_name}} {{$roo->type_room_name}} {{$roo->number}} </option>
-                    @endforeach
-                  </select>
+                    <option selected="" value="{{$assignation->id}}" disabled> {{$assignation->name}} <?php if($assignation->type_room_id==1) {echo("CONSULTORIO");} elseif ($assignation->type_room_id==2) {echo("QUIROFANO");} elseif ($assignation->type_room_id==3) {echo("PELUQUERIA");} ?> {{$assignation->number}} </option>
 
-                @if($errors->has('room_id'))
-                    <div class="alert alert-danger">
-                        {{$errors->first('room_id')}}
-                    </div>
-                @endif
+                </select>
+
             </div>
 
         </div>
-
-        <br>
         <div class="form-group" align="right">
             <div class="col-lg-10">
                 <button type="button" name="add" id="add" class="btn btn-success">Asignar a  otro personal</button>
@@ -37,15 +28,18 @@
         <div  id="group">
             @foreach($users_name as $d)
                 <div class="form-group" id="smallgroup1">
-                    <label for="tipo_res" class="col-lg-2 control-label">Disease</label>
+                    <label for="user_id[]" class="col-lg-2 control-label">Disease</label>
                     <div class="col-lg-4">
-                        <select class="form-control" name="user_id[]">
-                            @foreach($users as $user)
-                                @if($user->name == $d->user_name)
-                                    <option value="{{$user->id}}" selected>  {{$user->name}} {{$user->last_name}}</option>
-                                @else
-                                    <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
-                                @endif
+                        <select class="form-control" name="user_idi[]">
+
+                            <option value="{{$d->u_id}}" selected>{{$d->name}} {{$d->last_name}}</option>
+                            @foreach($users_name as $d)
+                                @foreach($users as $disease)
+                                    @if($disease->u_name == $d->name)
+                                    @else
+                                        <option value="{{$disease->u_id}}">{{$disease->u_name}} {{$disease->last_name}}</option>
+                                    @endif
+                                @endforeach
                             @endforeach
                         </select>
                     </div>
@@ -54,7 +48,6 @@
 
             @endforeach
         </div>
-
         <table>
             <tr>
                 <td>
@@ -86,10 +79,10 @@
         $('#add').click(function () {
             $('#group').append(
                 '<div class="form-group" id="smallgroup'+i+'">'+
-                '<label for="tipo_res" class="col-lg-2 control-label">Empleado</label>'+
+                '<label for="user_id[]" class="col-lg-2 control-label">Empleado</label>'+
                 '<div class="col-lg-4">'+
-                '<select class="form-control" name="user_id[]">'+
-                '@foreach($users as $user)<option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>@endforeach'+
+                '<select class="form-control" name="user_idi[]">'+
+                '@foreach($users as $user)<option value="{{$user->id}}">{{$user->u_name}} {{$user->last_name}}</option>@endforeach'+
                 '</select>'+
                 '</div>'+
                 '<button class ="delete_button" type="button" name="remove" id="'+i+'" class="btn btn-danger">Delete</button>'+

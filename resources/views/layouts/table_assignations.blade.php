@@ -14,9 +14,9 @@
                 <td>{{ $row->type_room_name }}</td>
                 <td>{{ $row->number }}</td>
                 <td>{{ $row->users }}</td>
-                <?php foreach ($assignations as $poo){$poo->id;} ?>
 
-                <td><a href="assignations/{{$poo->id}}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
+
+                <td><a href="assignations/{{$row->room_id}}/edit" class="btn btn-warning btn-xs">Modificar</a></td>
                 <td>
                     <form action="{{ route('assignations.destroy', $row->id) }}" method="POST" >
                         <input type="hidden" name="_method" value="DELETE">

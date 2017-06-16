@@ -74,7 +74,7 @@
                 '<label for="tipo_res" class="col-lg-2 control-label">Personal</label>'+
             '<div class="col-lg-4">'+
                 '<select class="form-control" name="user_id[]" id="user_id'+i+'">'+
-                    '@foreach($users as $user)<option value="{{$user->id}}"> {{$user->id}} {{$user->name}}{{$user->last_name}}</option>@endforeach'+
+                    '@foreach($users as $user)<option value="{{$user->id}}"> {{$user->name}} {{$user->last_name}}</option>@endforeach'+
                 '</select>'+
                 '</div>'+
                 '<button class ="delete_button" type="button" name="remove" id="'+i+'" class="btn btn-danger">Delete</button>'+

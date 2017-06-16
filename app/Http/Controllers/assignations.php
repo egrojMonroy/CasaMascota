@@ -19,9 +19,10 @@ class assignations extends Controller
                   ->select('rooms.id as room_id','rooms.name as room_name','rooms.type_room_id as type_room_id','type_rooms.type as type_room_name','rooms.number as number')
                     ->join('type_rooms','type_rooms.id','=','rooms.type_room_id')
                      ->join('assignations','assignations.room_id','=','rooms.id')
-                    ->orderby('rooms.name', 'asc')
+                    ->orderby('rooms.id', 'asc')
                     ->groupby('rooms.id','type_rooms.type')
                      ->get();
+
         $roomie = Room::query()
             ->select('rooms.id as room_id_lol','rooms.name as room_name','rooms.type_room_id as type_room_id','rooms.number as number')
             ->orderby('rooms.id', 'asc')
@@ -136,35 +137,37 @@ class assignations extends Controller
      */
     public function edit($id)
     {
-        $assignation = Assignation::find($id);
+        $assignation = Room::find($id);
+
 
         $dis = Assignation::query()
-            ->select('users.name as user_name','users.last_name as last_name')
+            ->select('users.id as u_id','users.name as name','users.last_name as last_name','room_id')
             ->join('users','users.id','=','assignations.user_id')
-            ->where('assignations.room_id',$assignation->room_id)
+            ->where('assignations.room_id','=',$id)
             ->orderby('users.name')
             ->get();
-
-        $users = User::query()
-            ->select('users.id as id','users.name as name','users.last_name as last_name')
+        if ($assignation->room_id== 1 or $assignation->room_id==2 )
+        {$users = User::query()
+            ->select('users.id as id','users.name as u_name','users.last_name as last_name')
             ->join('user_roles','user_roles.user_id','=','users.id')
             ->where('user_roles.role_id',1)
-            ->orWhere('user_roles.role_id',2)
-            ->orderby('users.name', 'asc')
+             ->orderby('users.name', 'asc')
             ->groupby('users.id')
-            ->get();
-        $rooms = Room::query()
-            ->select('rooms.id as room_id','rooms.name as room_name','rooms.type_room_id as type_room_id','type_rooms.type as type_room_name','rooms.number as number')
-            ->join('type_rooms','type_rooms.id','=','rooms.type_room_id')
-            ->join ('assignations','assignations.room_id','=','rooms.id')
-            ->where('assignations.id',$id)
-            ->orderby('rooms.name', 'asc')
-            ->groupby('type_rooms.type','rooms.id')
-            ->get();
+            ->get();}
+            else
+            {$users = User::query()
+                ->select('users.id as id','users.name as u_name','users.last_name as last_name')
+                ->join('user_roles','user_roles.user_id','=','users.id')
+                ->where('user_roles.role_id',2)
+                ->orderby('users.name', 'asc')
+                ->groupby('users.id')
+                ->get();}
 
 
-        return view('assignations')
-            ->with(['edit' => true, 'assignation' => $assignation,'users_name'=>$dis,'users'=>$users,'rooms'=>$rooms]);
+
+
+
+        return view('assignations')->with(['edit' => true, 'assignation' => $assignation,'users_name'=>$dis,'users'=>$users]);
     }
 
     /**
@@ -176,17 +179,9 @@ class assignations extends Controller
      */
     public function update(Request $request, $id)
     {
-        $assignation = Assignation::find($id);
-        $yolo= Assignation::query()
-            ->select('room_id')
-            ->where('assignations.id',$request->$a_id)
-            ->get();
-        foreach ($yolo as $lolo){
-        $assignation->room_id = $lolo->room_id;
 
-        }
-
-
+        $assignation = Room::find($id);
+        $assignation->room_id = $request->room_idi;
 
 
 
@@ -194,17 +189,17 @@ class assignations extends Controller
         Assignation::query()->where('room_id',$assignation->id)->delete();
 
 
-        if(count(array_unique($request->user_id))<count($request->user_id))
+        if(count(array_unique($request->user_idi))<count($request->user_idi))
         {
 
             return redirect('assignations/'.$id.'/edit')->with('errorselect','Mal');
         }
         else
-            foreach ($request->user_id as $tipo){
+            foreach ($request->user_idi as $tipo){
 
                 $dis = new Assignation();
 
-                $dis->room_id = $lolo->room_id;
+                $dis->room_id = $request->room_idi;
                 $dis->user_id = $tipo;
                 $dis->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
                 $dis->updatedBy   = Auth::user()->name.' '.Auth::user()->last_name;
