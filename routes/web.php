@@ -42,5 +42,7 @@ Route::resource('/vaccines','vaccines');
 Route::resource('/users','users');
 Route::get('/users/{user}/edit2 ','users@edit_own');
 Route::get('/update/{user}','users@update_own')->name('users.update_own');
+Route::get('/findFranja','genController@findFranja');
+Route::get('/findSala','genController@findSala');
 //End Jorge
 
