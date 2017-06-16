@@ -25,6 +25,7 @@ Route::get('/findPet','genController@findPet');
 
 Route::resource('/rooms','rooms');
 Route::resource('/assignations','assignations');
+Route::get('/findUser','genController@findUser');
 
 //end Chris
 

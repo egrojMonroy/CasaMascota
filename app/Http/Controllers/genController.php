@@ -52,4 +52,20 @@ class genController extends Controller{
 
         return $ans;
     }
+
+
+    public function findUser(Request $request){
+
+        if($request->type_room_id==1){$cunt=1;}
+        if($request->type_room_id==2){$cunt=2;}
+        if($request->type_room_id==3){$cunt=5;}
+        $data=DB::table('users')->select('users.id as id','users.name as name','users.last_name as last_name')
+            ->join('user_roles','user_roles.user_id','=','users.id')
+            ->where('user_roles.role_id',$cunt)
+            ->orderby('users.name', 'asc')
+            ->groupby('users.id')
+            ->get();
+        return response()->json($data);
+
+    }
 }

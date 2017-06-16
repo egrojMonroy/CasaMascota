@@ -23,6 +23,7 @@ class assignations extends Controller
                     ->groupby('rooms.id','type_rooms.type')
                      ->get();
 
+
         $roomie = Room::query()
             ->select('rooms.id as room_id_lol','rooms.name as room_name','rooms.type_room_id as type_room_id','rooms.number as number')
             ->orderby('rooms.id', 'asc')
@@ -32,6 +33,7 @@ class assignations extends Controller
                 ->join('user_roles','user_roles.user_id','=','users.id')
                 ->where('user_roles.role_id',1)
                  ->orWhere('user_roles.role_id',2)
+            ->orWhere('user_roles.role_id',5)
                 ->orderby('users.name', 'asc')
                 ->groupby('users.id')
                 ->get();
@@ -58,7 +60,7 @@ class assignations extends Controller
 
             }
             $roomy->users= $dis;
-            $roomy->a_id=$lol;
+
         }
 
         return view('assignations')->with(['assignations'=>$assignations,'users'=>$users,'rooms'=>$rooms,'roomie'=>$roomie]);
@@ -82,7 +84,17 @@ class assignations extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'room_id'=> 'required',
+            'user_id[]'=> 'required',
 
+
+
+        ],['room_id.required'=> 'Seleccione una Sala',
+            'user_id[].required'=> 'Seleccione un Profesional'
+
+
+        ]);
         $assignation = new Assignation();
         $assignation->room_id = $request->room_id;
 
@@ -154,7 +166,16 @@ class assignations extends Controller
              ->orderby('users.name', 'asc')
             ->groupby('users.id')
             ->get();}
-            else
+
+        if ($assignation->room_id== 2)
+        {$users = User::query()
+            ->select('users.id as id','users.name as u_name','users.last_name as last_name')
+            ->join('user_roles','user_roles.user_id','=','users.id')
+            ->where('user_roles.role_id',5)
+            ->orderby('users.name', 'asc')
+            ->groupby('users.id')
+            ->get();}
+        if ($assignation->room_id== 3)
             {$users = User::query()
                 ->select('users.id as id','users.name as u_name','users.last_name as last_name')
                 ->join('user_roles','user_roles.user_id','=','users.id')
@@ -179,9 +200,19 @@ class assignations extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
 
+            'user_id[]'=> 'required',
+
+
+
+        ],[
+            'user_id[].required'=> 'Seleccione un Profesional'
+
+
+        ]);
         $assignation = Room::find($id);
-        $assignation->room_id = $request->room_idi;
+
 
 
 
@@ -189,17 +220,17 @@ class assignations extends Controller
         Assignation::query()->where('room_id',$assignation->id)->delete();
 
 
-        if(count(array_unique($request->user_idi))<count($request->user_idi))
+        if(count(array_unique($request->user_id))<count($request->user_id))
         {
 
             return redirect('assignations/'.$id.'/edit')->with('errorselect','Mal');
         }
         else
-            foreach ($request->user_idi as $tipo){
+            foreach ($request->user_id as $tipo){
 
                 $dis = new Assignation();
 
-                $dis->room_id = $request->room_idi;
+                $dis->room_id = $id;
                 $dis->user_id = $tipo;
                 $dis->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
                 $dis->updatedBy   = Auth::user()->name.' '.Auth::user()->last_name;

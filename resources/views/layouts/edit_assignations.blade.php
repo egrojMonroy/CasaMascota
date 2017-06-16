@@ -9,7 +9,7 @@
         <div class="form-group">
             <label for="room_id" class="col-lg-2 control-label">Sala</label>
             <div class="col-lg-10">
-                <select class="form-control" name="room_id" id="room_idi" DISABLED required>
+                <select disabled class="form-control" name="room_id"  readonly required>
 
                     <option selected="" value="{{$assignation->id}}" disabled> {{$assignation->name}} <?php if($assignation->type_room_id==1) {echo("CONSULTORIO");} elseif ($assignation->type_room_id==2) {echo("QUIROFANO");} elseif ($assignation->type_room_id==3) {echo("PELUQUERIA");} ?> {{$assignation->number}} </option>
 
@@ -28,9 +28,9 @@
         <div  id="group">
             @foreach($users_name as $d)
                 <div class="form-group" id="smallgroup1">
-                    <label for="user_id[]" class="col-lg-2 control-label">Disease</label>
+                    <label for="user_id[]" class="col-lg-2 control-label">Profesional</label>
                     <div class="col-lg-4">
-                        <select class="form-control" name="user_idi[]">
+                        <select class="form-control" name="user_id[]">
 
                             <option value="{{$d->u_id}}" selected>{{$d->name}} {{$d->last_name}}</option>
                             @foreach($users_name as $d)
@@ -79,9 +79,9 @@
         $('#add').click(function () {
             $('#group').append(
                 '<div class="form-group" id="smallgroup'+i+'">'+
-                '<label for="user_id[]" class="col-lg-2 control-label">Empleado</label>'+
+                '<label for="user_id[]" class="col-lg-2 control-label">Profesional</label>'+
                 '<div class="col-lg-4">'+
-                '<select class="form-control" name="user_idi[]">'+
+                '<select class="form-control" name="user_id[]">'+
                 '@foreach($users as $user)<option value="{{$user->id}}">{{$user->u_name}} {{$user->last_name}}</option>@endforeach'+
                 '</select>'+
                 '</div>'+
