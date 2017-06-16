@@ -87,12 +87,12 @@ class assignations extends Controller
     {
         $this->validate($request,[
             'room_id'=> 'required',
-            'user_id[]'=> 'required',
+
 
 
 
         ],['room_id.required'=> 'Seleccione una Sala',
-            'user_id[].required'=> 'Seleccione un Profesional'
+            
 
 
         ]);
