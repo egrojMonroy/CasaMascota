@@ -19,6 +19,7 @@ class assignations extends Controller
                   ->select('rooms.id as room_id','rooms.name as room_name','rooms.type_room_id as type_room_id','type_rooms.type as type_room_name','rooms.number as number')
                     ->join('type_rooms','type_rooms.id','=','rooms.type_room_id')
                      ->join('assignations','assignations.room_id','=','rooms.id')
+                    ->wherenull('assignations.deleted_at')
                     ->orderby('rooms.id', 'asc')
                     ->groupby('rooms.id','type_rooms.type')
                      ->get();
@@ -254,7 +255,11 @@ class assignations extends Controller
      */
     public function destroy($id)
     {
-        Assignation::destroy($id);
+       $huy= Assignation::query()
+            ->where('assignations.room_id',$id)->get();
+
+        Assignation::destroy()
+        ->where ('assignations.room_id',$id)->delete();
         return back();
     }
 }
