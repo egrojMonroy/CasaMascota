@@ -18,7 +18,7 @@
 
                 <option disabled="true" selected="">Sala</option>
                 @foreach($roomie as $row)
-                    <option value="{{$row->room_id_lol}}"> {{$row->name}} <?php if($row->type_room_id==1) {echo("CONSULTORIO");} elseif ($row->type_room_id==2) {echo("QUIROFANO");} elseif ($row->type_room_id==3) {echo("PELUQUERIA");} ?> {{$row->number}}</option>
+                    <option value="{{$row->room_id_lol}}"> {{$row->room_name}} <?php if($row->type_room_id==1) {echo("CONSULTORIO");} elseif ($row->type_room_id==2) {echo("QUIROFANO");} elseif ($row->type_room_id==3) {echo("PELUQUERIA");} ?> {{$row->number}}</option>
                 @endforeach
             </select>
 

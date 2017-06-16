@@ -85,7 +85,7 @@ class Rooms extends Controller
             ->groupby('type_room_id')
             ->count();
         
-        if($que==0){
+        if($que<=0){
             $room->number=1;
         }
         else{
@@ -128,6 +128,7 @@ class Rooms extends Controller
         $franjas = $this->horario();
 
         $typy = TypeRoom::all();
+
 
         return view('rooms')->with(['edit' => true, 'roomy' => $roomy,'franjas'=>$franjas]);
     }

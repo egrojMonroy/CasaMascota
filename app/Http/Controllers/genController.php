@@ -57,11 +57,20 @@ class genController extends Controller{
 
     public function findUser(Request $request){
 
-        if($request->type_room_id==1){$cunt=1;}
-        if($request->type_room_id==2){$cunt=2;}
-        if($request->type_room_id==3){$cunt=5;}
+        $f=DB::table('rooms')->select('rooms.id as room_id','type_room_id as type_room_id')
+            ->where('rooms.id',$request->type_room_id)
+            ->orderby('rooms.id', 'asc')
+            ->groupby('rooms.id')
+            ->get();
+
+
+    foreach ($f as $fu)
+        if($fu->type_room_id==1){$cunt=1;}
+        if($fu->type_room_id==2){$cunt=5;}
+        if($fu->type_room_id==3){$cunt=2;}
         $data=DB::table('users')->select('users.id as id','users.name as name','users.last_name as last_name')
             ->join('user_roles','user_roles.user_id','=','users.id')
+            ->join('roles','roles.id','=','user_roles.role_id')
             ->where('user_roles.role_id',$cunt)
             ->orderby('users.name', 'asc')
             ->groupby('users.id')

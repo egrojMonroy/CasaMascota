@@ -24,10 +24,10 @@
                         <option value="1">CONSULTORIO</option>
                     @endif
                     @if($roomy->type_room_id==2)
-                        <option value="0">QUIROFANO</option>
+                        <option value="2">QUIROFANO</option>
                     @endif
                     @if($roomy->type_room_id==3)
-                        <option value="0">PELUQUERIA</option>
+                        <option value="3">PELUQUERIA</option>
                     @endif
                     <option value="1">CONSULTORIO</option>
                     <option value="2">QUIROFANO</option>
@@ -49,7 +49,7 @@
                 <select class="form-control" name="franja" id="franja"  required>
 
                     <option value="{{$roomy->franja}}">{{$roomy->franja}}</option>
-                    @for($i=1;$i<=10;++$i)
+                    @for($i=0;$i<=7;++$i)
                         <option value="{{$franjas[$i]}}">{{$franjas[$i]}}</option>
                     @endfor
                 </select>

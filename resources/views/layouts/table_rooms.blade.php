@@ -13,10 +13,10 @@
                 <td>@if($row->type_room_id==1)
                        CONSULTORIO
                     @endif
-                    @if($row->type_room_id==3)
+                    @if($row->type_room_id==2)
                         QUIROFANO
                     @endif
-                    @if($row->type_room_id==2)
+                    @if($row->type_room_id==3)
                         PELUQUERIA
                     @endif
                 </td>
