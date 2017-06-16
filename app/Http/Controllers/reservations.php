@@ -3,6 +3,7 @@
 namespace petstore\Http\Controllers;
 use petstore\Reservation;
 use petstore\Pet;
+use petstore\Room;
 use petstore\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,13 +36,12 @@ class reservations extends Controller
             ->orderby('date', 'desc')
             ->paginate(7);
 
+        $rooms = Room::all();
 
 
 
 
-
-
-        return view('reservations')->with(['reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservations'=>$allreservations]);
+        return view('reservations')->with(['reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservations'=>$allreservations,'rooms'=>$rooms]);
     }
 
 

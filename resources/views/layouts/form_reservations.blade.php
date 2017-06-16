@@ -44,11 +44,32 @@
     </div>
   </div>
 
+    <div class="form-group {{ $errors->has('sala') ? ' has-error' : '' }}">
+        <label for="date" class="col-lg-2 control-label">Sala</label>
+        <div class="col-lg-10">
+
+            <select class="form-control" name="user_id" id="user_id"  required>
+
+                <option disabled="true" selected="">Sala</option>
+                @foreach($rooms as $row)
+                    <option value="{{$row->id}}">{{$row->name}} </option>
+                @endforeach
+            </select>
+
+
+
+            @if($errors->has('sala'))
+                <div class="alert alert-danger">
+                    {{$errors->first('sala')}}
+                </div>
+            @endif
+        </div>
+    </div>
 
   <div class="form-group {{ $errors->has('date') ? ' has-error' : '' }}">
     <label for="date" class="col-lg-2 control-label">Fecha</label>
     <div class="col-lg-10">
-      <input type="datetime-local" class="form-control" name="date" id="date" placeholder="date" required>
+      <input type="datetime-local" class="form-control" name="date" id="date" step="1800" placeholder="date"  required>
         @if($errors->has('date'))
             <div class="alert alert-danger">
                 {{$errors->first('date')}}
@@ -76,8 +97,6 @@
         @endif
     </div>
   </div>
-
-
 
 
 
@@ -119,5 +138,6 @@
                 }
             });
         });
+
     });
 </script>
