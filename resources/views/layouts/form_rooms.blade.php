@@ -48,7 +48,7 @@
             <select class="form-control" name="franja" id="franja"  required>
 
                 <option disabled="true" selected="">{{$franjas[0]}}</option>
-                @for($i=1;$i<=10;++$i)
+                @for($i=1;$i<=6;++$i)
                     <option value="{{$franjas[$i]}}">{{$franjas[$i]}}</option>
                 @endfor
             </select>

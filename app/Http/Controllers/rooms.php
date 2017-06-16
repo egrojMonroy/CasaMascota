@@ -27,10 +27,23 @@ class Rooms extends Controller
         $franjas = collect();
         $starttime = Carbon::create(0,0,0,0);
         $endtime = Carbon::create(0,0,0,5);
+        $franjas->push($starttime->toTimeString());
+        $franjas->push($starttime->addMinutes(30)->toTimeString());
+        $starttime=Carbon::create(0,0,0,0);
+        $franjas->push($starttime->addHour()->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
+        $franjas->push($starttime->addHours(1)->toTimeString());
 
+
+
+        /*
         for($starttime;$starttime<=$endtime;$starttime=$starttime->addMinutes(30)) {
                   $franjas->push($starttime->toTimeString());
             }
+        */
         return $franjas;
      }
     /**
