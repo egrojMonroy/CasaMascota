@@ -179,7 +179,7 @@ class assignations extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        dd($request);
         $assignation = Room::find($id);
         $assignation->room_id = $request->room_idi;
 

@@ -65,7 +65,7 @@
             <input type="checkbox" name="opcion[]" value="2">Peluquero<br>
             <input type="checkbox" name="opcion[]" value="3">Secretario<br>
             <input type="checkbox" name="opcion[]" value="4">Dueño<br>
-            <input type="checkbox" name="opcion[]" value="5">Empleado<br>
+            <input type="checkbox" name="opcion[]" value="5">Cirujano<br>
 
         </div>
     </div>
