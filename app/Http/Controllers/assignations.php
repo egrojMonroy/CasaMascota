@@ -188,7 +188,7 @@ class assignations extends Controller
                 ->get();}
 
 
-  
+
 
 
 
@@ -205,17 +205,7 @@ class assignations extends Controller
     public function update(Request $request, $id)
     {
 
-        $this->validate($request,[
-
-            'user_id[]'=> 'required',
-
-
-
-        ],[
-            'user_id[].required'=> 'Seleccione un Profesional'
-
-
-        ]);
+       
 
         $assignation = Room::find($id);
 
