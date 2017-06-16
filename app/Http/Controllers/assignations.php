@@ -205,7 +205,7 @@ class assignations extends Controller
     public function update(Request $request, $id)
     {
 
-       
+
 
         $assignation = Room::find($id);
 

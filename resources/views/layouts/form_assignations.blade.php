@@ -99,7 +99,7 @@
                 data:{'type_room_id':type_room_id},
                 success:function(data){
 
-                    op+='<option selected disabled>Profesional</option>';
+                    
                     for(var i=0;i<data.length;i++){
                         op+='<option value="'+data[i].id+'">'+data[i].name+' '+data[i].last_name+'</option>';
                     }
