@@ -92,7 +92,7 @@ class assignations extends Controller
 
 
         ],['room_id.required'=> 'Seleccione una Sala',
-            
+
 
 
         ]);
@@ -159,16 +159,18 @@ class assignations extends Controller
             ->where('assignations.room_id','=',$id)
             ->orderby('users.name')
             ->get();
-        if ($assignation->room_id== 1 or $assignation->room_id==2 )
+
+        if ($assignation->type_room_id==1)
         {$users = User::query()
             ->select('users.id as id','users.name as u_name','users.last_name as last_name')
             ->join('user_roles','user_roles.user_id','=','users.id')
+
             ->where('user_roles.role_id',1)
              ->orderby('users.name', 'asc')
             ->groupby('users.id')
             ->get();}
 
-        if ($assignation->room_id== 2)
+        if ($assignation->type_room_id== 2)
         {$users = User::query()
             ->select('users.id as id','users.name as u_name','users.last_name as last_name')
             ->join('user_roles','user_roles.user_id','=','users.id')
@@ -176,7 +178,7 @@ class assignations extends Controller
             ->orderby('users.name', 'asc')
             ->groupby('users.id')
             ->get();}
-        if ($assignation->room_id== 3)
+        if ($assignation->type_room_id== 3)
             {$users = User::query()
                 ->select('users.id as id','users.name as u_name','users.last_name as last_name')
                 ->join('user_roles','user_roles.user_id','=','users.id')
@@ -186,6 +188,7 @@ class assignations extends Controller
                 ->get();}
 
 
+  
 
 
 
