@@ -25,10 +25,6 @@ class reservations extends Controller
             ->groupby('users.id')
             ->get();
 
-
-
-
-
        $allreservations = Reservation::query()
             ->join('users','users.id','=','reservations.user_id')
             ->join('pets','pets.id','=','reservations.pet_id')
@@ -37,38 +33,21 @@ class reservations extends Controller
             ->paginate(7);
 
         $rooms = Room::all();
-
-
-
-
         return view('reservations')->with(['reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservations'=>$allreservations,'rooms'=>$rooms]);
     }
 
 
-
-    public function listAll()
-    {
+    public function listAll(){
 
     }
 
     public function store(Request $request){
 
-
         $this->validate($request,[
-
             'user_id'=> 'required',
             'pet'=> 'required',
             'tipo_res'=>'required',
             'date'=>'required|date|after:'.\Carbon\Carbon::tomorrow()->setTime(7,59).'|before:'.\Carbon\Carbon::tomorrow()->addMonth(1)->setTime(7,59),
-
-
-
-
-
-
-
-
-
         ],[
                 'user_id.required'=> 'Seleccione un Dueño',
                 'pet.required'=> 'Seleccione una Mascota',
@@ -76,15 +55,6 @@ class reservations extends Controller
                 'date.required'=>'Seleccione una fecha',
                 'date.after'=>'La fecha debe estar en el futuro desde las 8 de la mañana',
                  'date.before'=>'La fecha excedio el limite de reserva'
-
-
-
-
-
-
-
-
-
         ]);
         $reservation = new Reservation();
         $reservation->user_id = $request->user_id;
@@ -104,9 +74,6 @@ class reservations extends Controller
         }
     }
 
-
-
-
     public function edit($id){
         $pet = Pet::all();
 
@@ -119,8 +86,6 @@ class reservations extends Controller
             ->orderby('users.name', 'asc')
             ->groupby('users.id')
             ->get();
-
-
 
         $allreservation = Reservation::query()
             ->join('users','users.id','=','reservations.user_id')
@@ -135,22 +100,8 @@ class reservations extends Controller
             $lpets=Pet::where('user_id',$idp)
                 ->select('id as lpetid','name as lpetname')
                 ->get();
-
-
-
-
-
-
-
-
         return view('reservations')->with(['edit' => true,'reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservation'=>$allreservation,'lpets'=>$lpets]);
-
-
-
-
     }
-
-
 
     public function update(Request $request, $id)
     {
@@ -161,13 +112,6 @@ class reservations extends Controller
             'pet'=> 'required',
             'tipo_res'=>'required',
            'date'=>'required|date|after:'.\Carbon\Carbon::tomorrow()->setTime(7,59).'|before:'.\Carbon\Carbon::tomorrow()->addMonth(1)->setTime(7,59),
-
-
-
-
-
-
-
         ],[
             'user_id.required'=> 'Seleccione un Dueño',
             'pet.required'=> 'Seleccione una Mascota',
@@ -175,12 +119,6 @@ class reservations extends Controller
            'date.required'=>'Seleccione una fecha',
            'date.after'=>'La fecha debe estar en el futuro desde las 8 de la mañana',
            'date.before'=>'La fecha excedio el limite de reserva'
-
-
-
-
-
-
        ]);
 
 
