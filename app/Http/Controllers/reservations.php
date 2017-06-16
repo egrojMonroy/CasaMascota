@@ -47,7 +47,7 @@ class reservations extends Controller
             'user_id'=> 'required',
             'pet'=> 'required',
             'tipo_res'=>'required',
-            'date'=>'required|date|after:'.\Carbon\Carbon::tomorrow()->setTime(7,59).'|before:'.\Carbon\Carbon::tomorrow()->addMonth(1)->setTime(7,59),
+            'date'=>'required|unique|date|after:'.\Carbon\Carbon::tomorrow()->setTime(7,59).'|before:'.\Carbon\Carbon::tomorrow()->addMonth(1)->setTime(7,59),
         ],[
                 'user_id.required'=> 'Seleccione un Dueño',
                 'pet.required'=> 'Seleccione una Mascota',
@@ -60,6 +60,7 @@ class reservations extends Controller
         $reservation->user_id = $request->user_id;
         $reservation->pet_id = $request->pet;
         $reservation->date=$request->date;
+        $reservation->sala_id = $request->sala_id;
         $reservation->pet_id = $request->pet;
         $reservation->tipo_res = $request->tipo_res;
         $reservation->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
@@ -100,7 +101,15 @@ class reservations extends Controller
             $lpets=Pet::where('user_id',$idp)
                 ->select('id as lpetid','name as lpetname')
                 ->get();
-        return view('reservations')->with(['edit' => true,'reservations' => $reservation,'pets' => $pet,'users'=>$user,'allreservation'=>$allreservation,'lpets'=>$lpets]);
+        $salas = Room::all();
+        $room_find=Room::find($userpid->sala_id);
+
+            $step = $this->cambiar_hora_a_step($room_find->franja);
+        $id_sala= $room_find->id;
+        $sala_name = $room_find->name;
+        return view('reservations')->with(['edit' => true,'reservations' => $reservation,'pets' => $pet,'users'=>$user,
+            'allreservation'=>$allreservation,'lpets'=>$lpets,'rooms'=>$salas,'step'=>$step,
+                    'sala_id'=>$id_sala,'sala_name'=>$sala_name]);
     }
 
     public function update(Request $request, $id)
@@ -128,7 +137,7 @@ class reservations extends Controller
         $superdate= $request->date;
         $datetime =Carbon::parse($superdate)->format('Y-m-d H:i');
         $reservation->date =$datetime;
-        // $reservation->time=$request->time;
+        $reservation->sala_id = $request->sala_id;
         $reservation->pet_id            = $request->pet;
         $reservation->tipo_res          = $request->tipo_res;
         $reservation->createdBy   = Auth::user()->name.' '.Auth::user()->last_name;
@@ -158,5 +167,10 @@ class reservations extends Controller
             return back();
         }
     }
+    public function cambiar_hora_a_step($string){
+        $date =  Carbon::parse($string);
+        $ans = ($date->hour * 60 + $date->minute) * 60;
 
+        return $ans;
+    }
 }

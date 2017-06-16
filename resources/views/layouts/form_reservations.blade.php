@@ -192,6 +192,26 @@
                 }
             });
         });
+        $('#date').on('change',function () {
+            var id=$(this).val();
+
+            console.log(id);
+            var div=$(this).parent();
+            var op=" ";
+            $.ajax({
+                type:'get',
+                url:'{!!URL::to('findCheck')!!}',
+                data:{'id':id},
+                success:function(data){
+                    if(data==1){
+                        alert();
+                    }
+                    console.log(data);
+                },
+                error:function(){
+                }
+            });
+        });
 
     });
 </script>
