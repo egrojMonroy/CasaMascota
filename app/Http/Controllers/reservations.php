@@ -32,7 +32,7 @@ class reservations extends Controller
        $allreservations = Reservation::query()
             ->join('users','users.id','=','reservations.user_id')
             ->join('pets','pets.id','=','reservations.pet_id')
-            ->select('reservations.id as id','users.id as uid','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
+            ->select('reservations.id as id','users.id as user_id','users.name as uname','users.last_name as ulname', 'pets.name as pname', 'pets.id as pid','date','tipo_res')
             ->orderby('date', 'desc')
             ->paginate(7);
 
