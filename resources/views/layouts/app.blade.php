@@ -28,6 +28,7 @@
 </head>
 <body>
     <div id="app">
+
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -37,14 +38,20 @@
                         <span class="sr-only">Toggle Navigation</span>
                     </button>
                     <!-- Branding Image -->
-
+                            <?php
+                            $url =  "{$_SERVER['REQUEST_URI']}";
+                        if(strcmp($url, "/login")!='0'){
+                            $p = session()->all();
+                            if(count($p)>4){
+                                $p = array_chunk($p,1);
+                                $rol = $p[4][0][0];            
+                                if($rol == 3 || $rol ==5){
+                            ?>
                     <ul class="nav navbar-nav navbar-left">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Control <span class="caret"></span>
                             </a>
-
-                            <?php  ?>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a class="navbar-brand" href="{{ url('/breeds') }}">Breeds</a></li>
                                 <!-- <li><a class="navbar-brand" href="{{ url('/salons')}}">Salons</a></li> -->
@@ -56,12 +63,15 @@
                             
                         </li>
                     </ul>
-
+                    <?php 
+                                }
+                            }
+                    ?>
                     
                     <a class="navbar-brand" href="{{ url('/home') }}">Home</a>
                     <a class="navbar-brand" href="{{ url('/pets')}}">Pets</a>
                     <a class="navbar-brand" href="{{ url('/reservations')}}">Reservations</a>
-
+<?php } ?>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
