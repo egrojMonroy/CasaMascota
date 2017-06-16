@@ -17,7 +17,7 @@ class pets extends Controller{
         $my_pets = Pet::query()   
                     ->join('breeds','breeds.id','=','pets.breed_id')
                     ->join('users', 'users.id','=', 'pets.user_id')
-                    ->select('pets.id as id','pets.name as pet','weight','height','age', 'gender', 'breeds.name as breed', 'users.name as user')
+                    ->select('pets.id as id','pets.name as pet','weight','height','age', 'gender', 'breeds.name as breed', 'users.name as user', 'users.id as user_id')
                     ->orderby('breeds.id', 'asc')
                     ->paginate(5);
         return view('pets')->with(['pets' => $pet, 'families' => $family, 'my_pets' => $my_pets]);

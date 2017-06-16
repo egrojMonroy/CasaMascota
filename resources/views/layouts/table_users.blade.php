@@ -8,7 +8,7 @@
 		</thead>
 		<tbody>
 		@foreach($users as $row)
-			@if($row->id != \Illuminate\Support\Facades\Auth::id())
+			
 			<tr>
 				<td>{{ $row->name }}</td>
 				<td>{{ $row->last_name }}</td>
@@ -25,7 +25,7 @@
 
 				</td>
 			</tr>
-			@endif
+			
 		@endforeach
 
 		</tbody>
